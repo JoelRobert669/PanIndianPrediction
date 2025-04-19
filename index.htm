@@ -60,11 +60,11 @@
         .slide.active { opacity: 1; pointer-events: auto; z-index: 10; }
         .content {
             position: relative; z-index: 10;
-            padding: 3.5rem 4rem; height: 100%; /* Use full height */
-            box-sizing: border-box; /* Include padding in height calculation */
+            padding: 3.5rem 4rem; height: 100%;
+            box-sizing: border-box;
             display: flex; flex-direction: column;
-            overflow-y: auto; /* FIXED: Re-enabled auto scrollbar for vertical overflow */
-            overflow-x: hidden; /* Prevent horizontal scrollbars */
+            overflow-y: auto; /* Keep auto scrollbar */
+            overflow-x: hidden;
         }
         .slide:first-child .content { padding: 5rem 6rem; }
 
@@ -73,93 +73,152 @@
         .subtitle { font-size: 1.6rem; color: #ffffffdd; max-width: 700px; line-height: 1.4; margin-bottom: 3rem; }
         .section-title { font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); }
 
-        /* --- Consolidated Styles (Keep as before) --- */
-        .countdown { display: flex; gap: 1.5rem; margin-top: 2rem; flex-shrink: 0; /* Prevent countdown from shrinking */ }
+        /* --- Consolidated Styles (Keep as before, with icon color changes below) --- */
+        .countdown { display: flex; gap: 1.5rem; margin-top: 2rem; flex-shrink: 0; }
         .countdown-item { display: flex; flex-direction: column; align-items: center; background: rgba(15, 15, 35, 0.6); padding: 1rem; border-radius: 10px; min-width: 90px; backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3); }
         .countdown-value { font-size: 2.8rem; font-weight: 700; color: #fff; }
         .countdown-label { font-size: 0.9rem; color: #8b5cf6; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.25rem; }
 
-        .button, #exploreBtn { display: inline-flex; align-items: center; padding: 0.75rem 2rem; background: linear-gradient(90deg, #f637ec, #d434fe); color: white; font-weight: 600; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; margin-top: 2rem; width: fit-content; border: none; z-index: 15; position: relative; flex-shrink: 0; /* Prevent button shrinking */ }
+        .button, #exploreBtn { display: inline-flex; align-items: center; padding: 0.75rem 2rem; background: linear-gradient(90deg, #f637ec, #d434fe); color: white; font-weight: 600; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; margin-top: 2rem; width: fit-content; border: none; z-index: 15; position: relative; flex-shrink: 0; }
         .button:hover, #exploreBtn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.5); }
+        /* Keep icon inside white */
+        .button i, #exploreBtn i { color: white !important; }
 
-        .theme-card, .insight-card, .strategy-card, .director-card, .genre-card, .influence-card, .formula-card, .conclusion-card { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; } /* Removed height: 100% */
+        .theme-card, .insight-card, .strategy-card, .director-card, .genre-card, .influence-card, .formula-card, .conclusion-card { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; }
         .theme-card:hover, .insight-card:hover, .strategy-card:hover, .director-card:hover, .genre-card:hover, .influence-card:hover, .formula-card:hover, .conclusion-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.3); }
-        /* Add other specific card/grid styles here */
+
         .theme-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #f637ec; }
         .theme-description { font-size: 0.9rem; color: #ffffffdd; line-height: 1.4; }
+        /* Keep theme-icon gradient */
         .theme-icon { font-size: 1.5rem; margin-bottom: 0.75rem; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
         .films-tag { font-size: 0.8rem; background: rgba(138, 43, 226, 0.3); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block; margin-right: 0.5rem; margin-top: 0.5rem; color: #ffffffee; }
-        .films-tag i { margin-right: 0.25rem; }
+        .films-tag i { margin-right: 0.25rem; color: white; /* Ensure contrast */}
+
         .chart-container { position: relative; background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); margin-bottom: 1.5rem; flex-shrink: 0; }
         .bar { height: 30px; margin: 8px 0; background: linear-gradient(90deg, #8b5cf6, #3b82f6); border-radius: 4px; position: relative; }
         .bar-label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-weight: 500; font-size: 0.9rem; text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
         .bar-value { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: 0.9rem; text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
+
         .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .insight-title { font-size: 1.1rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Keep insight-icon gradient */
         .insight-icon { margin-right: 0.5rem; font-size: 1.2rem; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
         .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
         .strategy-title { font-size: 1.2rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
         .strategy-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.25rem; flex-shrink: 0; }
+        .strategy-icon i { color: white; }
+
         .film-tag { display: inline-block; padding: 0.35rem 0.75rem; background: linear-gradient(90deg, rgba(246, 55, 236, 0.3), rgba(139, 92, 246, 0.3)); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(246, 55, 236, 0.3); }
+        /* Ensure icon inside film-tag is visible */
+        .film-tag i { margin-right: 0.25rem; color: white; }
+
         .key-insights { background: rgba(15, 15, 35, 0.7); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(10px); flex-shrink: 0; }
+        /* Icons inside key insights (e.g., language, hashtag) - make white */
+        .key-insights .text-pink-500 i { color: white !important; }
+
         .directors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
         .director-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        /* Icons inside circles: default white is fine */
         .director-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-right: 1rem; }
+        .director-avatar i { color: white; }
+
         .director-name { font-size: 1.5rem; font-weight: 700; color: #f637ec; }
         .film-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(138, 43, 226, 0.2); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(138, 43, 226, 0.3); }
         .style-list { margin-top: 0.5rem; }
         .style-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; }
-        .style-icon { color: #d434fe; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+        /* CHANGED: .style-icon color */
+        .style-icon { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+
         .comparison-table { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
         table { width: 100%; border-collapse: collapse; }
         th { text-align: left; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding: 0.75rem 1rem; color: #d434fe; }
         td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(30, 30, 60, 0.3); font-size: 0.9rem; }
         tr:last-child td { border-bottom: none; }
+
         .genre-card { padding: 1.25rem; }
         .genre-title { font-size: 1.1rem; font-weight: 700; color: #f637ec; margin-bottom: 0.5rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
         .genre-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.1rem; flex-shrink: 0; }
+        .genre-icon i { color: white; }
+
         .film-example { display: inline-flex; align-items: center; padding: 0.35rem 0.75rem; background: rgba(139, 92, 246, 0.2); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(139, 92, 246, 0.3); }
+        /* Ensure icon inside film-example is visible */
+        .film-example i { margin-right: 0.25rem; color: white; }
+
         .prediction-box { background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); backdrop-filter: blur(10px); margin-top: 1.5rem; flex-shrink: 0; }
         .prediction-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 1rem; display: flex; align-items: center; }
-        .prediction-icon { font-size: 1.4rem; margin-right: 0.75rem; }
+        .prediction-icon { font-size: 1.4rem; margin-right: 0.75rem; color: white; /* Ensure contrast */}
+
         .insight-item { display: flex; align-items: flex-start; margin-bottom: 0.75rem; }
-        .insight-marker { color: #d434fe; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+        /* CHANGED: .insight-marker color */
+        .insight-marker { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+
         .influence-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
         .influence-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 1rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
         .influence-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.25rem; flex-shrink: 0; }
+        .influence-icon i { color: white; }
+
         .trend-item { display: flex; align-items: flex-start; margin-bottom: 0.75rem; }
-        .trend-marker { color: #8b5cf6; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+        .trend-marker { color: #8b5cf6; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; } /* Keep marker color distinct? Or change to white? Let's try white */
+        .trend-marker { color: white; }
+
         .genre-prediction { background: rgba(15, 15, 35, 0.7); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(10px); flex-shrink: 0; }
-        .genre-bubble { display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-radius: 20px; margin-right: 0.75rem; margin-bottom: 0.75rem; font-weight: 600; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; }
+        .genre-bubble { display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-radius: 20px; margin-right: 0.75rem; margin-bottom: 0.75rem; font-weight: 600; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; /* Ensure text is white */}
         .genre-bubble:hover { transform: scale(1.05); background: linear-gradient(135deg, rgba(246, 55, 236, 0.5) 0%, rgba(139, 92, 246, 0.5) 100%); }
+        /* CHANGED: .genre-bubble i color */
+        .genre-bubble i { margin-right: 0.5rem; color: white; } /* Removed text-indigo-300 from HTML */
+
         .audience-table { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
         .table-content { width: 100%; border-collapse: separate; border-spacing: 0; }
         .table-content th { text-align: left; padding: 0.75rem 1rem; font-weight: 600; color: #f637ec; border-bottom: 1px solid rgba(138, 43, 226, 0.3); font-size: 0.85rem; }
         .table-content td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(30, 30, 60, 0.3); font-size: 0.8rem; }
         .table-content tr:last-child td { border-bottom: none; }
         .table-content tr:hover td { background: rgba(138, 43, 226, 0.1); }
+
         .region-bubble { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(246, 55, 236, 0.3); }
-        .region-marker { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; background: #f637ec; }
+        .region-marker { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; background: #f637ec; } /* Keep marker color */
+
         .formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
         .formula-title { font-size: 1.2rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
         .formula-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.1rem; flex-shrink: 0; }
-        .genre-tag { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 0.75rem; margin-bottom: 0.75rem; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; }
+        .formula-icon i { color: white; }
+
+        .genre-tag { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 0.75rem; margin-bottom: 0.75rem; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; }
         .genre-tag:hover { background: linear-gradient(135deg, rgba(246, 55, 236, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%); transform: translateY(-2px); }
-        .genre-tag .genre-icon { margin-right: 0.5rem; color: #8b5cf6; }
+        /* CHANGED: .genre-tag .genre-icon color */
+        .genre-tag .genre-icon { margin-right: 0.5rem; color: white; }
+
         .gauge-container { display: flex; justify-content: space-between; margin-top: 1rem; flex-shrink: 0; }
         .gauge-item { display: flex; flex-direction: column; align-items: center; width: 100px; }
         .gauge-circle { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#f637ec 0%, #f637ec var(--percentage), rgba(15, 15, 35, 0.3) var(--percentage), rgba(15, 15, 35, 0.3) 100%); display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 0.5rem; }
         .gauge-circle::before { content: ""; position: absolute; width: 54px; height: 54px; border-radius: 50%; background: rgba(15, 15, 35, 0.8); }
         .gauge-value { position: relative; z-index: 2; font-weight: 700; font-size: 1.1rem; color: #f637ec; }
         .gauge-label { font-size: 0.8rem; color: #d1d5db; text-align: center; }
+
         .magic-formula-box { background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 12px; padding: 1.25rem; margin-top: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
+        /* Quote icons - make white */
+        .magic-formula-box i { color: white !important; }
+
         .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
         .conclusion-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
         .conclusion-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.2rem; flex-shrink: 0; }
+        .conclusion-icon i { color: white; }
+
         .next-steps { background: linear-gradient(135deg, rgba(246, 55, 236, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); margin-top: 1.5rem; backdrop-filter: blur(10px); flex-shrink: 0; }
+        /* Icons inside next-steps - make white */
+        .next-steps i { color: white !important; } /* Override Tailwind colors */
+
         .thank-you { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin: 1.5rem 0; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); flex-shrink: 0; }
-        .key-driver { display: inline-flex; align-items: center; margin-right: 1rem; margin-bottom: 0.5rem; background: rgba(246, 55, 236, 0.15); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(246, 55, 236, 0.2); }
-        .driver-icon { color: #d434fe; margin-right: 0.5rem; }
+        .key-driver { display: inline-flex; align-items: center; margin-right: 1rem; margin-bottom: 0.5rem; background: rgba(246, 55, 236, 0.15); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(246, 55, 236, 0.2); color: white; }
+        /* CHANGED: .driver-icon color */
+        .driver-icon { color: white; margin-right: 0.5rem; }
+
         .highlight-text { color: #d434fe; font-weight: 600; }
         /* --- End of Consolidated Styles --- */
 
@@ -170,7 +229,8 @@
             z-index: 20; pointer-events: none;
         }
         .page-info .note { font-size: 0.8rem; color: #a78bfa; opacity: 0.9; display: flex; align-items: center; max-width: 70%; }
-        .page-info .note i { margin-right: 0.5rem; }
+        /* CHANGED: page-info icon color */
+        .page-info .note i { margin-right: 0.5rem; color: white; }
         .page-info .page-number { font-size: 0.8rem; color: #f9a8d4; text-align: right; flex-shrink: 0; }
 
         /* Side Navigation Buttons Styling */
@@ -185,6 +245,8 @@
         .side-nav-button:hover { background: rgba(138, 43, 226, 0.5); color: white; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
         .side-nav-button:active { transform: translateY(-50%) scale(0.92); }
         .side-nav-button:disabled { background: rgba(55, 65, 81, 0.3); color: rgba(255, 255, 255, 0.3); cursor: not-allowed; border-color: rgba(55, 65, 81, 0.5); box-shadow: none; opacity: 0.7; }
+        /* Keep nav button icon colors light */
+        .side-nav-button i { color: inherit; }
         #prevBtn { left: 20px; }
         #nextBtn { right: 20px; }
 
@@ -382,9 +444,9 @@
                     </div>
                     <h2 class="section-title">Future Pan-Indian Success Stories</h2>
                     <div class="grid grid-cols-3 gap-5 mb-5">
-                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-fist-raised"></i></div>Traditional Dominance</div><p class="text-sm text-gray-200 mb-3">Genres that have historically dominated Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Action Blockbusters</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Historical Epics</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Masala Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> Baahubali</span><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> KGF</span><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> RRR</span></div></div>
-                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-chart-line"></i></div>Emerging Successes</div><p class="text-sm text-gray-200 mb-3">Genres recently achieving notable Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Fantasy Adventures</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Mythology-based Thrillers</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Horror-Comedy</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> Eega</span><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> Karthikeya 2</span><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> Kantara</span></div></div>
-                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-rocket"></i></div>Future Potential</div><p class="text-sm text-gray-200 mb-3">Genres poised for Pan-Indian breakthrough:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Science Fiction</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Social Dramas</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Family Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> Kalki 2898 AD</span><span class="film-example"><i class="fas fa-film mr-1 text-indigo-400"></i> Rocketry</span></div></div>
+                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-fist-raised"></i></div>Traditional Dominance</div><p class="text-sm text-gray-200 mb-3">Genres that have historically dominated Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Action Blockbusters</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Historical Epics</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Masala Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Baahubali</span><span class="film-example"><i class="fas fa-film mr-1"></i> KGF</span><span class="film-example"><i class="fas fa-film mr-1"></i> RRR</span></div></div>
+                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-chart-line"></i></div>Emerging Successes</div><p class="text-sm text-gray-200 mb-3">Genres recently achieving notable Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Fantasy Adventures</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Mythology-based Thrillers</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Horror-Comedy</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Eega</span><span class="film-example"><i class="fas fa-film mr-1"></i> Karthikeya 2</span><span class="film-example"><i class="fas fa-film mr-1"></i> Kantara</span></div></div>
+                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-rocket"></i></div>Future Potential</div><p class="text-sm text-gray-200 mb-3">Genres poised for Pan-Indian breakthrough:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Science Fiction</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Social Dramas</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Family Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Kalki 2898 AD</span><span class="film-example"><i class="fas fa-film mr-1"></i> Rocketry</span></div></div>
                     </div>
                     <div class="prediction-box">
                         <div class="prediction-title"><i class="fas fa-crystal-ball prediction-icon"></i>Genre Evolution Insights</div>
@@ -428,7 +490,7 @@
                     </div>
                     <div class="genre-prediction">
                         <div class="text-blue-300 font-semibold text-lg mb-3">Emerging Genre Predictions Based on Socio-Cultural Influences</div>
-                        <div class="flex flex-wrap"><div class="genre-bubble"><i class="fas fa-flag text-indigo-300 mr-2"></i> Patriotic Films with Unity Themes</div><div class="genre-bubble"><i class="fas fa-lightbulb text-indigo-300 mr-2"></i> Socially Relevant Dramas</div><div class="genre-bubble"><i class="fas fa-mask text-indigo-300 mr-2"></i> Cultural Heritage Celebrations</div><div class="genre-bubble"><i class="fas fa-fist-raised text-indigo-300 mr-2"></i> Stories of Empowerment</div><div class="genre-bubble"><i class="fas fa-robot text-indigo-300 mr-2"></i> Technology-Human Interface Narratives</div><div class="genre-bubble"><i class="fas fa-seedling text-indigo-300 mr-2"></i> Environmental Consciousness</div></div>
+                        <div class="flex flex-wrap"><div class="genre-bubble"><i class="fas fa-flag mr-2"></i> Patriotic Films with Unity Themes</div><div class="genre-bubble"><i class="fas fa-lightbulb mr-2"></i> Socially Relevant Dramas</div><div class="genre-bubble"><i class="fas fa-mask mr-2"></i> Cultural Heritage Celebrations</div><div class="genre-bubble"><i class="fas fa-fist-raised mr-2"></i> Stories of Empowerment</div><div class="genre-bubble"><i class="fas fa-robot mr-2"></i> Technology-Human Interface Narratives</div><div class="genre-bubble"><i class="fas fa-seedling mr-2"></i> Environmental Consciousness</div></div>
                         <div class="mt-4 text-sm text-gray-200"><i class="fas fa-quote-left text-pink-400 mr-2"></i>Films that successfully blend these socio-cultural elements with strong storytelling and visual presentation will find greater resonance with Pan-Indian audiences. The most powerful narratives will be those that address contemporary concerns while connecting to cultural roots.<i class="fas fa-quote-right text-pink-400 ml-2"></i></div>
                     </div>
                 </div>
@@ -503,7 +565,7 @@
                             <div class="gauge-item"><div class="gauge-circle" style="--percentage: 88%"><span class="gauge-value">88%</span></div><span class="gauge-label">Strong<br>Characters</span></div>
                         </div>
                     </div>
-                    <div class="magic-formula-box"><p class="text-center text-sm text-blue-200"><i class="fas fa-quote-left text-pink-400 mr-2"></i>The ideal "magic formula" combines universally appealing narratives with high-quality production, strategic marketing, and distinctive directorial vision. While action and masala elements have proven successful, an openness to diverse genres with a Pan-Indian sensibility will likely drive future innovation.<i class="fas fa-quote-right text-pink-400 ml-2"></i></p></div>
+                    <div class="magic-formula-box"><p class="text-center text-sm text-blue-200"><i class="fas fa-quote-left mr-2"></i>The ideal "magic formula" combines universally appealing narratives with high-quality production, strategic marketing, and distinctive directorial vision. While action and masala elements have proven successful, an openness to diverse genres with a Pan-Indian sensibility will likely drive future innovation.<i class="fas fa-quote-right ml-2"></i></p></div>
                 </div>
                 <div class="page-info">
                     <div class="note"><i class="fas fa-lightbulb"></i> Success factors work in combination rather than isolation</div>
@@ -526,9 +588,9 @@
                     </div>
                     <div class="next-steps">
                         <div class="grid grid-cols-3 gap-4">
-                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-compass text-pink-500 mr-2"></i> Future Direction</div><p class="text-sm text-gray-200">Filmmakers should embrace diverse genres and innovative storytelling while maintaining cultural authenticity and emotional resonance to connect with the Pan-Indian audience.</p></div>
-                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-chart-line text-pink-500 mr-2"></i> Market Expansion</div><p class="text-sm text-gray-200">Strategic marketing and distribution across linguistic regions, alongside targeted international promotion, will be key to maximizing reach and revenue potential.</p></div>
-                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-lightbulb text-pink-500 mr-2"></i> Innovation Focus</div><p class="text-sm text-gray-200">Technical innovation in visual presentation balanced with strong narrative fundamentals will continue to differentiate successful Pan-Indian cinema.</p></div>
+                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-compass mr-2"></i> Future Direction</div><p class="text-sm text-gray-200">Filmmakers should embrace diverse genres and innovative storytelling while maintaining cultural authenticity and emotional resonance to connect with the Pan-Indian audience.</p></div>
+                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-chart-line mr-2"></i> Market Expansion</div><p class="text-sm text-gray-200">Strategic marketing and distribution across linguistic regions, alongside targeted international promotion, will be key to maximizing reach and revenue potential.</p></div>
+                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-lightbulb mr-2"></i> Innovation Focus</div><p class="text-sm text-gray-200">Technical innovation in visual presentation balanced with strong narrative fundamentals will continue to differentiate successful Pan-Indian cinema.</p></div>
                         </div>
                     </div>
                     <div class="thank-you">The Future is Pan-Indian</div>
@@ -607,13 +669,12 @@
              exploreBtn.addEventListener('click', showNextSlide);
         }
         document.addEventListener('keydown', (event) => {
-            // Prevent scrolling page with arrow keys/space if presentation is focused
-            if (document.activeElement === presentationWrapper || presentationWrapper.contains(document.activeElement) || document.activeElement === document.body ) {
+            if (document.activeElement === document.body || presentationWrapper.contains(document.activeElement)) {
                  if (['ArrowRight', 'PageDown', ' ', 'ArrowDown'].includes(event.key)) {
-                     event.preventDefault(); // Prevent default scroll / space action
+                     event.preventDefault();
                      showNextSlide();
                  } else if (['ArrowLeft', 'PageUp', 'ArrowUp'].includes(event.key)) {
-                    event.preventDefault(); // Prevent default scroll action
+                    event.preventDefault();
                     showPrevSlide();
                  } else if (event.key === 'Home') {
                     event.preventDefault();
