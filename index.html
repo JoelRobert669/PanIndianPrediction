@@ -73,7 +73,7 @@
         .subtitle { font-size: 1.6rem; color: #ffffffdd; max-width: 700px; line-height: 1.4; margin-bottom: 3rem; }
         .section-title { font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); }
 
-        /* --- Consolidated Styles (Keep as before, with icon color changes below) --- */
+        /* --- Consolidated Styles (Keep as before, with icon color changes) --- */
         .countdown { display: flex; gap: 1.5rem; margin-top: 2rem; flex-shrink: 0; }
         .countdown-item { display: flex; flex-direction: column; align-items: center; background: rgba(15, 15, 35, 0.6); padding: 1rem; border-radius: 10px; min-width: 90px; backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3); }
         .countdown-value { font-size: 2.8rem; font-weight: 700; color: #fff; }
@@ -81,144 +81,98 @@
 
         .button, #exploreBtn { display: inline-flex; align-items: center; padding: 0.75rem 2rem; background: linear-gradient(90deg, #f637ec, #d434fe); color: white; font-weight: 600; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; margin-top: 2rem; width: fit-content; border: none; z-index: 15; position: relative; flex-shrink: 0; }
         .button:hover, #exploreBtn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.5); }
-        /* Keep icon inside white */
         .button i, #exploreBtn i { color: white !important; }
 
-        .theme-card, .insight-card, .strategy-card, .director-card, .genre-card, .influence-card, .formula-card, .conclusion-card { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; }
-        .theme-card:hover, .insight-card:hover, .strategy-card:hover, .director-card:hover, .genre-card:hover, .influence-card:hover, .formula-card:hover, .conclusion-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.3); }
+        .theme-card, .insight-card, .strategy-card, .director-card, .genre-card, .influence-card, .formula-card, .conclusion-card, .prediction-card { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .theme-card:hover, .insight-card:hover, .strategy-card:hover, .director-card:hover, .genre-card:hover, .influence-card:hover, .formula-card:hover, .conclusion-card:hover, .prediction-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.3); }
 
         .theme-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #f637ec; }
         .theme-description { font-size: 0.9rem; color: #ffffffdd; line-height: 1.4; }
-        /* Keep theme-icon gradient */
         .theme-icon { font-size: 1.5rem; margin-bottom: 0.75rem; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
         .films-tag { font-size: 0.8rem; background: rgba(138, 43, 226, 0.3); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block; margin-right: 0.5rem; margin-top: 0.5rem; color: #ffffffee; }
-        .films-tag i { margin-right: 0.25rem; color: white; /* Ensure contrast */}
-
+        .films-tag i { margin-right: 0.25rem; color: white; }
         .chart-container { position: relative; background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); margin-bottom: 1.5rem; flex-shrink: 0; }
         .bar { height: 30px; margin: 8px 0; background: linear-gradient(90deg, #8b5cf6, #3b82f6); border-radius: 4px; position: relative; }
         .bar-label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-weight: 500; font-size: 0.9rem; text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
         .bar-value { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: 0.9rem; text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
-
         .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
         .insight-title { font-size: 1.1rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
-        /* Keep insight-icon gradient */
         .insight-icon { margin-right: 0.5rem; font-size: 1.2rem; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
         .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
         .strategy-title { font-size: 1.2rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
-        /* Icons inside circles: default white is fine */
         .strategy-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.25rem; flex-shrink: 0; }
         .strategy-icon i { color: white; }
-
         .film-tag { display: inline-block; padding: 0.35rem 0.75rem; background: linear-gradient(90deg, rgba(246, 55, 236, 0.3), rgba(139, 92, 246, 0.3)); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(246, 55, 236, 0.3); }
-        /* Ensure icon inside film-tag is visible */
         .film-tag i { margin-right: 0.25rem; color: white; }
-
         .key-insights { background: rgba(15, 15, 35, 0.7); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(10px); flex-shrink: 0; }
-        /* Icons inside key insights (e.g., language, hashtag) - make white */
         .key-insights .text-pink-500 i { color: white !important; }
-
         .directors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
         .director-header { display: flex; align-items: center; margin-bottom: 1rem; }
-        /* Icons inside circles: default white is fine */
         .director-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-right: 1rem; }
         .director-avatar i { color: white; }
-
         .director-name { font-size: 1.5rem; font-weight: 700; color: #f637ec; }
         .film-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(138, 43, 226, 0.2); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(138, 43, 226, 0.3); }
         .style-list { margin-top: 0.5rem; }
         .style-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; }
-        /* CHANGED: .style-icon color */
         .style-icon { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
-
         .comparison-table { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
         table { width: 100%; border-collapse: collapse; }
         th { text-align: left; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding: 0.75rem 1rem; color: #d434fe; }
         td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(30, 30, 60, 0.3); font-size: 0.9rem; }
         tr:last-child td { border-bottom: none; }
-
         .genre-card { padding: 1.25rem; }
         .genre-title { font-size: 1.1rem; font-weight: 700; color: #f637ec; margin-bottom: 0.5rem; display: flex; align-items: center; }
-        /* Icons inside circles: default white is fine */
         .genre-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.1rem; flex-shrink: 0; }
         .genre-icon i { color: white; }
-
         .film-example { display: inline-flex; align-items: center; padding: 0.35rem 0.75rem; background: rgba(139, 92, 246, 0.2); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(139, 92, 246, 0.3); }
-        /* Ensure icon inside film-example is visible */
         .film-example i { margin-right: 0.25rem; color: white; }
-
         .prediction-box { background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); backdrop-filter: blur(10px); margin-top: 1.5rem; flex-shrink: 0; }
         .prediction-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 1rem; display: flex; align-items: center; }
-        .prediction-icon { font-size: 1.4rem; margin-right: 0.75rem; color: white; /* Ensure contrast */}
-
+        .prediction-icon { font-size: 1.4rem; margin-right: 0.75rem; color: white; }
         .insight-item { display: flex; align-items: flex-start; margin-bottom: 0.75rem; }
-        /* CHANGED: .insight-marker color */
         .insight-marker { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
-
         .influence-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
         .influence-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 1rem; display: flex; align-items: center; }
-        /* Icons inside circles: default white is fine */
         .influence-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.25rem; flex-shrink: 0; }
         .influence-icon i { color: white; }
-
         .trend-item { display: flex; align-items: flex-start; margin-bottom: 0.75rem; }
-        .trend-marker { color: #8b5cf6; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; } /* Keep marker color distinct? Or change to white? Let's try white */
-        .trend-marker { color: white; }
-
+        .trend-marker { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
         .genre-prediction { background: rgba(15, 15, 35, 0.7); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(10px); flex-shrink: 0; }
-        .genre-bubble { display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-radius: 20px; margin-right: 0.75rem; margin-bottom: 0.75rem; font-weight: 600; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; /* Ensure text is white */}
+        .genre-bubble { display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-radius: 20px; margin-right: 0.75rem; margin-bottom: 0.75rem; font-weight: 600; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; }
         .genre-bubble:hover { transform: scale(1.05); background: linear-gradient(135deg, rgba(246, 55, 236, 0.5) 0%, rgba(139, 92, 246, 0.5) 100%); }
-        /* CHANGED: .genre-bubble i color */
-        .genre-bubble i { margin-right: 0.5rem; color: white; } /* Removed text-indigo-300 from HTML */
-
+        .genre-bubble i { margin-right: 0.5rem; color: white; }
         .audience-table { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
         .table-content { width: 100%; border-collapse: separate; border-spacing: 0; }
         .table-content th { text-align: left; padding: 0.75rem 1rem; font-weight: 600; color: #f637ec; border-bottom: 1px solid rgba(138, 43, 226, 0.3); font-size: 0.85rem; }
         .table-content td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(30, 30, 60, 0.3); font-size: 0.8rem; }
         .table-content tr:last-child td { border-bottom: none; }
         .table-content tr:hover td { background: rgba(138, 43, 226, 0.1); }
-
         .region-bubble { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(246, 55, 236, 0.3); }
-        .region-marker { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; background: #f637ec; } /* Keep marker color */
-
+        .region-marker { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; background: #f637ec; }
         .formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
         .formula-title { font-size: 1.2rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
-        /* Icons inside circles: default white is fine */
         .formula-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.1rem; flex-shrink: 0; }
         .formula-icon i { color: white; }
-
         .genre-tag { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 0.75rem; margin-bottom: 0.75rem; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; }
         .genre-tag:hover { background: linear-gradient(135deg, rgba(246, 55, 236, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%); transform: translateY(-2px); }
-        /* CHANGED: .genre-tag .genre-icon color */
         .genre-tag .genre-icon { margin-right: 0.5rem; color: white; }
-
         .gauge-container { display: flex; justify-content: space-between; margin-top: 1rem; flex-shrink: 0; }
         .gauge-item { display: flex; flex-direction: column; align-items: center; width: 100px; }
         .gauge-circle { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#f637ec 0%, #f637ec var(--percentage), rgba(15, 15, 35, 0.3) var(--percentage), rgba(15, 15, 35, 0.3) 100%); display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 0.5rem; }
         .gauge-circle::before { content: ""; position: absolute; width: 54px; height: 54px; border-radius: 50%; background: rgba(15, 15, 35, 0.8); }
         .gauge-value { position: relative; z-index: 2; font-weight: 700; font-size: 1.1rem; color: #f637ec; }
         .gauge-label { font-size: 0.8rem; color: #d1d5db; text-align: center; }
-
         .magic-formula-box { background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 12px; padding: 1.25rem; margin-top: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
-        /* Quote icons - make white */
         .magic-formula-box i { color: white !important; }
-
         .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
         .conclusion-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
-        /* Icons inside circles: default white is fine */
         .conclusion-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.2rem; flex-shrink: 0; }
         .conclusion-icon i { color: white; }
-
         .next-steps { background: linear-gradient(135deg, rgba(246, 55, 236, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); margin-top: 1.5rem; backdrop-filter: blur(10px); flex-shrink: 0; }
-        /* Icons inside next-steps - make white */
-        .next-steps i { color: white !important; } /* Override Tailwind colors */
-
+        .next-steps i { color: white !important; }
         .thank-you { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin: 1.5rem 0; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); flex-shrink: 0; }
         .key-driver { display: inline-flex; align-items: center; margin-right: 1rem; margin-bottom: 0.5rem; background: rgba(246, 55, 236, 0.15); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(246, 55, 236, 0.2); color: white; }
-        /* CHANGED: .driver-icon color */
         .driver-icon { color: white; margin-right: 0.5rem; }
-
         .highlight-text { color: #d434fe; font-weight: 600; }
         /* --- End of Consolidated Styles --- */
 
@@ -229,7 +183,6 @@
             z-index: 20; pointer-events: none;
         }
         .page-info .note { font-size: 0.8rem; color: #a78bfa; opacity: 0.9; display: flex; align-items: center; max-width: 70%; }
-        /* CHANGED: page-info icon color */
         .page-info .note i { margin-right: 0.5rem; color: white; }
         .page-info .page-number { font-size: 0.8rem; color: #f9a8d4; text-align: right; flex-shrink: 0; }
 
@@ -245,10 +198,32 @@
         .side-nav-button:hover { background: rgba(138, 43, 226, 0.5); color: white; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
         .side-nav-button:active { transform: translateY(-50%) scale(0.92); }
         .side-nav-button:disabled { background: rgba(55, 65, 81, 0.3); color: rgba(255, 255, 255, 0.3); cursor: not-allowed; border-color: rgba(55, 65, 81, 0.5); box-shadow: none; opacity: 0.7; }
-        /* Keep nav button icon colors light */
         .side-nav-button i { color: inherit; }
         #prevBtn { left: 20px; }
         #nextBtn { right: 20px; }
+
+        /* New Prediction Card Styles */
+         .prediction-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f637ec; /* Keep title pink */
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+        }
+        .prediction-card-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%);
+            border-radius: 8px; /* Rounded square */
+            margin-right: 0.75rem;
+            font-size: 1rem;
+            flex-shrink: 0;
+            color: white; /* White icon inside gradient */
+        }
 
     </style>
 </head>
@@ -262,120 +237,76 @@
             <div class="gradient-overlay"></div>
             <div class="dot-pattern"></div>
 
-            <!-- Slides (Content from Snippets 1-10) -->
+            <!-- Slides -->
+
             <!-- Slide 1 -->
             <div class="slide active">
                 <div class="content">
-                    <div class="flex items-center mb-2">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div>
-                        <span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Predicting Success</span>
-                    </div>
+                    <div class="flex items-center mb-2"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Predicting Success</span></div>
                     <h1 class="title">The Pan-Indian Silver Screen</h1>
                     <p class="subtitle">Predicting Genres and Factors for Future Success in Pan-Indian Cinema</p>
                     <div class="countdown">
-                        <div class="countdown-item"><span class="countdown-value">82</span><span class="countdown-label">Universal Themes</span></div>
-                        <div class="countdown-item"><span class="countdown-value">76</span><span class="countdown-label">Production Value</span></div>
-                        <div class="countdown-item"><span class="countdown-value">68</span><span class="countdown-label">Marketing</span></div>
-                        <div class="countdown-item"><span class="countdown-value">91</span><span class="countdown-label">Direction</span></div>
+                        <div class="countdown-item"><span class="countdown-value">82</span><span class="countdown-label">Universal Themes</span></div><div class="countdown-item"><span class="countdown-value">76</span><span class="countdown-label">Production Value</span></div><div class="countdown-item"><span class="countdown-value">68</span><span class="countdown-label">Marketing</span></div><div class="countdown-item"><span class="countdown-value">91</span><span class="countdown-label">Direction</span></div>
                     </div>
-                    <button id="exploreBtn">
-                        <i class="fas fa-play-circle mr-2"></i> Explore Success Factors
-                    </button>
+                    <button id="exploreBtn"><i class="fas fa-play-circle mr-2"></i> Explore Success Factors</button>
                 </div>
                 <div class="page-info">
                     <div class="note"><i class="fas fa-chart-line"></i>Based on comprehensive analysis of recent box office trends</div>
-                    <div class="page-number"><span>Page 1/10</span></div>
+                    <div class="page-number"><span>Page 1/11</span></div>
                 </div>
             </div>
 
             <!-- Slide 2 -->
             <div class="slide">
                 <div class="content">
-                    <div class="flex items-center mb-4">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div>
-                        <span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Foundation of Success</span>
-                    </div>
+                    <div class="flex items-center mb-4"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Foundation of Success</span></div>
                     <h2 class="section-title">Universal Themes in Pan-Indian Blockbusters</h2>
                     <div class="grid grid-cols-3 gap-6 mt-4">
-                        <div class="theme-card">
-                            <div class="theme-icon"><i class="fas fa-shield-alt"></i></div><h3 class="theme-title">Heroism</h3><p class="theme-description">Tales of courageous protagonists overcoming adversity, often featuring larger-than-life heroes that fulfill audience desires for aspirational figures.</p><div class="mt-3"><span class="films-tag">KGF</span><span class="films-tag">RRR</span><span class="films-tag">Baahubali</span></div>
-                        </div>
-                        <div class="theme-card">
-                            <div class="theme-icon"><i class="fas fa-gavel"></i></div><h3 class="theme-title">Revenge & Justice</h3><p class="theme-description">Powerful narratives of retribution against injustice that provide a strong dramatic foundation transcending cultural differences.</p><div class="mt-3"><span class="films-tag">Pushpa</span><span class="films-tag">Kantara</span><span class="films-tag">Eega</span></div>
-                        </div>
-                        <div class="theme-card">
-                            <div class="theme-icon"><i class="fas fa-users"></i></div><h3 class="theme-title">Family Bonds</h3><p class="theme-description">Emotional narratives centered around maternal devotion and complex family relationships that connect strongly with viewers across all regions.</p><div class="mt-3"><span class="films-tag">KGF</span><span class="films-tag">Pushpa</span><span class="films-tag">Baahubali</span></div>
-                        </div>
-                        <div class="theme-card">
-                            <div class="theme-icon"><i class="fas fa-flag"></i></div><h3 class="theme-title">Patriotism & Camaraderie</h3><p class="theme-description">Stories imbued with nationalistic sentiment and brotherhood that connect with the audience's national identity and historical consciousness.</p><div class="mt-3"><span class="films-tag">RRR</span><span class="films-tag">Uri</span></div>
-                        </div>
-                        <div class="theme-card">
-                            <div class="theme-icon"><i class="fas fa-arrow-up"></i></div><h3 class="theme-title">Underdog Stories</h3><p class="theme-description">Narratives of individuals rising from humble beginnings to achieve success against overwhelming odds, providing inspiration and hope.</p><div class="mt-3"><span class="films-tag">Pushpa</span><span class="films-tag">Hanu-Man</span></div>
-                        </div>
-                        <div class="theme-card">
-                            <div class="theme-icon"><i class="fas fa-yin-yang"></i></div><h3 class="theme-title">Good vs Evil & Folklore</h3><p class="theme-description">Timeless conflicts between righteousness and villainy, often drawing inspiration from Indian mythology and cultural heritage.</p><div class="mt-3"><span class="films-tag">Baahubali</span><span class="films-tag">Kantara</span><span class="films-tag">RRR</span></div>
-                        </div>
+                        <div class="theme-card"><div class="theme-icon"><i class="fas fa-shield-alt"></i></div><h3 class="theme-title">Heroism</h3><p class="theme-description">Tales of courageous protagonists overcoming adversity, often featuring larger-than-life heroes that fulfill audience desires for aspirational figures.</p><div class="mt-3"><span class="films-tag">KGF</span><span class="films-tag">RRR</span><span class="films-tag">Baahubali</span></div></div>
+                        <div class="theme-card"><div class="theme-icon"><i class="fas fa-gavel"></i></div><h3 class="theme-title">Revenge & Justice</h3><p class="theme-description">Powerful narratives of retribution against injustice that provide a strong dramatic foundation transcending cultural differences.</p><div class="mt-3"><span class="films-tag">Pushpa</span><span class="films-tag">Kantara</span><span class="films-tag">Eega</span></div></div>
+                        <div class="theme-card"><div class="theme-icon"><i class="fas fa-users"></i></div><h3 class="theme-title">Family Bonds</h3><p class="theme-description">Emotional narratives centered around maternal devotion and complex family relationships that connect strongly with viewers across all regions.</p><div class="mt-3"><span class="films-tag">KGF</span><span class="films-tag">Pushpa</span><span class="films-tag">Baahubali</span></div></div>
+                        <div class="theme-card"><div class="theme-icon"><i class="fas fa-flag"></i></div><h3 class="theme-title">Patriotism & Camaraderie</h3><p class="theme-description">Stories imbued with nationalistic sentiment and brotherhood that connect with the audience's national identity and historical consciousness.</p><div class="mt-3"><span class="films-tag">RRR</span><span class="films-tag">Uri</span></div></div>
+                        <div class="theme-card"><div class="theme-icon"><i class="fas fa-arrow-up"></i></div><h3 class="theme-title">Underdog Stories</h3><p class="theme-description">Narratives of individuals rising from humble beginnings to achieve success against overwhelming odds, providing inspiration and hope.</p><div class="mt-3"><span class="films-tag">Pushpa</span><span class="films-tag">Hanu-Man</span></div></div>
+                        <div class="theme-card"><div class="theme-icon"><i class="fas fa-yin-yang"></i></div><h3 class="theme-title">Good vs Evil & Folklore</h3><p class="theme-description">Timeless conflicts between righteousness and villainy, often drawing inspiration from Indian mythology and cultural heritage.</p><div class="mt-3"><span class="films-tag">Baahubali</span><span class="films-tag">Kantara</span><span class="films-tag">RRR</span></div></div>
                     </div>
                 </div>
                  <div class="page-info">
                     <div class="note"><i class="fas fa-lightbulb"></i>These universal themes transcend regional boundaries and create emotional connections</div>
-                    <div class="page-number"><span>Page 2/10</span></div>
+                    <div class="page-number"><span>Page 2/11</span></div>
                 </div>
             </div>
 
             <!-- Slide 3 -->
             <div class="slide">
                 <div class="content">
-                     <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">The Visual Equation</span>
-                    </div>
+                     <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">The Visual Equation</span></div>
                     <h2 class="section-title">Production Budgets, Spectacle & Returns</h2>
                     <div class="chart-container">
                         <div class="text-blue-300 font-semibold mb-3">Top Pan-Indian Films: Budget vs Box Office Success</div>
-                        <div class="bar" style="width: 90%;"><span class="bar-label">RRR</span><span class="bar-value">₹550 Cr Budget | ₹1,387 Cr Gross</span></div>
-                        <div class="bar" style="width: 95%;"><span class="bar-label">Baahubali 2</span><span class="bar-value">₹250 Cr Budget | ₹1,810 Cr Gross</span></div>
-                        <div class="bar" style="width: 85%;"><span class="bar-label">KGF: Chapter 2</span><span class="bar-value">₹100 Cr Budget | ₹1,240 Cr Gross</span></div>
-                        <div class="bar" style="width: 65%;"><span class="bar-label">2.0</span><span class="bar-value">₹550 Cr Budget | ₹800 Cr Gross</span></div>
-                        <div class="bar" style="width: 30%;"><span class="bar-label">Kantara</span><span class="bar-value">₹16 Cr Budget | ₹400+ Cr Gross</span></div>
+                        <div class="bar" style="width: 90%;"><span class="bar-label">RRR</span><span class="bar-value">₹550 Cr Budget | ₹1,387 Cr Gross</span></div><div class="bar" style="width: 95%;"><span class="bar-label">Baahubali 2</span><span class="bar-value">₹250 Cr Budget | ₹1,810 Cr Gross</span></div><div class="bar" style="width: 85%;"><span class="bar-label">KGF: Chapter 2</span><span class="bar-value">₹100 Cr Budget | ₹1,240 Cr Gross</span></div><div class="bar" style="width: 65%;"><span class="bar-label">2.0</span><span class="bar-value">₹550 Cr Budget | ₹800 Cr Gross</span></div><div class="bar" style="width: 30%;"><span class="bar-label">Kantara</span><span class="bar-value">₹16 Cr Budget | ₹400+ Cr Gross</span></div>
                     </div>
                     <div class="insights-grid">
-                        <div class="insight-card">
-                            <div class="insight-title"><i class="fas fa-film insight-icon"></i>VFX Investment</div><p class="text-sm text-gray-200">High-quality visual effects are increasingly essential for Pan-Indian appeal. Films like <span class="highlight-text">RRR</span>, <span class="highlight-text">Baahubali 2</span>, and <span class="highlight-text">2.0</span> allocated significant portions of their budgets to VFX, with <span class="highlight-text">2.0</span> reportedly spending ₹550 Cr on VFX alone.</p>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-title"><i class="fas fa-hand-holding-usd insight-icon"></i>ROI Factor</div><p class="text-sm text-gray-200">Budget size doesn't always correlate with success. <span class="highlight-text">Kantara</span>, with a modest ₹16 Cr budget, achieved over ₹400 Cr gross. <span class="highlight-text">KGF: Chapter 2</span> delivered exceptional returns with a ₹100 Cr investment resulting in ₹1,240 Cr gross.</p>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-title"><i class="fas fa-user-check insight-icon"></i>Audience Expectations</div><p class="text-sm text-gray-200">Contemporary Indian audiences have increasingly high expectations for visual quality, influenced by exposure to Hollywood productions. However, as seen with films like <span class="highlight-text">Adipurush</span>, substantial budgets don't guarantee success if VFX quality disappoints.</p>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-title"><i class="fas fa-lightbulb insight-icon"></i>The Balance</div><p class="text-sm text-gray-200">The key to success lies in the balance between investment and storytelling. Visual spectacle must enhance rather than replace effective narrative. The most successful Pan-Indian films deliver both stunning visuals and compelling stories.</p>
-                        </div>
+                        <div class="insight-card"><div class="insight-title"><i class="fas fa-film insight-icon"></i>VFX Investment</div><p class="text-sm text-gray-200">High-quality visual effects are increasingly essential for Pan-Indian appeal. Films like <span class="highlight-text">RRR</span>, <span class="highlight-text">Baahubali 2</span>, and <span class="highlight-text">2.0</span> allocated significant portions of their budgets to VFX, with <span class="highlight-text">2.0</span> reportedly spending ₹550 Cr on VFX alone.</p></div>
+                        <div class="insight-card"><div class="insight-title"><i class="fas fa-hand-holding-usd insight-icon"></i>ROI Factor</div><p class="text-sm text-gray-200">Budget size doesn't always correlate with success. <span class="highlight-text">Kantara</span>, with a modest ₹16 Cr budget, achieved over ₹400 Cr gross. <span class="highlight-text">KGF: Chapter 2</span> delivered exceptional returns with a ₹100 Cr investment resulting in ₹1,240 Cr gross.</p></div>
+                        <div class="insight-card"><div class="insight-title"><i class="fas fa-user-check insight-icon"></i>Audience Expectations</div><p class="text-sm text-gray-200">Contemporary Indian audiences have increasingly high expectations for visual quality, influenced by exposure to Hollywood productions. However, as seen with films like <span class="highlight-text">Adipurush</span>, substantial budgets don't guarantee success if VFX quality disappoints.</p></div>
+                        <div class="insight-card"><div class="insight-title"><i class="fas fa-lightbulb insight-icon"></i>The Balance</div><p class="text-sm text-gray-200">The key to success lies in the balance between investment and storytelling. Visual spectacle must enhance rather than replace effective narrative. The most successful Pan-Indian films deliver both stunning visuals and compelling stories.</p></div>
                     </div>
                 </div>
                 <div class="page-info">
                     <div class="note"><i class="fas fa-chart-line"></i> Strategic visual investment amplifies pan-Indian appeal</div>
-                    <div class="page-number"><span>Page 3/10</span></div>
+                    <div class="page-number"><span>Page 3/11</span></div>
                 </div>
             </div>
 
              <!-- Slide 4 -->
             <div class="slide">
                 <div class="content">
-                    <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Reaching a Diverse Nation</span>
-                    </div>
+                    <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Reaching a Diverse Nation</span></div>
                     <h2 class="section-title">Marketing & Distribution Strategies</h2>
                     <div class="strategy-grid">
-                        <div class="strategy-card">
-                            <div class="strategy-title"><div class="strategy-icon"><i class="fas fa-bullhorn"></i></div>Baahubali's Approach</div><p class="text-sm text-gray-200 mb-3">Created organic hype through strategic social media campaigns rather than relying on aggressive traditional promotion.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Social Media Contests</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Brand Partnerships</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Multi-lingual Release</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Mystery Marketing</div></div>
-                        </div>
-                        <div class="strategy-card">
-                            <div class="strategy-title"><div class="strategy-icon"><i class="fas fa-fire"></i></div>Pushpa's Strategy</div><p class="text-sm text-gray-200 mb-3">Built significant pre-release hype with viral character development and strategic teaser content.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Viral Dialogues</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Influencer Collabs</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Regional Tours</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Character Marketing</div></div>
-                        </div>
-                        <div class="strategy-card">
-                            <div class="strategy-title"><div class="strategy-icon"><i class="fas fa-globe"></i></div>RRR's Expansion</div><p class="text-sm text-gray-200 mb-3">Focused on global reach with strategic re-releases and international award campaigns.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Oscar Campaign</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Netflix Strategy</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Digital Innovation</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Unity Message</div></div>
-                        </div>
+                        <div class="strategy-card"><div class="strategy-title"><div class="strategy-icon"><i class="fas fa-bullhorn"></i></div>Baahubali's Approach</div><p class="text-sm text-gray-200 mb-3">Created organic hype through strategic social media campaigns rather than relying on aggressive traditional promotion.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Social Media Contests</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Brand Partnerships</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Multi-lingual Release</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Mystery Marketing</div></div></div>
+                        <div class="strategy-card"><div class="strategy-title"><div class="strategy-icon"><i class="fas fa-fire"></i></div>Pushpa's Strategy</div><p class="text-sm text-gray-200 mb-3">Built significant pre-release hype with viral character development and strategic teaser content.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Viral Dialogues</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Influencer Collabs</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Regional Tours</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Character Marketing</div></div></div>
+                        <div class="strategy-card"><div class="strategy-title"><div class="strategy-icon"><i class="fas fa-globe"></i></div>RRR's Expansion</div><p class="text-sm text-gray-200 mb-3">Focused on global reach with strategic re-releases and international award campaigns.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Oscar Campaign</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Netflix Strategy</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Digital Innovation</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Unity Message</div></div></div>
                     </div>
                     <div class="key-insights">
                         <div class="text-blue-300 font-semibold text-lg mb-3">Key Marketing Insights for Pan-Indian Success</div>
@@ -389,38 +320,28 @@
                 </div>
                  <div class="page-info">
                     <div class="note"><i class="fas fa-chart-line"></i> Comprehensive marketing strategies significantly amplify box office potential</div>
-                    <div class="page-number"><span>Page 4/10</span></div>
+                    <div class="page-number"><span>Page 4/11</span></div>
                 </div>
             </div>
 
             <!-- Slide 5 -->
             <div class="slide">
                 <div class="content">
-                    <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Director's Vision</span>
-                    </div>
+                    <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Director's Vision</span></div>
                     <h2 class="section-title">The Cinematic Maestros Behind Pan-Indian Success</h2>
                     <div class="directors-grid">
                         <div class="director-card">
                             <div class="director-header"><div class="director-avatar"><i class="fas fa-video"></i></div><div><div class="director-name">S.S. Rajamouli</div><div class="text-blue-300 text-sm">Master of Epic Grandeur</div></div></div>
                             <div class="flex flex-wrap mb-3"><div class="film-badge">Baahubali</div><div class="film-badge">RRR</div><div class="film-badge">Eega</div><div class="film-badge">Magadheera</div></div>
                             <div class="style-list">
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Larger-than-life heroes with unbridled heroism and extraordinary narratives</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Draws inspiration from Indian epics like Mahabharata and Ramayana</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Meticulous planning and attention to visual storytelling details</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Recurring themes: revenge, betrayal, loyalty, and legacy</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Prioritizes evoking strong emotions in the audience</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Larger-than-life heroes with unbridled heroism and extraordinary narratives</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Draws inspiration from Indian epics like Mahabharata and Ramayana</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Meticulous planning and attention to visual storytelling details</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Recurring themes: revenge, betrayal, loyalty, and legacy</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Prioritizes evoking strong emotions in the audience</div></div>
                             </div>
                         </div>
                         <div class="director-card">
                             <div class="director-header"><div class="director-avatar"><i class="fas fa-film"></i></div><div><div class="director-name">Sukumar</div><div class="text-blue-300 text-sm">Master of Complex Characters</div></div></div>
                             <div class="flex flex-wrap mb-3"><div class="film-badge">Pushpa</div><div class="film-badge">Rangasthalam</div><div class="film-badge">Arya</div><div class="film-badge">1: Nenokkadine</div></div>
                             <div class="style-list">
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Protagonists characterized with grey shades and moral complexity</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Explores themes of identity, ambition, and disruption of social hierarchies</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Unique narrative approach with non-linear storytelling elements</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Characters shaped by childhood traumas and familial ties</div></div>
-                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Blends commercial elements with content-driven narratives</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Protagonists characterized with grey shades and moral complexity</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Explores themes of identity, ambition, and disruption of social hierarchies</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Unique narrative approach with non-linear storytelling elements</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Characters shaped by childhood traumas and familial ties</div></div><div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Blends commercial elements with content-driven narratives</div></div>
                             </div>
                         </div>
                     </div>
@@ -432,16 +353,14 @@
                 </div>
                 <div class="page-info">
                      <div class="note"><i class="fas fa-lightbulb"></i> Distinctive directorial vision is crucial for memorable Pan-Indian cinema</div>
-                    <div class="page-number"><span>Page 5/10</span></div>
+                    <div class="page-number"><span>Page 5/11</span></div>
                 </div>
             </div>
 
              <!-- Slide 6 -->
             <div class="slide">
                 <div class="content">
-                    <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Genre Evolution</span>
-                    </div>
+                    <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Genre Evolution</span></div>
                     <h2 class="section-title">Future Pan-Indian Success Stories</h2>
                     <div class="grid grid-cols-3 gap-5 mb-5">
                         <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-fist-raised"></i></div>Traditional Dominance</div><p class="text-sm text-gray-200 mb-3">Genres that have historically dominated Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Action Blockbusters</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Historical Epics</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Masala Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Baahubali</span><span class="film-example"><i class="fas fa-film mr-1"></i> KGF</span><span class="film-example"><i class="fas fa-film mr-1"></i> RRR</span></div></div>
@@ -451,41 +370,28 @@
                     <div class="prediction-box">
                         <div class="prediction-title"><i class="fas fa-crystal-ball prediction-icon"></i>Genre Evolution Insights</div>
                         <div class="grid grid-cols-2 gap-6">
-                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200">The increasing success of <span class="text-pink-400 font-semibold">folklore and mythology-based</span> films like Kantara suggests strong potential for stories celebrating India's diverse cultural heritage</p></div>
-                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Mystery thrillers</span> with cultural or historical backdrops, following Karthikeya 2's model, are likely to find acceptance across India</p></div>
-                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Social dramas</span> addressing contemporary issues with relatable characters can connect with viewers emotionally across regional boundaries</p></div>
-                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Science fiction</span> and futuristic narratives grounded in Indian contexts represent an underexplored but promising avenue</p></div>
+                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200">The increasing success of <span class="text-pink-400 font-semibold">folklore and mythology-based</span> films like Kantara suggests strong potential for stories celebrating India's diverse cultural heritage</p></div><div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Mystery thrillers</span> with cultural or historical backdrops, following Karthikeya 2's model, are likely to find acceptance across India</p></div><div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Social dramas</span> addressing contemporary issues with relatable characters can connect with viewers emotionally across regional boundaries</p></div><div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Science fiction</span> and futuristic narratives grounded in Indian contexts represent an underexplored but promising avenue</p></div>
                         </div>
                         <div class="mt-3 text-sm text-blue-300"><i class="fas fa-lightbulb mr-2"></i> OTT platforms have expanded audience exposure to diverse content, creating more opportunities for experimental genres to achieve Pan-Indian success</div>
                     </div>
                 </div>
                 <div class="page-info">
                     <div class="note"><i class="fas fa-chart-line"></i> Genre diversity is increasing in Pan-Indian cinema</div>
-                    <div class="page-number"><span>Page 6/10</span></div>
+                    <div class="page-number"><span>Page 6/11</span></div>
                 </div>
             </div>
 
              <!-- Slide 7 -->
             <div class="slide">
                 <div class="content">
-                     <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">The Societal Canvas</span>
-                    </div>
+                     <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">The Societal Canvas</span></div>
                     <h2 class="section-title">Socio-Political & Cultural Influences</h2>
                     <div class="influence-section">
-                        <div class="influence-card">
-                            <div class="influence-title"><div class="influence-icon"><i class="fas fa-globe-asia"></i></div>Socio-Political Trends</div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Rising nationalism</span> and cultural pride creating demand for stories that celebrate Indian heritage and identity</p></div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Social justice movements</span> inspiring narratives around inequality, representation, and empowerment</p></div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Environmental consciousness</span> generating interest in stories about sustainability and connection to nature</p></div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Technological advancement</span> influencing expectations for digital themes and futuristic narratives</p></div>
+                        <div class="influence-card"><div class="influence-title"><div class="influence-icon"><i class="fas fa-globe-asia"></i></div>Socio-Political Trends</div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Rising nationalism</span> and cultural pride creating demand for stories that celebrate Indian heritage and identity</p></div><div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Social justice movements</span> inspiring narratives around inequality, representation, and empowerment</p></div><div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Environmental consciousness</span> generating interest in stories about sustainability and connection to nature</p></div><div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Technological advancement</span> influencing expectations for digital themes and futuristic narratives</p></div>
                         </div>
-                        <div class="influence-card">
-                            <div class="influence-title"><div class="influence-icon"><i class="fas fa-hands-holding-circle"></i></div>Cultural Narratives</div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Heroism and sacrifice</span> continuing to resonate as fundamental values in Indian storytelling traditions</p></div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Family values</span> evolving to reflect contemporary dynamics while maintaining emotional core</p></div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Anti-colonial sentiment</span> fueling interest in historical narratives exploring India's struggle and triumph</p></div>
-                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Religious and spiritual beliefs</span> continuing to shape storytelling frameworks and moral contexts</p></div>
+                        <div class="influence-card"><div class="influence-title"><div class="influence-icon"><i class="fas fa-hands-holding-circle"></i></div>Cultural Narratives</div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Heroism and sacrifice</span> continuing to resonate as fundamental values in Indian storytelling traditions</p></div><div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Family values</span> evolving to reflect contemporary dynamics while maintaining emotional core</p></div><div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Anti-colonial sentiment</span> fueling interest in historical narratives exploring India's struggle and triumph</p></div><div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Religious and spiritual beliefs</span> continuing to shape storytelling frameworks and moral contexts</p></div>
                         </div>
                     </div>
                     <div class="genre-prediction">
@@ -496,16 +402,14 @@
                 </div>
                 <div class="page-info">
                      <div class="note"><i class="fas fa-lightbulb"></i> Socio-cultural trends significantly shape audience preferences</div>
-                    <div class="page-number"><span>Page 7/10</span></div>
+                    <div class="page-number"><span>Page 7/11</span></div>
                 </div>
             </div>
 
             <!-- Slide 8 -->
             <div class="slide">
                 <div class="content">
-                     <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Audience Analysis</span>
-                    </div>
+                     <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Audience Analysis</span></div>
                     <h2 class="section-title">Decoding the Audience: Demographics & Preferences</h2>
                     <div class="audience-table">
                         <table class="table-content"><thead><tr><th>Film Title</th><th>Primary Target Audience</th><th>Key Regions of Success</th><th>Preferred Languages</th><th>Genre Preferences</th></tr></thead>
@@ -513,72 +417,47 @@
                         </table>
                     </div>
                     <div class="insights-grid mt-4">
-                        <div class="insight-card">
-                            <div class="insight-title"><i class="fas fa-map-marker-alt insight-icon"></i>Regional Dynamics</div><p class="text-sm text-gray-200 mb-3">Key regions contributing to Pan-Indian success:</p><div class="flex flex-wrap"><div class="region-bubble"><div class="region-marker"></div><span>South India</span></div><div class="region-bubble"><div class="region-marker"></div><span>Hindi Belt</span></div><div class="region-bubble"><div class="region-marker"></div><span>Maharashtra</span></div><div class="region-bubble"><div class="region-marker"></div><span>International Markets</span></div></div><p class="text-sm text-gray-200 mt-3"><span class="highlight-text">South India</span>, with its strong movie-going culture, remains a key market, but the <span class="highlight-text">Hindi-speaking belt</span> has become crucial for achieving national success.</p>
-                        </div>
-                        <div class="insight-card">
-                            <div class="insight-title"><i class="fas fa-language insight-icon"></i>Language & Demographic Insights</div>
-                            <div class="space-y-3 text-sm text-gray-200">
-                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Dubbed versions</span> play a vital role in reaching non-native speakers and breaking linguistic barriers</p>
-                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Youth and family audiences</span> form the core demographic for most successful Pan-Indian films</p>
-                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">International recognition</span>, as seen with RRR, demonstrates potential for global appeal beyond Indian diaspora</p>
-                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Genre preferences</span> vary by region, with action and masala films having widest appeal</p>
-                            </div>
-                        </div>
-                        <div class="insight-card col-span-2">
-                            <div class="insight-title"><i class="fas fa-chart-pie insight-icon"></i>Key Audience Trends for Future Success</div>
-                            <div class="grid grid-cols-3 gap-4 text-sm text-gray-200">
-                                <div><div class="mb-1 font-semibold text-blue-300">Cross-Cultural Appeal</div><p>Films that transcend regional cultural references while maintaining authenticity are increasingly finding wider acceptance across diverse audiences.</p></div>
-                                <div><div class="mb-1 font-semibold text-blue-300">Digital-First Generation</div><p>Younger audiences influenced by global content through OTT platforms are more receptive to experimental narratives and diverse genres.</p></div>
-                                <div><div class="mb-1 font-semibold text-blue-300">Global Indian Diaspora</div><p>International markets, particularly with significant Indian diaspora, represent a growing revenue segment for Pan-Indian films with universal themes.</p></div>
-                            </div>
-                        </div>
+                        <div class="insight-card"><div class="insight-title"><i class="fas fa-map-marker-alt insight-icon"></i>Regional Dynamics</div><p class="text-sm text-gray-200 mb-3">Key regions contributing to Pan-Indian success:</p><div class="flex flex-wrap"><div class="region-bubble"><div class="region-marker"></div><span>South India</span></div><div class="region-bubble"><div class="region-marker"></div><span>Hindi Belt</span></div><div class="region-bubble"><div class="region-marker"></div><span>Maharashtra</span></div><div class="region-bubble"><div class="region-marker"></div><span>International Markets</span></div></div><p class="text-sm text-gray-200 mt-3"><span class="highlight-text">South India</span>, with its strong movie-going culture, remains a key market, but the <span class="highlight-text">Hindi-speaking belt</span> has become crucial for achieving national success.</p></div>
+                        <div class="insight-card"><div class="insight-title"><i class="fas fa-language insight-icon"></i>Language & Demographic Insights</div><div class="space-y-3 text-sm text-gray-200"><p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Dubbed versions</span> play a vital role in reaching non-native speakers and breaking linguistic barriers</p><p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Youth and family audiences</span> form the core demographic for most successful Pan-Indian films</p><p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">International recognition</span>, as seen with RRR, demonstrates potential for global appeal beyond Indian diaspora</p><p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Genre preferences</span> vary by region, with action and masala films having widest appeal</p></div></div>
+                        <div class="insight-card col-span-2"><div class="insight-title"><i class="fas fa-chart-pie insight-icon"></i>Key Audience Trends for Future Success</div><div class="grid grid-cols-3 gap-4 text-sm text-gray-200"><div><div class="mb-1 font-semibold text-blue-300">Cross-Cultural Appeal</div><p>Films that transcend regional cultural references while maintaining authenticity are increasingly finding wider acceptance across diverse audiences.</p></div><div><div class="mb-1 font-semibold text-blue-300">Digital-First Generation</div><p>Younger audiences influenced by global content through OTT platforms are more receptive to experimental narratives and diverse genres.</p></div><div><div class="mb-1 font-semibold text-blue-300">Global Indian Diaspora</div><p>International markets, particularly with significant Indian diaspora, represent a growing revenue segment for Pan-Indian films with universal themes.</p></div></div></div>
                     </div>
                 </div>
                 <div class="page-info">
                     <div class="note"><i class="fas fa-users"></i> Understanding audience demographics is crucial for targeted strategy</div>
-                    <div class="page-number"><span>Page 8/10</span></div>
+                    <div class="page-number"><span>Page 8/11</span></div>
                 </div>
             </div>
 
              <!-- Slide 9 -->
             <div class="slide">
                 <div class="content">
-                     <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Success Blueprint</span>
-                    </div>
+                     <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Success Blueprint</span></div>
                     <h2 class="section-title">The "Magic Formula" Unveiled</h2>
                     <div class="formula-grid">
-                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-heart"></i></div>Universal Themes</div><p class="text-sm text-gray-200">Stories that explore fundamental human emotions and experiences, often drawing from Indian cultural roots:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Heroism</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Family Bonds</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Justice</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Underdog Triumph</span></div></div>
-                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-film"></i></div>Production Quality</div><p class="text-sm text-gray-200">High-quality visual presentation that enhances storytelling and provides cinematic spectacle:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Strategic VFX</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Epic Scale</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Authentic Settings</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Visual Grandeur</span></div></div>
-                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-bullhorn"></i></div>Marketing Strategy</div><p class="text-sm text-gray-200">Comprehensive approach to reaching diverse audiences across linguistic and cultural barriers:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Multi-lingual Release</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Digital Engagement</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Brand Partnerships</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Regional Outreach</span></div></div>
-                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-video"></i></div>Directorial Vision</div><p class="text-sm text-gray-200">Strong creative direction that elicits compelling performances and emotional resonance:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Character Development</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Emotional Narrative</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Technical Excellence</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Distinctive Style</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-heart"></i></div>Universal Themes</div><p class="text-sm text-gray-200">Stories that explore fundamental human emotions...</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Heroism</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Family Bonds</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Justice</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Underdog Triumph</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-film"></i></div>Production Quality</div><p class="text-sm text-gray-200">High-quality visual presentation...</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Strategic VFX</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Epic Scale</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Authentic Settings</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Visual Grandeur</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-bullhorn"></i></div>Marketing Strategy</div><p class="text-sm text-gray-200">Comprehensive approach to reaching diverse audiences...</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Multi-lingual Release</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Digital Engagement</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Brand Partnerships</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Regional Outreach</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-video"></i></div>Directorial Vision</div><p class="text-sm text-gray-200">Strong creative direction...</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Character Development</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Emotional Narrative</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Technical Excellence</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Distinctive Style</span></div></div>
                     </div>
                     <div class="prediction-box">
                         <div class="prediction-title"><i class="fas fa-crystal-ball prediction-icon"></i>Genre Predictions for Future Pan-Indian Success</div>
                         <div class="flex flex-wrap"><div class="genre-tag"><i class="fas fa-mask genre-icon"></i>Folklore & Mythology</div><div class="genre-tag"><i class="fas fa-search genre-icon"></i>Mystery Thrillers</div><div class="genre-tag"><i class="fas fa-users genre-icon"></i>Social Dramas</div><div class="genre-tag"><i class="fas fa-home genre-icon"></i>Family Entertainers</div><div class="genre-tag"><i class="fas fa-rocket genre-icon"></i>Science Fiction</div><div class="genre-tag"><i class="fas fa-flag genre-icon"></i>Historical Epics</div><div class="genre-tag"><i class="fas fa-fist-raised genre-icon"></i>Empowerment Stories</div><div class="genre-tag"><i class="fas fa-hands-helping genre-icon"></i>Cultural Unity Narratives</div></div>
                         <div class="gauge-container mt-4">
-                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 85%"><span class="gauge-value">85%</span></div><span class="gauge-label">Cultural<br>Authenticity</span></div>
-                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 78%"><span class="gauge-value">78%</span></div><span class="gauge-label">Visual<br>Spectacle</span></div>
-                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 82%"><span class="gauge-value">82%</span></div><span class="gauge-label">Emotional<br>Depth</span></div>
-                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 70%"><span class="gauge-value">70%</span></div><span class="gauge-label">Global<br>Appeal</span></div>
-                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 88%"><span class="gauge-value">88%</span></div><span class="gauge-label">Strong<br>Characters</span></div>
+                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 85%"><span class="gauge-value">85%</span></div><span class="gauge-label">Cultural<br>Authenticity</span></div><div class="gauge-item"><div class="gauge-circle" style="--percentage: 78%"><span class="gauge-value">78%</span></div><span class="gauge-label">Visual<br>Spectacle</span></div><div class="gauge-item"><div class="gauge-circle" style="--percentage: 82%"><span class="gauge-value">82%</span></div><span class="gauge-label">Emotional<br>Depth</span></div><div class="gauge-item"><div class="gauge-circle" style="--percentage: 70%"><span class="gauge-value">70%</span></div><span class="gauge-label">Global<br>Appeal</span></div><div class="gauge-item"><div class="gauge-circle" style="--percentage: 88%"><span class="gauge-value">88%</span></div><span class="gauge-label">Strong<br>Characters</span></div>
                         </div>
                     </div>
                     <div class="magic-formula-box"><p class="text-center text-sm text-blue-200"><i class="fas fa-quote-left mr-2"></i>The ideal "magic formula" combines universally appealing narratives with high-quality production, strategic marketing, and distinctive directorial vision. While action and masala elements have proven successful, an openness to diverse genres with a Pan-Indian sensibility will likely drive future innovation.<i class="fas fa-quote-right ml-2"></i></p></div>
                 </div>
                 <div class="page-info">
                     <div class="note"><i class="fas fa-lightbulb"></i> Success factors work in combination rather than isolation</div>
-                    <div class="page-number"><span>Page 9/10</span></div>
+                    <div class="page-number"><span>Page 9/11</span></div>
                 </div>
             </div>
 
             <!-- Slide 10 -->
             <div class="slide">
                  <div class="content">
-                    <div class="flex items-center mb-3">
-                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Conclusion</span>
-                    </div>
+                    <div class="flex items-center mb-3"><div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Conclusion</span></div>
                     <h2 class="section-title">Charting the Golden Age of Pan-Indian Cinema</h2>
                     <div class="conclusion-grid">
                         <div class="conclusion-card"><div class="conclusion-title"><div class="conclusion-icon"><i class="fas fa-film"></i></div>Transformative Phase</div><p class="text-sm text-gray-200">The rise of Pan-Indian cinema marks a <span class="highlight-text">transformative phase</span> in the Indian film industry, breaking traditional regional boundaries and creating stories that resonate nationally and globally. Films originating primarily from South Indian industries are achieving unprecedented success across India's diverse linguistic landscape.</p></div>
@@ -597,7 +476,83 @@
                  </div>
                  <div class="page-info">
                     <div class="note"><i class="fas fa-film"></i> The Pan-Indian Silver Screen: Predicting Success</div>
-                    <div class="page-number"><span>Page 10/10</span></div>
+                    <div class="page-number"><span>Page 10/11</span></div>
+                 </div>
+            </div>
+
+            <!-- Slide 11 - Prediction/Conclusion (Elaborated) -->
+            <div class="slide">
+                 <div class="content">
+                    <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Future Outlook</span>
+                    </div>
+                    <h2 class="section-title">Predicting the Next Wave of Success</h2>
+
+                    <div class="grid grid-cols-2 gap-6 mb-6">
+                        <!-- Left Column: Core Success Factors Recap (Elaborated) -->
+                        <div class="prediction-card">
+                            <div class="prediction-card-title mb-3">
+                                <div class="prediction-card-icon"><i class="fas fa-cogs"></i></div>
+                                Key Drivers of Pan-Indian Success
+                            </div>
+                             <p class="text-sm text-gray-200 mb-3">Analysis reveals recurring factors crucial for nationwide appeal:</p>
+                            <ul class="list-none space-y-3 text-sm text-gray-200">
+                                <li class="flex items-start"> 
+                                    <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                                    <div><span class="highlight-text">Emotionally Resonant Universal Themes:</span> Core narratives exploring heroism, family bonds, justice, revenge, and underdog triumphs connect deeply across diverse cultures. Grounding these themes in authentic Indian folklore or mythology (e.g., Kantara, Baahubali) further enhances appeal.</div>
+                                </li>
+                                <li class="flex items-start">
+                                     <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                                     <div><span class="highlight-text">High Production Value & Spectacle:</span> Meeting or exceeding audience expectations (influenced by global cinema) requires significant investment in quality VFX, grand scale, and authentic world-building. However, budget alone isn't enough; strategic spending with high ROI (e.g., KGF 2, Kantara) is vital, and poor execution can backfire (e.g., Adipurush).</div>
+                                </li>
+                                <li class="flex items-start">
+                                     <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                                     <div><span class="highlight-text">Strategic Multi-Platform Marketing:</span> Beyond just dubbing, success requires targeted digital campaigns (viral content, social media buzz), influencer collaborations, regional customization, strategic platform partnerships (OTT, distribution), and potentially global award campaigns (e.g., RRR).</div>
+                                 </li>
+                                <li class="flex items-start">
+                                     <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                                     <div><span class="highlight-text">Distinctive Directorial Vision:</span> A strong director (e.g., Rajamouli's grandeur, Sukumar's complexity) shapes compelling characters, drives emotional engagement, ensures technical finesse, and delivers a unique cinematic experience that elevates the story beyond formula.</div>
+                                </li>
+                                 <li class="flex items-start">
+                                     <i class="fas fa-check-circle text-green-400 mr-2 mt-1 flex-shrink-0"></i>
+                                     <div><span class="highlight-text">Authenticity Balanced with Broad Appeal:</span> While stories can be rooted in specific regional cultures, they need to be presented accessibly (via dubbing, clear narrative) and tap into universally understood human values to resonate nationwide and potentially with the global diaspora.</div>
+                                 </li>
+                            </ul>
+                        </div>
+
+                        <!-- Right Column: Genre Predictions (Same as before) -->
+                        <div class="prediction-card">
+                            <div class="prediction-card-title mb-3">
+                                <div class="prediction-card-icon"><i class="fas fa-chart-line"></i></div>
+                                High-Potential Future Genres
+                            </div>
+                             <p class="text-sm text-gray-200 mb-3">Genres showing strong potential to capture the Pan-Indian audience:</p>
+                             <div class="flex flex-wrap gap-2">
+                                <span class="genre-tag"><i class="fas fa-mask genre-icon"></i>Folklore & Mythology</span>
+                                <span class="genre-tag"><i class="fas fa-rocket genre-icon"></i>Science Fiction (Indian Context)</span>
+                                <span class="genre-tag"><i class="fas fa-search genre-icon"></i>Mystery Thrillers (Cultural)</span>
+                                <span class="genre-tag"><i class="fas fa-users genre-icon"></i>Social Dramas (Contemporary)</span>
+                                <span class="genre-tag"><i class="fas fa-history genre-icon"></i>Historical Epics (Authentic)</span>
+                                <span class="genre-tag"><i class="fas fa-ghost genre-icon"></i> Elevated Horror/Fantasy</span>
+                             </div>
+                              <p class="text-sm text-gray-200 mt-4">
+                                <i class="fas fa-info-circle text-blue-400 mr-2"></i>The success of content-driven films signals increasing audience appetite for diverse narratives beyond pure action/masala, amplified by OTT exposure.
+                              </p>
+                        </div>
+                    </div>
+
+                     <div class="magic-formula-box mt-auto">
+                        <p class="text-center text-base text-blue-200">
+                            <i class="fas fa-quote-left mr-2"></i>
+                            The Pan-Indian phenomenon is maturing. Future success lies not just in spectacle, but in blending high production values with diverse, culturally authentic stories that resonate emotionally across India's vast audience. Experimentation within promising genres, coupled with smart marketing, will define the next generation of blockbusters.
+                            <i class="fas fa-quote-right ml-2"></i>
+                        </p>
+                    </div>
+
+                 </div>
+                 <div class="page-info">
+                    <div class="note"><i class="fas fa-bullseye"></i>Key factors and genre potential for future success</div>
+                    <div class="page-number"><span>Page 11/11</span></div>
                  </div>
             </div>
 
@@ -617,14 +572,13 @@
         const exploreBtn = document.getElementById('exploreBtn'); // Button on first slide
 
         let currentSlide = 0;
-        const totalSlides = slides.length;
-        const baseWidth = 1280; // Base width of your design
-        const baseHeight = 720; // Base height of your design
+        const totalSlides = slides.length; // Will now be 11
+        const baseWidth = 1280;
+        const baseHeight = 720;
 
         function updateSlide() {
             slides.forEach((slide, index) => {
                 slide.classList.toggle('active', index === currentSlide);
-                 // Scroll active slide's content area to top when it becomes active
                 if (index === currentSlide) {
                     const content = slide.querySelector('.content');
                     if(content) content.scrollTop = 0;
@@ -648,15 +602,12 @@
             }
         }
 
-        // Function to scale the presentation and center it
         function scalePresentation() {
             const windowWidth = window.innerWidth;
             const windowHeight = window.innerHeight;
-
             const scaleX = windowWidth / baseWidth;
             const scaleY = windowHeight / baseHeight;
             const scale = Math.min(scaleX, scaleY);
-
             if (slideContainer) {
                  slideContainer.style.transform = `translate(-50%, -50%) scale(${scale})`;
             }
