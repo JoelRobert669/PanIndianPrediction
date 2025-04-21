@@ -3,450 +3,695 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Phenomenon of Pan-Indian Cinema</title>
-    <!-- Using Tailwind CDN for simplicity -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <!-- Using Font Awesome CDN -->
+    <title>The Pan-Indian Silver Screen: Success Prediction & Strategy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
     <style>
-        /* Global styles */
-        body { /* MODIFIED for centering and padding */
+        /* Common Styles */
+        body {
             margin: 0;
-            padding: 1rem; /* Add some padding around the wrapper */
-            overflow: hidden; /* Prevents scrollbars on the body */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #111827; /* bg-gray-900 */
-            display: flex;
-            align-items: center; /* Vertically center */
-            justify-content: center; /* Horizontally center */
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        /* Presentation wrapper - MODIFIED FOR SCALING */
-        #presentation-wrapper {
-            position: relative;
-            /* Use viewport width, up to a maximum */
-            width: 90vw; /* Occupy 90% of viewport width */
-            max-width: 1600px; /* Limit maximum size (adjust as needed) */
-
-            /* Remove fixed height, let aspect ratio control it */
-            height: auto;
-            /* Enforce the 16:9 aspect ratio */
-            aspect-ratio: 1280 / 720;
-
-            /* Ensure it doesn't exceed viewport height */
-            max-height: 90vh; /* Limit maximum height to 90% of viewport height */
-
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, #1e1e42 0%, #2d1a4c 50%, #251544 100%);
+            padding: 0;
+            background-color: #0f0f1a;
             color: white;
-            /* Add margin auto for horizontal centering within flex container if needed */
-            margin-left: auto;
-            margin-right: auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow: hidden; /* Prevent body scrollbars */
         }
 
+        /* Wrapper to handle scaling */
+        .presentation-wrapper {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative; /* Context for absolute positioning */
+        }
 
-        /* Individual slide styles */
-        .slide {
-            display: none;
-            width: 100%;
-            height: 100%;
+        /* Slide Container - Base dimensions for scaling & positioning */
+        .slide-container {
+            width: 1280px;
+            height: 720px;
             position: absolute;
-            top: 0;
-            left: 0;
-            overflow-y: auto; /* Allow scroll within slide if needed */
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-            /* Use percentages or viewport units for padding relative to container size */
-            padding: 5% 6% 8% 6%; /* Adjusted padding */
-            box-sizing: border-box; /* Include padding in height/width */
-        }
-        /* Custom scrollbar for webkit browsers */
-        .slide::-webkit-scrollbar { width: 8px; }
-        .slide::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-        .slide::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, #ff7e5f, #feb47b); border-radius: 4px; }
-        .slide::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #ff5f3d, #fe9e57); }
-
-        .slide.active {
-            display: block;
-            opacity: 1;
-            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            overflow: hidden; /* Clip anything extending beyond container edges */
+            background: linear-gradient(125deg, #1e0b3b 0%, #1a0f35 40%, #0f0f35 100%);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            transition: transform 0.3s ease; /* Only transition transform */
+            /* transform set by JS */
         }
 
-        /* Common Utility Styles */
-        .gradient-text { background: linear-gradient(90deg, #ff7e5f, #feb47b); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .accent-box { background: rgba(255, 255, 255, 0.08); border-radius: 16px; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem; /* p-6 */ }
-        .bubble { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(70, 199, 255, 0.4), rgba(70, 199, 255, 0.1)); filter: blur(5px); z-index: 0; }
-        .pulse-circle { position: absolute; border-radius: 50%; background: rgba(255, 126, 95, 0.4); animation: pulse 3s infinite; z-index: 0; }
-        @keyframes pulse { 0% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1.05); opacity: 0.3; } 100% { transform: scale(0.95); opacity: 0.7; } }
+        /* Background Elements */
+        .gradient-overlay, .accent-circle, .dot-pattern {
+             position: absolute; width: 100%; height: 100%; z-index: 1; pointer-events: none;
+        }
+        .gradient-overlay { background: linear-gradient(135deg, rgba(138, 43, 226, 0.4) 0%, rgba(75, 0, 130, 0.2) 50%, rgba(72, 61, 139, 0.1) 100%); }
+        .accent-circle { border-radius: 50%; filter: blur(80px); }
+        .circle1 { width: 400px; height: 400px; background: rgba(138, 43, 226, 0.3); top: -150px; right: -100px; z-index: 2;}
+        .circle2 { width: 500px; height: 500px; background: rgba(72, 61, 139, 0.3); bottom: -200px; left: -150px; z-index: 2;}
+        .dot-pattern { background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px); background-size: 30px 30px; z-index: 3;}
 
-        /* Element-Specific Styles (Consolidated & Deduplicated) */
-        .graph-card { background: rgba(30, 30, 66, 0.8); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; position: relative; }
-        .graph-line { height: 80px; background: linear-gradient(90deg, transparent, #46c7ff 30%, #ff7e5f 70%, transparent); clip-path: polygon(0 100%, 5% 70%, 15% 50%, 25% 40%, 35% 60%, 45% 75%, 55% 40%, 65% 70%, 75% 40%, 85% 60%, 95% 80%, 100% 65%, 100% 100%); }
-        .graph-line-2 { height: 60px; background: linear-gradient(90deg, transparent, #ff7e5f 40%, #feb47b 70%, transparent); clip-path: polygon(0 100%, 5% 80%, 15% 70%, 25% 75%, 35% 40%, 45% 60%, 55% 70%, 65% 30%, 75% 60%, 85% 55%, 95% 40%, 100% 60%, 100% 100%); margin-top: -40px; }
-        .box-office-label { background: linear-gradient(90deg, #ff7e5f, #feb47b); color: white; padding: 0.5rem 1rem; border-radius: 9999px; position: absolute; right: 2rem; top: 3rem; font-size: 0.875rem; }
-        .timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(90deg, #ff7e5f, #feb47b); position: relative; z-index: 2; }
-        .timeline-line { position: absolute; top: 7px; left: 14px; width: calc(100% - 28px); height: 2px; background: rgba(255, 255, 255, 0.2); z-index: 1; }
-        .timeline-progress { position: absolute; top: 7px; left: 14px; height: 2px; background: linear-gradient(90deg, #ff7e5f, #feb47b); z-index: 1; }
-        .progress-circle { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: relative; }
-        .progress-circle .outer { width: 120px; height: 120px; border-radius: 50%; background: conic-gradient(var(--color) var(--percent), rgba(255, 255, 255, 0.1) 0); position: absolute; }
-        .progress-circle .inner { width: 90px; height: 90px; border-radius: 50%; background: rgba(30, 30, 66, 0.8); display: flex; align-items: center; justify-content: center; position: relative; z-index: 2; }
-        .pillar-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem; flex-shrink: 0; }
-        .genre-pill { background: rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 0.5rem 1rem; display: inline-flex; align-items: center; margin: 0.25rem; transition: all 0.3s ease; font-size: 0.875rem; }
-        .genre-pill:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-        .genre-pill.primary { background: linear-gradient(90deg, rgba(255, 126, 95, 0.2), rgba(254, 180, 123, 0.2)); border: 1px solid rgba(255, 126, 95, 0.3); }
-        .genre-pill.secondary { background: linear-gradient(90deg, rgba(70, 199, 255, 0.2), rgba(66, 153, 225, 0.2)); border: 1px solid rgba(70, 199, 255, 0.3); }
-        .theme-card { height: 100%; transition: all 0.3s ease; }
-        .theme-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
-        /* Bar base styles (Applies to budget, chart, power, solution bars) */
-        .bar-base { height: 12px; border-radius: 6px; background: rgba(255, 255, 255, 0.1); position: relative; overflow: hidden; }
-        .bar-fill { height: 100%; position: absolute; left: 0; top: 0; border-radius: 6px; /* Default gradient, can be overridden inline */ background: linear-gradient(90deg, #46c7ff, #60a5fa); }
-        /* Specific Bar Overrides */
-        .budget-bar { height: 10px; border-radius: 5px; }
-        .budget-fill { border-radius: 5px; }
-        .chart-bar { height: 24px; border-radius: 12px; margin-bottom: 8px; }
-        .chart-fill { border-radius: 12px; }
-        .power-bar { height: 12px; border-radius: 6px; }
-        .power-fill { border-radius: 6px; }
-        .solution-bar { height: 10px; border-radius: 5px; }
-        .solution-fill { border-radius: 5px; }
-        /* Ensure 100% width fills visually */
-        /* Example: Use a specific, non-fading gradient for 100% budget bars */
-         .budget-fill[style*="width: 100%"] { background: linear-gradient(90deg, #ff7e5f, #feb47b); }
-        .budget-label { position: absolute; top: -20px; right: 5px; font-size: 0.75rem; font-weight: bold; color: #e5e7eb; }
-        .strategy-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-right: 1rem; flex-shrink: 0; }
-        .connection-line { position: absolute; width: 2px; background: linear-gradient(to bottom, rgba(70, 199, 255, 0.8), rgba(255, 126, 95, 0.8)); }
-        .connection-dot { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: #46c7ff; left: -5px; }
-        .language-pill { background: rgba(255, 255, 255, 0.08); border-radius: 30px; padding: 0.5rem 1.25rem; margin: 0.25rem; display: inline-flex; align-items: center; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
-        .language-pill:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); border-color: rgba(70, 199, 255, 0.4); }
-        .culture-card { transition: all 0.3s ease; height: 100%; }
-        .culture-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
-        .gauge-chart { position: relative; width: 100px; height: 50px; overflow: hidden; margin: 0 auto; }
-        .gauge-chart:before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50px 50px 0 0; background: linear-gradient(90deg, #46c7ff, #feb47b); opacity: 0.3; }
-        .gauge-fill { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(90deg, #46c7ff, #feb47b); border-radius: 50px 50px 0 0; }
-        /* Slide 7 Bar Graph Styles */
-        .reception-graph-container { display: flex; justify-content: space-around; align-items: flex-end; height: 180px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.5rem; margin-top: 1rem; }
-        .reception-bar-wrapper { display: flex; flex-direction: column; align-items: center; width: 25%; position: relative; }
-        .reception-bar { width: 60%; background: linear-gradient(to top, #ff7e5f, #feb47b); border-radius: 4px 4px 0 0; transition: height 0.5s ease-out; }
-        .reception-bar-label { margin-top: 0.75rem; font-size: 0.75rem; text-align: center; color: #cbd5e1; }
-        .reception-bar-value { position: absolute; top: -20px; font-size: 0.8rem; font-weight: bold; color: white; opacity: 0; transition: opacity 0.3s ease-in; white-space: nowrap; }
-        .reception-bar-wrapper:hover .reception-bar-value { opacity: 1; }
-        .pie-chart { width: 160px; height: 160px; border-radius: 50%; background: conic-gradient(#ff7e5f var(--p1), #feb47b var(--p1) var(--p2), #46c7ff var(--p2) var(--p3), #4299e1 var(--p3)); position: relative; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
-        .pie-center { width: 100px; height: 100px; border-radius: 50%; background: rgba(30, 30, 66, 0.8); display: flex; align-items: center; justify-content: center; font-weight: bold; position: absolute; text-align: center; font-size: 0.75rem; line-height: 1.1; }
-        .audience-bar { height: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 6px; position: relative; overflow: hidden; }
-        .audience-fill { height: 100%; border-radius: 6px; position: absolute; left: 0; top: 0; background: linear-gradient(to right, #46c7ff, #60a5fa); }
-        .trend-card { transition: all 0.3s ease; }
-        .trend-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .trend-icon { width: 60px; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-right: 1rem; flex-shrink: 0; }
-        .trend-line { height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; position: relative; }
-        .trend-fill { position: absolute; height: 100%; left: 0; top: 0; border-radius: 4px; }
-        .hexagon { position: relative; width: 100px; height: 57.74px; background-color: rgba(255, 255, 255, 0.1); margin: 28.87px 0; border-radius: 8px; transition: all 0.3s ease; }
-        .hexagon:before, .hexagon:after { content: ""; position: absolute; width: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-radius: 8px; }
-        .hexagon:before { bottom: 100%; border-bottom: 28.87px solid rgba(255, 255, 255, 0.1); }
-        .hexagon:after { top: 100%; border-top: 28.87px solid rgba(255, 255, 255, 0.1); }
-        .hexagon:hover { transform: scale(1.05); }
-        .hexagon-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 1; }
-        .prediction-card { transition: all 0.3s ease; height: 100%; }
-        .prediction-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .case-study-card { transition: all 0.3s ease; height: 100%; position: relative; overflow: hidden; }
-        .case-study-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .success-factor { background: rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 0.5rem 1rem; margin-bottom: 0.5rem; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); }
-        .success-factor:hover { background: rgba(255, 126, 95, 0.15); border-color: rgba(255, 126, 95, 0.3); }
-        .metric-box { background: rgba(30, 30, 66, 0.6); border-radius: 10px; padding: 0.75rem; border: 1px solid rgba(70, 199, 255, 0.2); }
-        .rating-star { color: gold; }
-        .film-poster { height: 180px; background-size: cover; background-position: center; border-radius: 12px 12px 0 0; position: relative; }
-        .film-poster::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 70px; background: linear-gradient(to top, #1e1e42, transparent); }
-        /* Specific Poster Backgrounds */
-        .film-poster-baahubali { background: linear-gradient(to bottom, rgba(255,126,95,0.3), rgba(30,30,66,0.7)), url('https://via.placeholder.com/300x180/orange/white?text=Baahubali+Poster'); background-size: cover; background-position: center; }
-        .film-poster-rrr { background: linear-gradient(to bottom, rgba(70,199,255,0.3), rgba(30,30,66,0.7)), url('https://via.placeholder.com/300x180/blue/white?text=RRR+Poster'); background-size: cover; background-position: center; }
-        .film-poster-pushpa { background: linear-gradient(to bottom, rgba(255,126,95,0.3), rgba(30,30,66,0.7)), url('https://via.placeholder.com/300x180/brown/white?text=Pushpa+Poster'); background-size: cover; background-position: center; }
-        .strategy-card { transition: all 0.3s ease; height: 100%; position: relative; }
-        .strategy-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .roadmap-point { position: relative; padding-left: 2rem; margin-bottom: 1rem; }
-        .roadmap-point::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #ff7e5f, #feb47b); }
-        .roadmap-dot { position: absolute; left: -5px; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: #ff7e5f; }
-        .global-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-right: 1rem; flex-shrink: 0; }
-        .world-map { position: relative; height: 260px; width: 100%; background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') no-repeat center center; background-size: contain; opacity: 0.2; }
-        .map-point { position: absolute; width: 14px; height: 14px; border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transition: all 0.3s ease; }
-        .map-point:hover { transform: translate(-50%, -50%) scale(1.5); }
-        .map-pulse { position: absolute; border-radius: 50%; animation: pulse 2s infinite; opacity: 0.4; transform: translate(-50%, -50%); }
-        .award-icon { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 1rem; margin-right: 0.75rem; flex-shrink: 0; }
-        .industry-card { transition: all 0.3s ease; height: 100%; }
-        .industry-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .industry-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-right: 1rem; flex-shrink: 0; }
-        .challenge-card { transition: all 0.3s ease; height: 100%; }
-        .challenge-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .challenge-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-right: 1rem; flex-shrink: 0; }
-        .challenge-badge { display: inline-block; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-right: 0.5rem; margin-bottom: 0.5rem; }
-        .data-point { transition: all 0.3s ease; }
-        .data-point:hover { transform: scale(1.05); }
-        .conclusion-card { transition: all 0.3s ease; }
-        .conclusion-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); }
-        .success-pill { background: rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 0.5rem 1rem; display: inline-flex; align-items: center; margin: 0.5rem; transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.8rem; }
-        .success-pill:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-        .success-pill.primary { background: linear-gradient(90deg, rgba(255, 126, 95, 0.2), rgba(254, 180, 123, 0.2)); border: 1px solid rgba(255, 126, 95, 0.3); }
-        .success-pill.secondary { background: linear-gradient(90deg, rgba(70, 199, 255, 0.2), rgba(66, 153, 225, 0.2)); border: 1px solid rgba(70, 199, 255, 0.3); }
+        /* Slide Structure and Styling */
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 0.6s ease-in-out;
+            pointer-events: none; z-index: 5;
+        }
+        .slide.active { opacity: 1; pointer-events: auto; z-index: 10; }
+        .content {
+            position: relative; z-index: 10;
+            padding: 3.5rem 4rem; height: 100%;
+            box-sizing: border-box;
+            display: flex; flex-direction: column;
+            overflow-y: auto; /* Keep auto scrollbar */
+            overflow-x: hidden;
+        }
+        .slide:first-child .content { padding: 5rem 6rem; }
 
+        /* Headings */
+        .title { font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); }
+        .subtitle { font-size: 1.6rem; color: #ffffffdd; max-width: 700px; line-height: 1.4; margin-bottom: 3rem; }
+        .section-title { font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 1.5rem; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); }
 
-        /* --- NEW/MODERN Navigation Styles --- */
-        .nav-button {
-            position: absolute; bottom: 1.5rem; z-index: 10;
-            background-color: rgba(0, 0, 0, 0.25); color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%; width: 48px; height: 48px; display: flex;
-            align-items: center; justify-content: center; cursor: pointer;
-            transition: all 0.3s ease; border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(3px); box-shadow: 0 4px 15px rgba(0,0,0, 0.2);
+        /* --- Consolidated Styles (Keep as before, with icon color changes below) --- */
+        .countdown { display: flex; gap: 1.5rem; margin-top: 2rem; flex-shrink: 0; }
+        .countdown-item { display: flex; flex-direction: column; align-items: center; background: rgba(15, 15, 35, 0.6); padding: 1rem; border-radius: 10px; min-width: 90px; backdrop-filter: blur(10px); border: 1px solid rgba(138, 43, 226, 0.3); }
+        .countdown-value { font-size: 2.8rem; font-weight: 700; color: #fff; }
+        .countdown-label { font-size: 0.9rem; color: #8b5cf6; text-transform: uppercase; letter-spacing: 1px; margin-top: 0.25rem; }
+
+        .button, #exploreBtn { display: inline-flex; align-items: center; padding: 0.75rem 2rem; background: linear-gradient(90deg, #f637ec, #d434fe); color: white; font-weight: 600; border-radius: 4px; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; margin-top: 2rem; width: fit-content; border: none; z-index: 15; position: relative; flex-shrink: 0; }
+        .button:hover, #exploreBtn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.5); }
+        /* Keep icon inside white */
+        .button i, #exploreBtn i { color: white !important; }
+
+        .theme-card, .insight-card, .strategy-card, .director-card, .genre-card, .influence-card, .formula-card, .conclusion-card { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.25rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); transition: all 0.3s ease; }
+        .theme-card:hover, .insight-card:hover, .strategy-card:hover, .director-card:hover, .genre-card:hover, .influence-card:hover, .formula-card:hover, .conclusion-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(246, 55, 236, 0.3); }
+
+        .theme-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; color: #f637ec; }
+        .theme-description { font-size: 0.9rem; color: #ffffffdd; line-height: 1.4; }
+        /* Keep theme-icon gradient */
+        .theme-icon { font-size: 1.5rem; margin-bottom: 0.75rem; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .films-tag { font-size: 0.8rem; background: rgba(138, 43, 226, 0.3); padding: 0.25rem 0.5rem; border-radius: 4px; display: inline-block; margin-right: 0.5rem; margin-top: 0.5rem; color: #ffffffee; }
+        .films-tag i { margin-right: 0.25rem; color: white; /* Ensure contrast */}
+
+        .chart-container { position: relative; background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); margin-bottom: 1.5rem; flex-shrink: 0; }
+        .bar { height: 30px; margin: 8px 0; background: linear-gradient(90deg, #8b5cf6, #3b82f6); border-radius: 4px; position: relative; }
+        .bar-label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-weight: 500; font-size: 0.9rem; text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
+        .bar-value { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: 0.9rem; text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); }
+
+        .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .insight-title { font-size: 1.1rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Keep insight-icon gradient */
+        .insight-icon { margin-right: 0.5rem; font-size: 1.2rem; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .strategy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+        .strategy-title { font-size: 1.2rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
+        .strategy-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.25rem; flex-shrink: 0; }
+        .strategy-icon i { color: white; }
+
+        .film-tag { display: inline-block; padding: 0.35rem 0.75rem; background: linear-gradient(90deg, rgba(246, 55, 236, 0.3), rgba(139, 92, 246, 0.3)); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(246, 55, 236, 0.3); }
+        /* Ensure icon inside film-tag is visible */
+        .film-tag i { margin-right: 0.25rem; color: white; }
+
+        .key-insights { background: rgba(15, 15, 35, 0.7); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(10px); flex-shrink: 0; }
+        /* Icons inside key insights (e.g., language, hashtag) - make white */
+        .key-insights .text-pink-500 i { color: white !important; }
+
+        .directors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
+        .director-header { display: flex; align-items: center; margin-bottom: 1rem; }
+        /* Icons inside circles: default white is fine */
+        .director-avatar { width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-right: 1rem; }
+        .director-avatar i { color: white; }
+
+        .director-name { font-size: 1.5rem; font-weight: 700; color: #f637ec; }
+        .film-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(138, 43, 226, 0.2); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(138, 43, 226, 0.3); }
+        .style-list { margin-top: 0.5rem; }
+        .style-item { display: flex; align-items: flex-start; margin-bottom: 0.5rem; }
+        /* CHANGED: .style-icon color */
+        .style-icon { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+
+        .comparison-table { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; border-bottom: 1px solid rgba(138, 43, 226, 0.3); padding: 0.75rem 1rem; color: #d434fe; }
+        td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(30, 30, 60, 0.3); font-size: 0.9rem; }
+        tr:last-child td { border-bottom: none; }
+
+        .genre-card { padding: 1.25rem; }
+        .genre-title { font-size: 1.1rem; font-weight: 700; color: #f637ec; margin-bottom: 0.5rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
+        .genre-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.1rem; flex-shrink: 0; }
+        .genre-icon i { color: white; }
+
+        .film-example { display: inline-flex; align-items: center; padding: 0.35rem 0.75rem; background: rgba(139, 92, 246, 0.2); border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(139, 92, 246, 0.3); }
+        /* Ensure icon inside film-example is visible */
+        .film-example i { margin-right: 0.25rem; color: white; }
+
+        .prediction-box { background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); backdrop-filter: blur(10px); margin-top: 1.5rem; flex-shrink: 0; }
+        .prediction-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 1rem; display: flex; align-items: center; }
+        .prediction-icon { font-size: 1.4rem; margin-right: 0.75rem; color: white; /* Ensure contrast */}
+
+        .insight-item { display: flex; align-items: flex-start; margin-bottom: 0.75rem; }
+        /* CHANGED: .insight-marker color */
+        .insight-marker { color: white; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; }
+
+        .influence-section { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem; }
+        .influence-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 1rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
+        .influence-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.25rem; flex-shrink: 0; }
+        .influence-icon i { color: white; }
+
+        .trend-item { display: flex; align-items: flex-start; margin-bottom: 0.75rem; }
+        .trend-marker { color: #8b5cf6; margin-right: 0.75rem; margin-top: 0.2rem; flex-shrink: 0; } /* Keep marker color distinct? Or change to white? Let's try white */
+        .trend-marker { color: white; }
+
+        .genre-prediction { background: rgba(15, 15, 35, 0.7); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.4); backdrop-filter: blur(10px); flex-shrink: 0; }
+        .genre-bubble { display: inline-block; padding: 0.5rem 1rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%); border-radius: 20px; margin-right: 0.75rem; margin-bottom: 0.75rem; font-weight: 600; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; /* Ensure text is white */}
+        .genre-bubble:hover { transform: scale(1.05); background: linear-gradient(135deg, rgba(246, 55, 236, 0.5) 0%, rgba(139, 92, 246, 0.5) 100%); }
+        /* CHANGED: .genre-bubble i color */
+        .genre-bubble i { margin-right: 0.5rem; color: white; } /* Removed text-indigo-300 from HTML */
+
+        .audience-table { background: rgba(15, 15, 35, 0.6); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
+        .table-content { width: 100%; border-collapse: separate; border-spacing: 0; }
+        .table-content th { text-align: left; padding: 0.75rem 1rem; font-weight: 600; color: #f637ec; border-bottom: 1px solid rgba(138, 43, 226, 0.3); font-size: 0.85rem; }
+        .table-content td { padding: 0.75rem 1rem; border-bottom: 1px solid rgba(30, 30, 60, 0.3); font-size: 0.8rem; }
+        .table-content tr:last-child td { border-bottom: none; }
+        .table-content tr:hover td { background: rgba(138, 43, 226, 0.1); }
+
+        .region-bubble { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-right: 0.5rem; margin-bottom: 0.5rem; border: 1px solid rgba(246, 55, 236, 0.3); }
+        .region-marker { width: 8px; height: 8px; border-radius: 50%; margin-right: 0.5rem; background: #f637ec; } /* Keep marker color */
+
+        .formula-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .formula-title { font-size: 1.2rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
+        .formula-icon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.1rem; flex-shrink: 0; }
+        .formula-icon i { color: white; }
+
+        .genre-tag { display: inline-flex; align-items: center; padding: 0.4rem 0.8rem; background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 0.75rem; margin-bottom: 0.75rem; border: 1px solid rgba(246, 55, 236, 0.3); transition: all 0.3s ease; color: white; }
+        .genre-tag:hover { background: linear-gradient(135deg, rgba(246, 55, 236, 0.4) 0%, rgba(139, 92, 246, 0.4) 100%); transform: translateY(-2px); }
+        /* CHANGED: .genre-tag .genre-icon color */
+        .genre-tag .genre-icon { margin-right: 0.5rem; color: white; }
+
+        .gauge-container { display: flex; justify-content: space-between; margin-top: 1rem; flex-shrink: 0; }
+        .gauge-item { display: flex; flex-direction: column; align-items: center; width: 100px; }
+        .gauge-circle { width: 70px; height: 70px; border-radius: 50%; background: conic-gradient(#f637ec 0%, #f637ec var(--percentage), rgba(15, 15, 35, 0.3) var(--percentage), rgba(15, 15, 35, 0.3) 100%); display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 0.5rem; }
+        .gauge-circle::before { content: ""; position: absolute; width: 54px; height: 54px; border-radius: 50%; background: rgba(15, 15, 35, 0.8); }
+        .gauge-value { position: relative; z-index: 2; font-weight: 700; font-size: 1.1rem; color: #f637ec; }
+        .gauge-label { font-size: 0.8rem; color: #d1d5db; text-align: center; }
+
+        .magic-formula-box { background: linear-gradient(135deg, rgba(246, 55, 236, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%); border-radius: 12px; padding: 1.25rem; margin-top: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); backdrop-filter: blur(10px); flex-shrink: 0; }
+        /* Quote icons - make white */
+        .magic-formula-box i { color: white !important; }
+
+        .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .conclusion-title { font-size: 1.3rem; font-weight: 700; color: #f637ec; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        /* Icons inside circles: default white is fine */
+        .conclusion-icon { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #d434fe 0%, #8b5cf6 100%); border-radius: 50%; margin-right: 0.75rem; font-size: 1.2rem; flex-shrink: 0; }
+        .conclusion-icon i { color: white; }
+
+        .next-steps { background: linear-gradient(135deg, rgba(246, 55, 236, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(246, 55, 236, 0.3); margin-top: 1.5rem; backdrop-filter: blur(10px); flex-shrink: 0; }
+        /* Icons inside next-steps - make white */
+        .next-steps i { color: white !important; } /* Override Tailwind colors */
+
+        .thank-you { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #f637ec, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; margin: 1.5rem 0; text-shadow: 0 0 20px rgba(246, 55, 236, 0.3); flex-shrink: 0; }
+        .key-driver { display: inline-flex; align-items: center; margin-right: 1rem; margin-bottom: 0.5rem; background: rgba(246, 55, 236, 0.15); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.9rem; border: 1px solid rgba(246, 55, 236, 0.2); color: white; }
+        /* CHANGED: .driver-icon color */
+        .driver-icon { color: white; margin-right: 0.5rem; }
+
+        .highlight-text { color: #d434fe; font-weight: 600; }
+        /* --- End of Consolidated Styles --- */
+
+        /* Page Info/Number Style */
+        .page-info {
+            position: absolute; bottom: 1.25rem; left: 4rem; right: 4rem;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 20; pointer-events: none;
         }
-        .nav-button:hover:not(:disabled) {
-            background-color: rgba(0, 0, 0, 0.5); color: white; transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0, 0.3);
+        .page-info .note { font-size: 0.8rem; color: #a78bfa; opacity: 0.9; display: flex; align-items: center; max-width: 70%; }
+        /* CHANGED: page-info icon color */
+        .page-info .note i { margin-right: 0.5rem; color: white; }
+        .page-info .page-number { font-size: 0.8rem; color: #f9a8d4; text-align: right; flex-shrink: 0; }
+
+        /* Side Navigation Buttons Styling */
+        .side-nav-button {
+            position: absolute; top: 50%; transform: translateY(-50%); z-index: 30;
+            background: rgba(15, 15, 35, 0.3); color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 50%;
+            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(5px); font-size: 1.5rem;
         }
-        .nav-button:disabled { opacity: 0.35; cursor: not-allowed; background-color: rgba(0, 0, 0, 0.2); box-shadow: none; }
-        #prev-btn { left: 1.5rem; }
-        #next-btn { right: 1.5rem; }
-        #page-indicator {
-             position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-             z-index: 10; display: flex; align-items: center; background-color: rgba(0, 0, 0, 0.2);
-             padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);
-             backdrop-filter: blur(3px);
-        }
-        #page-indicator-label { color: white; opacity: 0.7; margin-right: 0.5rem; font-size: 0.8rem; }
-        #page-number {
-             background: linear-gradient(90deg, #ff7e5f, #feb47b); color: white;
-             width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center;
-             justify-content: center; font-weight: bold; font-size: 0.8rem;
-             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        #total-pages { color: white; opacity: 0.7; margin-left: 0.3rem; font-size: 0.8rem; }
+        .side-nav-button:hover { background: rgba(138, 43, 226, 0.5); color: white; box-shadow: 0 0 15px rgba(138, 43, 226, 0.5); }
+        .side-nav-button:active { transform: translateY(-50%) scale(0.92); }
+        .side-nav-button:disabled { background: rgba(55, 65, 81, 0.3); color: rgba(255, 255, 255, 0.3); cursor: not-allowed; border-color: rgba(55, 65, 81, 0.5); box-shadow: none; opacity: 0.7; }
+        /* Keep nav button icon colors light */
+        .side-nav-button i { color: inherit; }
+        #prevBtn { left: 20px; }
+        #nextBtn { right: 20px; }
 
     </style>
 </head>
 <body>
+    <!-- Wrapper for scaling -->
+    <div class="presentation-wrapper">
+        <div class="slide-container">
+            <!-- Background Elements -->
+            <div class="accent-circle circle1"></div>
+            <div class="accent-circle circle2"></div>
+            <div class="gradient-overlay"></div>
+            <div class="dot-pattern"></div>
 
-    <div id="presentation-wrapper">
-
-        <!-- Slide 1 -->
-        <div id="slide-1" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-            <div class="flex flex-col items-center justify-center h-full relative z-10">
-                 <div class="graph-card w-full mb-10"> <div class="graph-line"></div> <div class="graph-line-2"></div> <div class="flex justify-between px-4 py-2"> <div class="text-gray-400 text-sm">2015</div> <div class="text-gray-400 text-sm">2017</div> <div class="text-gray-400 text-sm">2019</div> <div class="text-gray-400 text-sm">2021</div> <div class="text-gray-400 text-sm">2023</div> </div> <div class="box-office-label"> <span class="font-bold">$4.8B+</span> Box Office </div> </div>
-                 <h1 class="text-6xl font-bold mb-6 text-center leading-tight"> The <span class="gradient-text">Phenomenon</span> of<br>Pan-Indian Cinema </h1>
-                 <p class="text-xl text-gray-300 text-center mb-12 max-w-3xl"> Exploring the evolution, success factors, and future of films that transcend regional and linguistic boundaries across India </p>
-                 <div class="grid grid-cols-3 gap-8 w-full"> <div class="accent-box flex flex-col items-center text-center"> <div class="text-5xl font-bold gradient-text mb-2">2015</div> <div class="text-gray-300">Baahubali: The Beginning</div> <div class="text-sm text-gray-400">The start of modern Pan-Indian cinema</div> </div> <div class="accent-box flex flex-col items-center text-center"> <div class="text-5xl font-bold gradient-text mb-2">7+</div> <div class="text-gray-300">Major Language Markets</div> <div class="text-sm text-gray-400">Transcending regional boundaries</div> </div> <div class="accent-box flex flex-col items-center text-center"> <div class="text-5xl font-bold gradient-text mb-2">10+</div> <div class="text-gray-300">Blockbuster Films</div> <div class="text-sm text-gray-400">Redefining Indian cinema landscape</div> </div> </div>
+            <!-- Slides (Content from Snippets 1-10) -->
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="content">
+                    <div class="flex items-center mb-2">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div>
+                        <span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Predicting Success</span>
+                    </div>
+                    <h1 class="title">The Pan-Indian Silver Screen</h1>
+                    <p class="subtitle">Predicting Genres and Factors for Future Success in Pan-Indian Cinema</p>
+                    <div class="countdown">
+                        <div class="countdown-item"><span class="countdown-value">82</span><span class="countdown-label">Universal Themes</span></div>
+                        <div class="countdown-item"><span class="countdown-value">76</span><span class="countdown-label">Production Value</span></div>
+                        <div class="countdown-item"><span class="countdown-value">68</span><span class="countdown-label">Marketing</span></div>
+                        <div class="countdown-item"><span class="countdown-value">91</span><span class="countdown-label">Direction</span></div>
+                    </div>
+                    <button id="exploreBtn">
+                        <i class="fas fa-play-circle mr-2"></i> Explore Success Factors
+                    </button>
+                </div>
+                <div class="page-info">
+                    <div class="note"><i class="fas fa-chart-line"></i>Based on comprehensive analysis of recent box office trends</div>
+                    <div class="page-number"><span>Page 1/10</span></div>
+                </div>
             </div>
-        </div>
 
-        <!-- Slide 2 -->
-        <div id="slide-2" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> What is <span class="gradient-text">Pan-Indian Cinema</span>? </h1>
-                 <div class="accent-box mb-8"> <p class="text-xl leading-relaxed"> Films originating primarily from <span class="gradient-text font-semibold">South Indian</span> film industries that achieve significant commercial and cultural success <span class="gradient-text font-semibold">across multiple linguistic regions</span> of India, effectively transcending traditional state and language boundaries. </p> </div>
-                 <div class="grid grid-cols-2 gap-8 mb-8"> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-history mr-3 text-orange-400"></i> Historical Evolution </h3> <ul class="space-y-2 text-gray-300"> <li class="flex items-start"> <i class="fas fa-circle text-xs mt-1.5 mr-2 text-blue-400"></i> <span>Previously, regional films catered primarily to specific demographics</span> </li> <li class="flex items-start"> <i class="fas fa-circle text-xs mt-1.5 mr-2 text-blue-400"></i> <span>Cross-region reach relied on dubbing or remaking</span> </li> <li class="flex items-start"> <i class="fas fa-circle text-xs mt-1.5 mr-2 text-blue-400"></i> <span><span class="text-orange-400 font-semibold">Baahubali (2015)</span> marked pivotal moment for nationwide success</span> </li> <li class="flex items-start"> <i class="fas fa-circle text-xs mt-1.5 mr-2 text-blue-400"></i> <span>Signified power shift, challenging Bollywood's dominance</span> </li> </ul> </div> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-quote-right mr-3 text-orange-400"></i> Director's Perspective </h3> <p class="text-gray-300 italic mb-4"> "A Pan-Indian film is one with a story and emotion that connects with everyone, irrespective of their language." </p> <p class="text-right text-orange-400 font-semibold">- S.S. Rajamouli</p> <p class="text-gray-400 text-sm mt-4"> This perspective underscores the importance of universal themes and emotional resonance in achieving broad appeal. </p> </div> </div>
-                 <div class="relative accent-box p-10"> <h3 class="text-xl font-bold mb-6 flex items-center"> <i class="fas fa-film mr-3 text-orange-400"></i> Key Milestones </h3> <div class="relative h-24"> <div class="timeline-line"></div> <div class="timeline-progress" style="width: 75%;"></div> <div class="flex justify-between absolute w-full -left-2"> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2015</div> <div class="text-sm text-gray-300">Baahubali: Beginning</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2017</div> <div class="text-sm text-gray-300">Baahubali 2</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2018-21</div> <div class="text-sm text-gray-300">KGF & Pushpa</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2022</div> <div class="text-sm text-gray-300">RRR & KGF 2</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot" style="background: rgba(255, 255, 255, 0.2);"></div> <div class="mt-4"> <div class="text-gray-400 font-bold">2024+</div> <div class="text-sm text-gray-400">Kalki & Beyond</div> </div> </div> </div> </div> </div>
-             </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div id="slide-3" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-            <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Pillars of Success</span>: What Makes Pan-Indian Films Work? </h1>
-                 <div class="grid grid-cols-2 gap-x-10 gap-y-8"> <div class="accent-box"> <div class="flex items-start"> <div class="pillar-icon bg-gradient-to-br from-blue-400 to-blue-600 mr-4"> <i class="fas fa-heart"></i> </div> <div> <h3 class="text-xl font-bold mb-2 gradient-text">Universal Stories & Emotions</h3> <p class="text-gray-300 mb-3">Telling stories that resonate across diverse audiences.</p> <div class="pl-4 border-l-2 border-blue-400 mt-3"> <p class="text-sm text-gray-400"><span class="text-blue-400 font-semibold">Ex:</span> <span class="italic">Baahubali</span> - Good vs. evil, family dynamics.</p> <p class="text-sm text-gray-400 mt-1"><span class="text-blue-400 font-semibold">Ex:</span> <span class="italic">RRR</span> - Friendship, patriotism.</p> </div> </div> </div> </div> <div class="accent-box"> <div class="flex items-start"> <div class="pillar-icon bg-gradient-to-br from-orange-400 to-orange-600 mr-4"> <i class="fas fa-film"></i> </div> <div> <h3 class="text-xl font-bold mb-2 gradient-text">Visual Spectacle & Production Value</h3> <p class="text-gray-300 mb-3">High budgets, VFX, grand design create theatrical experiences.</p> <div class="pl-4 border-l-2 border-orange-400 mt-3"> <p class="text-sm text-gray-400"><span class="text-orange-400 font-semibold">Feature:</span> Larger-than-life characters.</p> <p class="text-sm text-gray-400 mt-1"><span class="text-orange-400 font-semibold">Impact:</span> Creates "event films" for big screen.</p> </div> </div> </div> </div> <div class="accent-box"> <div class="flex items-start"> <div class="pillar-icon bg-gradient-to-br from-blue-400 to-blue-600 mr-4"> <i class="fas fa-bullhorn"></i> </div> <div> <h3 class="text-xl font-bold mb-2 gradient-text">Strategic Marketing & Distribution</h3> <p class="text-gray-300 mb-3">Aggressive marketing and multi-language releases expand reach.</p> <div class="pl-4 border-l-2 border-blue-400 mt-3"> <p class="text-sm text-gray-400"><span class="text-blue-400 font-semibold">Strategy:</span> Cross-industry collaborations.</p> <p class="text-sm text-gray-400 mt-1"><span class="text-blue-400 font-semibold">Ex:</span> KJo association with <span class="italic">Baahubali</span>.</p> <p class="text-sm text-gray-400 mt-1"><span class="text-blue-400 font-semibold">Trend:</span> More South films dubbed in Hindi.</p> </div> </div> </div> </div> <div class="accent-box"> <div class="flex items-start"> <div class="pillar-icon bg-gradient-to-br from-orange-400 to-orange-600 mr-4"> <i class="fas fa-user-tie"></i> </div> <div> <h3 class="text-xl font-bold mb-2 gradient-text">Directorial Vision & Reputation</h3> <p class="text-gray-300 mb-3">Visionary directors with strong track records cultivate trust.</p> <div class="pl-4 border-l-2 border-orange-400 mt-3"> <p class="text-sm text-gray-400"><span class="text-orange-400 font-semibold">Ex:</span> Rajamouli blending mythology & visuals.</p> <p class="text-sm text-gray-400 mt-1"><span class="text-orange-400 font-semibold">Ex:</span> Sukumar creating mass appeal in <span class="italic">Pushpa</span>.</p> </div> </div> </div> </div> </div>
-                 <div class="accent-box mt-8"> <h3 class="text-xl font-bold mb-4">Success Metrics: Key Films (Gross Box Office)</h3> <div class="flex justify-around items-center"> <div class="flex flex-col items-center"> <div class="progress-circle"> <div class="outer" style="--color: #46c7ff; --percent: 92%"></div> <div class="inner"> <span class="text-xl font-bold">1200 Cr</span> </div> </div> <div class="text-center mt-2"> <div class="text-lg font-semibold">RRR</div> <div class="text-xs text-gray-400">(2022)</div> </div> </div> <div class="flex flex-col items-center"> <div class="progress-circle"> <div class="outer" style="--color: #ff7e5f; --percent: 97%"></div> <div class="inner"> <span class="text-xl font-bold">1700+ Cr</span> </div> </div> <div class="text-center mt-2"> <div class="text-lg font-semibold">Baahubali 2</div> <div class="text-xs text-gray-400">(2017)</div> </div> </div> <div class="flex flex-col items-center"> <div class="progress-circle"> <div class="outer" style="--color: #feb47b; --percent: 85%"></div> <div class="inner"> <span class="text-xl font-bold">1000+ Cr</span> </div> </div> <div class="text-center mt-2"> <div class="text-lg font-semibold">KGF 2</div> <div class="text-xs text-gray-400">(2022)</div> </div> </div> <div class="flex flex-col items-center"> <div class="progress-circle"> <div class="outer" style="--color: #46c7ff; --percent: 60%"></div> <div class="inner"> <span class="text-xl font-bold">350 Cr</span> </div> </div> <div class="text-center mt-2"> <div class="text-lg font-semibold">Pushpa</div> <div class="text-xs text-gray-400">(2021)</div> </div> </div> </div> </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="content">
+                    <div class="flex items-center mb-4">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div>
+                        <span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Foundation of Success</span>
+                    </div>
+                    <h2 class="section-title">Universal Themes in Pan-Indian Blockbusters</h2>
+                    <div class="grid grid-cols-3 gap-6 mt-4">
+                        <div class="theme-card">
+                            <div class="theme-icon"><i class="fas fa-shield-alt"></i></div><h3 class="theme-title">Heroism</h3><p class="theme-description">Tales of courageous protagonists overcoming adversity, often featuring larger-than-life heroes that fulfill audience desires for aspirational figures.</p><div class="mt-3"><span class="films-tag">KGF</span><span class="films-tag">RRR</span><span class="films-tag">Baahubali</span></div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-icon"><i class="fas fa-gavel"></i></div><h3 class="theme-title">Revenge & Justice</h3><p class="theme-description">Powerful narratives of retribution against injustice that provide a strong dramatic foundation transcending cultural differences.</p><div class="mt-3"><span class="films-tag">Pushpa</span><span class="films-tag">Kantara</span><span class="films-tag">Eega</span></div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-icon"><i class="fas fa-users"></i></div><h3 class="theme-title">Family Bonds</h3><p class="theme-description">Emotional narratives centered around maternal devotion and complex family relationships that connect strongly with viewers across all regions.</p><div class="mt-3"><span class="films-tag">KGF</span><span class="films-tag">Pushpa</span><span class="films-tag">Baahubali</span></div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-icon"><i class="fas fa-flag"></i></div><h3 class="theme-title">Patriotism & Camaraderie</h3><p class="theme-description">Stories imbued with nationalistic sentiment and brotherhood that connect with the audience's national identity and historical consciousness.</p><div class="mt-3"><span class="films-tag">RRR</span><span class="films-tag">Uri</span></div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-icon"><i class="fas fa-arrow-up"></i></div><h3 class="theme-title">Underdog Stories</h3><p class="theme-description">Narratives of individuals rising from humble beginnings to achieve success against overwhelming odds, providing inspiration and hope.</p><div class="mt-3"><span class="films-tag">Pushpa</span><span class="films-tag">Hanu-Man</span></div>
+                        </div>
+                        <div class="theme-card">
+                            <div class="theme-icon"><i class="fas fa-yin-yang"></i></div><h3 class="theme-title">Good vs Evil & Folklore</h3><p class="theme-description">Timeless conflicts between righteousness and villainy, often drawing inspiration from Indian mythology and cultural heritage.</p><div class="mt-3"><span class="films-tag">Baahubali</span><span class="films-tag">Kantara</span><span class="films-tag">RRR</span></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="page-info">
+                    <div class="note"><i class="fas fa-lightbulb"></i>These universal themes transcend regional boundaries and create emotional connections</div>
+                    <div class="page-number"><span>Page 2/10</span></div>
+                </div>
             </div>
-        </div>
 
-        <!-- Slide 4 -->
-        <div id="slide-4" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Common Threads</span>: Genres, Themes & Characters </h1>
-                 <div class="mb-8"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-film mr-3 text-orange-400"></i> Popular Genres </h3> <div class="flex flex-wrap"> <div class="genre-pill primary"> <i class="fas fa-fist-raised mr-2 text-orange-400"></i> <span>Action</span> </div> <div class="genre-pill secondary"> <i class="fas fa-landmark mr-2 text-blue-400"></i> <span>Historical/Mythological</span> </div> <div class="genre-pill primary"> <i class="fas fa-masks-theater mr-2 text-orange-400"></i> <span>"Masala"</span> </div> <div class="genre-pill secondary"> <i class="fas fa-dragon mr-2 text-blue-400"></i> <span>Epic Fantasy</span> </div> <div class="genre-pill primary"> <i class="fas fa-scroll mr-2 text-orange-400"></i> <span>Period Drama</span> </div> </div> <p class="text-gray-300 mt-4 text-sm"> These genres provide opportunity for <span class="text-orange-400 font-semibold">spectacle</span>, <span class="text-blue-400 font-semibold">heroics</span>, and <span class="text-orange-400 font-semibold">drama</span>, resonating broadly. </p> </div>
-                 <div class="grid grid-cols-2 gap-8 mb-8"> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-hand-holding-heart mr-3 text-orange-400"></i> Recurring Themes </h3> <div class="grid grid-cols-2 gap-4"> <div class="theme-card accent-box p-3"> <div class="text-orange-400 font-bold mb-1">Good vs. Evil</div> <p class="text-sm text-gray-300">Timeless moral conflicts</p> </div> <div class="theme-card accent-box p-3"> <div class="text-blue-400 font-bold mb-1">Revenge</div> <p class="text-sm text-gray-300">Powerful motivation</p> </div> <div class="theme-card accent-box p-3"> <div class="text-orange-400 font-bold mb-1">Family Bonds</div> <p class="text-sm text-gray-300">Often central emotional core</p> </div> <div class="theme-card accent-box p-3"> <div class="text-blue-400 font-bold mb-1">Patriotism</div> <p class="text-sm text-gray-300">Resonates with sentiment</p> </div> <div class="theme-card accent-box p-3"> <div class="text-orange-400 font-bold mb-1">Underdog Rising</div> <p class="text-sm text-gray-300">Inspiring triumph narratives</p> </div> <div class="theme-card accent-box p-3"> <div class="text-blue-400 font-bold mb-1">Heroism</div> <p class="text-sm text-gray-300">Protagonist's valor glorified</p> </div> </div> </div> <div> <div class="accent-box mb-4"> <h3 class="text-xl font-bold mb-3 flex items-center"> <i class="fas fa-book-open mr-3 text-blue-400"></i> Narrative Structure </h3> <ul class="space-y-2 text-gray-300 text-sm"> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-2 text-orange-400"></i> <span>Epic storytelling, clear heroes/villains</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-2 text-orange-400"></i> <span>Flashbacks for depth</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-2 text-orange-400"></i> <span>Conflicts resolved with large-scale action</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-2 text-orange-400"></i> <span>Effective cliffhangers</span> </li> </ul> </div> <div class="accent-box"> <h3 class="text-xl font-bold mb-3 flex items-center"> <i class="fas fa-user-astronaut mr-3 text-blue-400"></i> Character Archetypes </h3> <div class="flex justify-around"> <div class="text-center"> <div class="w-16 h-16 rounded-full bg-gradient-to-br from-orange-400 to-red-600 flex items-center justify-center mx-auto mb-2"> <i class="fas fa-crown text-2xl"></i> </div> <div class="text-sm font-semibold">Larger-than-life Hero</div> <p class="text-xs text-gray-400">Immense strength</p> </div> <div class="text-center"> <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-purple-700 flex items-center justify-center mx-auto mb-2"> <i class="fas fa-skull text-2xl"></i> </div> <div class="text-sm font-semibold">Powerful Antagonist</div> <p class="text-xs text-gray-400">Worthy challenge</p> </div> <div class="text-center"> <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center mx-auto mb-2"> <i class="fas fa-user-friends text-2xl"></i> </div> <div class="text-sm font-semibold">Loyal Companions</div> <p class="text-xs text-gray-400">Support protagonist</p> </div> </div> </div> </div> </div>
-                 <div class="accent-box"> <h3 class="text-sm font-bold uppercase tracking-wider mb-3 text-center text-gray-400"> Notable Examples </h3> <div class="flex justify-between flex-wrap"> <div class="text-center p-2 w-1/5"> <div class="text-lg font-bold gradient-text">Baahubali</div> <p class="text-xs text-gray-400">Epic fantasy</p> </div> <div class="text-center p-2 w-1/5"> <div class="text-lg font-bold gradient-text">RRR</div> <p class="text-xs text-gray-400">Fictional history</p> </div> <div class="text-center p-2 w-1/5"> <div class="text-lg font-bold gradient-text">Pushpa</div> <p class="text-xs text-gray-400">Action drama</p> </div> <div class="text-center p-2 w-1/5"> <div class="text-lg font-bold gradient-text">KGF</div> <p class="text-xs text-gray-400">Action, anti-hero</p> </div> <div class="text-center p-2 w-1/5"> <div class="text-lg font-bold gradient-text">Kantara</div> <p class="text-xs text-gray-400">Folklore</p> </div> </div> </div>
-             </div>
-        </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="content">
+                     <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">The Visual Equation</span>
+                    </div>
+                    <h2 class="section-title">Production Budgets, Spectacle & Returns</h2>
+                    <div class="chart-container">
+                        <div class="text-blue-300 font-semibold mb-3">Top Pan-Indian Films: Budget vs Box Office Success</div>
+                        <div class="bar" style="width: 90%;"><span class="bar-label">RRR</span><span class="bar-value">₹550 Cr Budget | ₹1,387 Cr Gross</span></div>
+                        <div class="bar" style="width: 95%;"><span class="bar-label">Baahubali 2</span><span class="bar-value">₹250 Cr Budget | ₹1,810 Cr Gross</span></div>
+                        <div class="bar" style="width: 85%;"><span class="bar-label">KGF: Chapter 2</span><span class="bar-value">₹100 Cr Budget | ₹1,240 Cr Gross</span></div>
+                        <div class="bar" style="width: 65%;"><span class="bar-label">2.0</span><span class="bar-value">₹550 Cr Budget | ₹800 Cr Gross</span></div>
+                        <div class="bar" style="width: 30%;"><span class="bar-label">Kantara</span><span class="bar-value">₹16 Cr Budget | ₹400+ Cr Gross</span></div>
+                    </div>
+                    <div class="insights-grid">
+                        <div class="insight-card">
+                            <div class="insight-title"><i class="fas fa-film insight-icon"></i>VFX Investment</div><p class="text-sm text-gray-200">High-quality visual effects are increasingly essential for Pan-Indian appeal. Films like <span class="highlight-text">RRR</span>, <span class="highlight-text">Baahubali 2</span>, and <span class="highlight-text">2.0</span> allocated significant portions of their budgets to VFX, with <span class="highlight-text">2.0</span> reportedly spending ₹550 Cr on VFX alone.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title"><i class="fas fa-hand-holding-usd insight-icon"></i>ROI Factor</div><p class="text-sm text-gray-200">Budget size doesn't always correlate with success. <span class="highlight-text">Kantara</span>, with a modest ₹16 Cr budget, achieved over ₹400 Cr gross. <span class="highlight-text">KGF: Chapter 2</span> delivered exceptional returns with a ₹100 Cr investment resulting in ₹1,240 Cr gross.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title"><i class="fas fa-user-check insight-icon"></i>Audience Expectations</div><p class="text-sm text-gray-200">Contemporary Indian audiences have increasingly high expectations for visual quality, influenced by exposure to Hollywood productions. However, as seen with films like <span class="highlight-text">Adipurush</span>, substantial budgets don't guarantee success if VFX quality disappoints.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title"><i class="fas fa-lightbulb insight-icon"></i>The Balance</div><p class="text-sm text-gray-200">The key to success lies in the balance between investment and storytelling. Visual spectacle must enhance rather than replace effective narrative. The most successful Pan-Indian films deliver both stunning visuals and compelling stories.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-info">
+                    <div class="note"><i class="fas fa-chart-line"></i> Strategic visual investment amplifies pan-Indian appeal</div>
+                    <div class="page-number"><span>Page 3/10</span></div>
+                </div>
+            </div>
 
-        <!-- Corrected Slide 5 -->
-        <div id="slide-5" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Scale & Spectacle</span>: Production & Distribution </h1>
-                 <div class="accent-box mb-8">
-                     <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-money-bill-wave mr-3 text-orange-400"></i> Production Budgets & Scale (Approx. INR) </h3>
-                     <div class="space-y-6 mt-6">
-                         <div> <div class="flex justify-between mb-1"> <span class="text-blue-400 font-semibold">Baahubali 2 (2017)</span> <span class="text-orange-400 font-semibold">₹250 Cr</span> </div> <div class="bar-base budget-bar"> <div class="bar-fill budget-fill" style="width: 45%; background: linear-gradient(to right, #46c7ff, #60a5fa);"></div> </div> </div>
-                         <div> <div class="flex justify-between mb-1"> <span class="text-blue-400 font-semibold">RRR (2022)</span> <span class="text-orange-400 font-semibold">₹550 Cr</span> </div> <div class="bar-base budget-bar"> <div class="bar-fill budget-fill" style="width: 90%; background: linear-gradient(to right, #ff7e5f, #feb47b);"></div> </div> </div>
-                         <div> <div class="flex justify-between mb-1"> <span class="text-blue-400 font-semibold">Pushpa (2021)</span> <span class="text-orange-400 font-semibold">₹200 Cr</span> </div> <div class="bar-base budget-bar"> <div class="bar-fill budget-fill" style="width: 36%; background: linear-gradient(to right, #46c7ff, #60a5fa);"></div> </div> </div>
-                         <div> <div class="flex justify-between mb-1"> <span class="text-blue-400 font-semibold">Kalki 2898 AD (2024)</span> <span class="text-orange-400 font-semibold">₹600 Cr</span> </div> <div class="bar-base budget-bar relative"> <div class="bar-fill budget-fill" style="width: 100%; background: linear-gradient(to right, #ff7e5f, #feb47b);"></div> <div class="budget-label text-white">Highest</div> </div> </div>
-                     </div>
-                     <p class="text-gray-300 mt-6 text-sm"> Substantial investment enables <span class="text-orange-400 font-semibold">elaborate sets</span>, <span class="text-blue-400 font-semibold">intricate costumes</span>, and <span class="text-orange-400 font-semibold">complex action</span>. </p>
+             <!-- Slide 4 -->
+            <div class="slide">
+                <div class="content">
+                    <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Reaching a Diverse Nation</span>
+                    </div>
+                    <h2 class="section-title">Marketing & Distribution Strategies</h2>
+                    <div class="strategy-grid">
+                        <div class="strategy-card">
+                            <div class="strategy-title"><div class="strategy-icon"><i class="fas fa-bullhorn"></i></div>Baahubali's Approach</div><p class="text-sm text-gray-200 mb-3">Created organic hype through strategic social media campaigns rather than relying on aggressive traditional promotion.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Social Media Contests</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Brand Partnerships</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Multi-lingual Release</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Mystery Marketing</div></div>
+                        </div>
+                        <div class="strategy-card">
+                            <div class="strategy-title"><div class="strategy-icon"><i class="fas fa-fire"></i></div>Pushpa's Strategy</div><p class="text-sm text-gray-200 mb-3">Built significant pre-release hype with viral character development and strategic teaser content.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Viral Dialogues</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Influencer Collabs</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Regional Tours</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Character Marketing</div></div>
+                        </div>
+                        <div class="strategy-card">
+                            <div class="strategy-title"><div class="strategy-icon"><i class="fas fa-globe"></i></div>RRR's Expansion</div><p class="text-sm text-gray-200 mb-3">Focused on global reach with strategic re-releases and international award campaigns.</p><div class="mt-2"><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Oscar Campaign</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Netflix Strategy</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Digital Innovation</div><div class="film-tag"><i class="fas fa-check-circle mr-1"></i> Unity Message</div></div>
+                        </div>
+                    </div>
+                    <div class="key-insights">
+                        <div class="text-blue-300 font-semibold text-lg mb-3">Key Marketing Insights for Pan-Indian Success</div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-start"><div class="text-pink-500 text-xl mr-3"><i class="fas fa-language"></i></div><div><p class="text-sm text-gray-200"><span class="highlight-text">Multi-lingual releases</span> are crucial for reaching diverse linguistic audiences across India and maximizing theatrical revenue</p></div></div>
+                            <div class="flex items-start"><div class="text-pink-500 text-xl mr-3"><i class="fas fa-hashtag"></i></div><div><p class="text-sm text-gray-200"><span class="highlight-text">Social media engagement</span> with carefully planned campaigns that generate organic buzz and audience participation</p></div></div>
+                            <div class="flex items-start"><div class="text-pink-500 text-xl mr-3"><i class="fas fa-handshake"></i></div><div><p class="text-sm text-gray-200"><span class="highlight-text">Strategic partnerships</span> with brands and platforms to extend reach beyond traditional advertising channels</p></div></div>
+                            <div class="flex items-start"><div class="text-pink-500 text-xl mr-3"><i class="fas fa-globe-asia"></i></div><div><p class="text-sm text-gray-200"><span class="highlight-text">Regional customization</span> of marketing campaigns to resonate with specific cultural sentiments while maintaining universal appeal</p></div></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="page-info">
+                    <div class="note"><i class="fas fa-chart-line"></i> Comprehensive marketing strategies significantly amplify box office potential</div>
+                    <div class="page-number"><span>Page 4/10</span></div>
+                </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <div class="content">
+                    <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Director's Vision</span>
+                    </div>
+                    <h2 class="section-title">The Cinematic Maestros Behind Pan-Indian Success</h2>
+                    <div class="directors-grid">
+                        <div class="director-card">
+                            <div class="director-header"><div class="director-avatar"><i class="fas fa-video"></i></div><div><div class="director-name">S.S. Rajamouli</div><div class="text-blue-300 text-sm">Master of Epic Grandeur</div></div></div>
+                            <div class="flex flex-wrap mb-3"><div class="film-badge">Baahubali</div><div class="film-badge">RRR</div><div class="film-badge">Eega</div><div class="film-badge">Magadheera</div></div>
+                            <div class="style-list">
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Larger-than-life heroes with unbridled heroism and extraordinary narratives</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Draws inspiration from Indian epics like Mahabharata and Ramayana</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Meticulous planning and attention to visual storytelling details</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Recurring themes: revenge, betrayal, loyalty, and legacy</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Prioritizes evoking strong emotions in the audience</div></div>
+                            </div>
+                        </div>
+                        <div class="director-card">
+                            <div class="director-header"><div class="director-avatar"><i class="fas fa-film"></i></div><div><div class="director-name">Sukumar</div><div class="text-blue-300 text-sm">Master of Complex Characters</div></div></div>
+                            <div class="flex flex-wrap mb-3"><div class="film-badge">Pushpa</div><div class="film-badge">Rangasthalam</div><div class="film-badge">Arya</div><div class="film-badge">1: Nenokkadine</div></div>
+                            <div class="style-list">
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Protagonists characterized with grey shades and moral complexity</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Explores themes of identity, ambition, and disruption of social hierarchies</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Unique narrative approach with non-linear storytelling elements</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Characters shaped by childhood traumas and familial ties</div></div>
+                                <div class="style-item"><i class="fas fa-check-circle style-icon"></i><div class="text-sm text-gray-200">Blends commercial elements with content-driven narratives</div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comparison-table">
+                        <table><thead><tr><th>Element</th><th>Rajamouli's Approach</th><th>Sukumar's Approach</th><th>Impact on Pan-Indian Appeal</th></tr></thead>
+                        <tbody><tr><td>Character Development</td><td>Clear moral compass, idealistic heroes</td><td>Complex, flawed, morally ambiguous</td><td>Diverse character types resonate with different audience segments</td></tr><tr><td>Visual Presentation</td><td>Grand, epic scale with mythological undertones</td><td>Grounded realism with stylized elements</td><td>Visual diversity appeals to different regional preferences</td></tr><tr><td>Emotional Connection</td><td>Universal emotions like heroism, sacrifice</td><td>Nuanced emotional journeys, personal growth</td><td>Emotional authenticity is key regardless of approach</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="page-info">
+                     <div class="note"><i class="fas fa-lightbulb"></i> Distinctive directorial vision is crucial for memorable Pan-Indian cinema</div>
+                    <div class="page-number"><span>Page 5/10</span></div>
+                </div>
+            </div>
+
+             <!-- Slide 6 -->
+            <div class="slide">
+                <div class="content">
+                    <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Genre Evolution</span>
+                    </div>
+                    <h2 class="section-title">Future Pan-Indian Success Stories</h2>
+                    <div class="grid grid-cols-3 gap-5 mb-5">
+                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-fist-raised"></i></div>Traditional Dominance</div><p class="text-sm text-gray-200 mb-3">Genres that have historically dominated Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Action Blockbusters</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Historical Epics</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-pink-500 mr-2"></div><span class="text-sm">Masala Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Baahubali</span><span class="film-example"><i class="fas fa-film mr-1"></i> KGF</span><span class="film-example"><i class="fas fa-film mr-1"></i> RRR</span></div></div>
+                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-chart-line"></i></div>Emerging Successes</div><p class="text-sm text-gray-200 mb-3">Genres recently achieving notable Pan-Indian success:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Fantasy Adventures</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Mythology-based Thrillers</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-purple-500 mr-2"></div><span class="text-sm">Horror-Comedy</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Eega</span><span class="film-example"><i class="fas fa-film mr-1"></i> Karthikeya 2</span><span class="film-example"><i class="fas fa-film mr-1"></i> Kantara</span></div></div>
+                        <div class="genre-card"><div class="genre-title"><div class="genre-icon"><i class="fas fa-rocket"></i></div>Future Potential</div><p class="text-sm text-gray-200 mb-3">Genres poised for Pan-Indian breakthrough:</p><div class="space-y-2"><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Science Fiction</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Social Dramas</span></div><div class="flex items-center"><div class="w-2 h-2 rounded-full bg-blue-500 mr-2"></div><span class="text-sm">Family Entertainers</span></div></div><div class="mt-3"><span class="film-example"><i class="fas fa-film mr-1"></i> Kalki 2898 AD</span><span class="film-example"><i class="fas fa-film mr-1"></i> Rocketry</span></div></div>
+                    </div>
+                    <div class="prediction-box">
+                        <div class="prediction-title"><i class="fas fa-crystal-ball prediction-icon"></i>Genre Evolution Insights</div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200">The increasing success of <span class="text-pink-400 font-semibold">folklore and mythology-based</span> films like Kantara suggests strong potential for stories celebrating India's diverse cultural heritage</p></div>
+                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Mystery thrillers</span> with cultural or historical backdrops, following Karthikeya 2's model, are likely to find acceptance across India</p></div>
+                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Social dramas</span> addressing contemporary issues with relatable characters can connect with viewers emotionally across regional boundaries</p></div>
+                            <div class="insight-item"><i class="fas fa-arrow-trend-up insight-marker"></i><p class="text-sm text-gray-200"><span class="text-pink-400 font-semibold">Science fiction</span> and futuristic narratives grounded in Indian contexts represent an underexplored but promising avenue</p></div>
+                        </div>
+                        <div class="mt-3 text-sm text-blue-300"><i class="fas fa-lightbulb mr-2"></i> OTT platforms have expanded audience exposure to diverse content, creating more opportunities for experimental genres to achieve Pan-Indian success</div>
+                    </div>
+                </div>
+                <div class="page-info">
+                    <div class="note"><i class="fas fa-chart-line"></i> Genre diversity is increasing in Pan-Indian cinema</div>
+                    <div class="page-number"><span>Page 6/10</span></div>
+                </div>
+            </div>
+
+             <!-- Slide 7 -->
+            <div class="slide">
+                <div class="content">
+                     <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">The Societal Canvas</span>
+                    </div>
+                    <h2 class="section-title">Socio-Political & Cultural Influences</h2>
+                    <div class="influence-section">
+                        <div class="influence-card">
+                            <div class="influence-title"><div class="influence-icon"><i class="fas fa-globe-asia"></i></div>Socio-Political Trends</div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Rising nationalism</span> and cultural pride creating demand for stories that celebrate Indian heritage and identity</p></div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Social justice movements</span> inspiring narratives around inequality, representation, and empowerment</p></div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Environmental consciousness</span> generating interest in stories about sustainability and connection to nature</p></div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Technological advancement</span> influencing expectations for digital themes and futuristic narratives</p></div>
+                        </div>
+                        <div class="influence-card">
+                            <div class="influence-title"><div class="influence-icon"><i class="fas fa-hands-holding-circle"></i></div>Cultural Narratives</div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Heroism and sacrifice</span> continuing to resonate as fundamental values in Indian storytelling traditions</p></div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Family values</span> evolving to reflect contemporary dynamics while maintaining emotional core</p></div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Anti-colonial sentiment</span> fueling interest in historical narratives exploring India's struggle and triumph</p></div>
+                            <div class="trend-item"><i class="fas fa-arrow-trend-up trend-marker"></i><p class="text-sm text-gray-200"><span class="highlight-text">Religious and spiritual beliefs</span> continuing to shape storytelling frameworks and moral contexts</p></div>
+                        </div>
+                    </div>
+                    <div class="genre-prediction">
+                        <div class="text-blue-300 font-semibold text-lg mb-3">Emerging Genre Predictions Based on Socio-Cultural Influences</div>
+                        <div class="flex flex-wrap"><div class="genre-bubble"><i class="fas fa-flag mr-2"></i> Patriotic Films with Unity Themes</div><div class="genre-bubble"><i class="fas fa-lightbulb mr-2"></i> Socially Relevant Dramas</div><div class="genre-bubble"><i class="fas fa-mask mr-2"></i> Cultural Heritage Celebrations</div><div class="genre-bubble"><i class="fas fa-fist-raised mr-2"></i> Stories of Empowerment</div><div class="genre-bubble"><i class="fas fa-robot mr-2"></i> Technology-Human Interface Narratives</div><div class="genre-bubble"><i class="fas fa-seedling mr-2"></i> Environmental Consciousness</div></div>
+                        <div class="mt-4 text-sm text-gray-200"><i class="fas fa-quote-left text-pink-400 mr-2"></i>Films that successfully blend these socio-cultural elements with strong storytelling and visual presentation will find greater resonance with Pan-Indian audiences. The most powerful narratives will be those that address contemporary concerns while connecting to cultural roots.<i class="fas fa-quote-right text-pink-400 ml-2"></i></div>
+                    </div>
+                </div>
+                <div class="page-info">
+                     <div class="note"><i class="fas fa-lightbulb"></i> Socio-cultural trends significantly shape audience preferences</div>
+                    <div class="page-number"><span>Page 7/10</span></div>
+                </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="slide">
+                <div class="content">
+                     <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Audience Analysis</span>
+                    </div>
+                    <h2 class="section-title">Decoding the Audience: Demographics & Preferences</h2>
+                    <div class="audience-table">
+                        <table class="table-content"><thead><tr><th>Film Title</th><th>Primary Target Audience</th><th>Key Regions of Success</th><th>Preferred Languages</th><th>Genre Preferences</th></tr></thead>
+                        <tbody><tr><td>Baahubali 2</td><td>Youth, Families</td><td>All India, Overseas</td><td>Telugu, Tamil, Hindi</td><td>Action, Fantasy, Epic</td></tr><tr><td>RRR</td><td>Youth, Families, International</td><td>Andhra Pradesh, Telangana, North America</td><td>Telugu, Hindi, English</td><td>Action, Drama, Historical Fiction</td></tr><tr><td>KGF: Chapter 2</td><td>Youth, Mass Audience</td><td>Karnataka, Hindi Belt, South India</td><td>Kannada, Hindi, Telugu</td><td>Action, Drama, Crime</td></tr><tr><td>Pushpa: The Rise</td><td>Mass Audience, Youth</td><td>Andhra Pradesh, Telangana, Hindi Belt</td><td>Telugu, Hindi</td><td>Action, Masala, Thriller</td></tr><tr><td>Kantara</td><td>Diverse Audience</td><td>Karnataka, All India</td><td>Kannada, Hindi, Telugu</td><td>Action, Thriller, Folklore</td></tr></tbody>
+                        </table>
+                    </div>
+                    <div class="insights-grid mt-4">
+                        <div class="insight-card">
+                            <div class="insight-title"><i class="fas fa-map-marker-alt insight-icon"></i>Regional Dynamics</div><p class="text-sm text-gray-200 mb-3">Key regions contributing to Pan-Indian success:</p><div class="flex flex-wrap"><div class="region-bubble"><div class="region-marker"></div><span>South India</span></div><div class="region-bubble"><div class="region-marker"></div><span>Hindi Belt</span></div><div class="region-bubble"><div class="region-marker"></div><span>Maharashtra</span></div><div class="region-bubble"><div class="region-marker"></div><span>International Markets</span></div></div><p class="text-sm text-gray-200 mt-3"><span class="highlight-text">South India</span>, with its strong movie-going culture, remains a key market, but the <span class="highlight-text">Hindi-speaking belt</span> has become crucial for achieving national success.</p>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-title"><i class="fas fa-language insight-icon"></i>Language & Demographic Insights</div>
+                            <div class="space-y-3 text-sm text-gray-200">
+                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Dubbed versions</span> play a vital role in reaching non-native speakers and breaking linguistic barriers</p>
+                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Youth and family audiences</span> form the core demographic for most successful Pan-Indian films</p>
+                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">International recognition</span>, as seen with RRR, demonstrates potential for global appeal beyond Indian diaspora</p>
+                                <p><i class="fas fa-check-circle text-purple-400 mr-2"></i><span class="highlight-text">Genre preferences</span> vary by region, with action and masala films having widest appeal</p>
+                            </div>
+                        </div>
+                        <div class="insight-card col-span-2">
+                            <div class="insight-title"><i class="fas fa-chart-pie insight-icon"></i>Key Audience Trends for Future Success</div>
+                            <div class="grid grid-cols-3 gap-4 text-sm text-gray-200">
+                                <div><div class="mb-1 font-semibold text-blue-300">Cross-Cultural Appeal</div><p>Films that transcend regional cultural references while maintaining authenticity are increasingly finding wider acceptance across diverse audiences.</p></div>
+                                <div><div class="mb-1 font-semibold text-blue-300">Digital-First Generation</div><p>Younger audiences influenced by global content through OTT platforms are more receptive to experimental narratives and diverse genres.</p></div>
+                                <div><div class="mb-1 font-semibold text-blue-300">Global Indian Diaspora</div><p>International markets, particularly with significant Indian diaspora, represent a growing revenue segment for Pan-Indian films with universal themes.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-info">
+                    <div class="note"><i class="fas fa-users"></i> Understanding audience demographics is crucial for targeted strategy</div>
+                    <div class="page-number"><span>Page 8/10</span></div>
+                </div>
+            </div>
+
+             <!-- Slide 9 -->
+            <div class="slide">
+                <div class="content">
+                     <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Success Blueprint</span>
+                    </div>
+                    <h2 class="section-title">The "Magic Formula" Unveiled</h2>
+                    <div class="formula-grid">
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-heart"></i></div>Universal Themes</div><p class="text-sm text-gray-200">Stories that explore fundamental human emotions and experiences, often drawing from Indian cultural roots:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Heroism</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Family Bonds</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Justice</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Underdog Triumph</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-film"></i></div>Production Quality</div><p class="text-sm text-gray-200">High-quality visual presentation that enhances storytelling and provides cinematic spectacle:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Strategic VFX</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Epic Scale</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Authentic Settings</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Visual Grandeur</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-bullhorn"></i></div>Marketing Strategy</div><p class="text-sm text-gray-200">Comprehensive approach to reaching diverse audiences across linguistic and cultural barriers:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Multi-lingual Release</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Digital Engagement</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Brand Partnerships</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Regional Outreach</span></div></div>
+                        <div class="formula-card"><div class="formula-title"><div class="formula-icon"><i class="fas fa-video"></i></div>Directorial Vision</div><p class="text-sm text-gray-200">Strong creative direction that elicits compelling performances and emotional resonance:</p><div class="flex flex-wrap mt-2"><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Character Development</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Emotional Narrative</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Technical Excellence</span><span class="genre-tag"><i class="fas fa-check genre-icon"></i> Distinctive Style</span></div></div>
+                    </div>
+                    <div class="prediction-box">
+                        <div class="prediction-title"><i class="fas fa-crystal-ball prediction-icon"></i>Genre Predictions for Future Pan-Indian Success</div>
+                        <div class="flex flex-wrap"><div class="genre-tag"><i class="fas fa-mask genre-icon"></i>Folklore & Mythology</div><div class="genre-tag"><i class="fas fa-search genre-icon"></i>Mystery Thrillers</div><div class="genre-tag"><i class="fas fa-users genre-icon"></i>Social Dramas</div><div class="genre-tag"><i class="fas fa-home genre-icon"></i>Family Entertainers</div><div class="genre-tag"><i class="fas fa-rocket genre-icon"></i>Science Fiction</div><div class="genre-tag"><i class="fas fa-flag genre-icon"></i>Historical Epics</div><div class="genre-tag"><i class="fas fa-fist-raised genre-icon"></i>Empowerment Stories</div><div class="genre-tag"><i class="fas fa-hands-helping genre-icon"></i>Cultural Unity Narratives</div></div>
+                        <div class="gauge-container mt-4">
+                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 85%"><span class="gauge-value">85%</span></div><span class="gauge-label">Cultural<br>Authenticity</span></div>
+                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 78%"><span class="gauge-value">78%</span></div><span class="gauge-label">Visual<br>Spectacle</span></div>
+                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 82%"><span class="gauge-value">82%</span></div><span class="gauge-label">Emotional<br>Depth</span></div>
+                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 70%"><span class="gauge-value">70%</span></div><span class="gauge-label">Global<br>Appeal</span></div>
+                            <div class="gauge-item"><div class="gauge-circle" style="--percentage: 88%"><span class="gauge-value">88%</span></div><span class="gauge-label">Strong<br>Characters</span></div>
+                        </div>
+                    </div>
+                    <div class="magic-formula-box"><p class="text-center text-sm text-blue-200"><i class="fas fa-quote-left mr-2"></i>The ideal "magic formula" combines universally appealing narratives with high-quality production, strategic marketing, and distinctive directorial vision. While action and masala elements have proven successful, an openness to diverse genres with a Pan-Indian sensibility will likely drive future innovation.<i class="fas fa-quote-right ml-2"></i></p></div>
+                </div>
+                <div class="page-info">
+                    <div class="note"><i class="fas fa-lightbulb"></i> Success factors work in combination rather than isolation</div>
+                    <div class="page-number"><span>Page 9/10</span></div>
+                </div>
+            </div>
+
+            <!-- Slide 10 -->
+            <div class="slide">
+                 <div class="content">
+                    <div class="flex items-center mb-3">
+                        <div class="h-1 w-20 bg-pink-500 rounded-full mr-3"></div><span class="text-pink-500 uppercase tracking-wider text-sm font-semibold">Conclusion</span>
+                    </div>
+                    <h2 class="section-title">Charting the Golden Age of Pan-Indian Cinema</h2>
+                    <div class="conclusion-grid">
+                        <div class="conclusion-card"><div class="conclusion-title"><div class="conclusion-icon"><i class="fas fa-film"></i></div>Transformative Phase</div><p class="text-sm text-gray-200">The rise of Pan-Indian cinema marks a <span class="highlight-text">transformative phase</span> in the Indian film industry, breaking traditional regional boundaries and creating stories that resonate nationally and globally. Films originating primarily from South Indian industries are achieving unprecedented success across India's diverse linguistic landscape.</p></div>
+                        <div class="conclusion-card"><div class="conclusion-title"><div class="conclusion-icon"><i class="fas fa-key"></i></div>Success Drivers</div><p class="text-sm text-gray-200 mb-2">The future success of Pan-Indian cinema will be driven by a combination of strategic elements:</p><div class="flex flex-wrap"><span class="key-driver"><i class="fas fa-heart driver-icon"></i> Universal Themes</span><span class="key-driver"><i class="fas fa-tv driver-icon"></i> Visual Quality</span><span class="key-driver"><i class="fas fa-bullhorn driver-icon"></i> Strategic Marketing</span><span class="key-driver"><i class="fas fa-video driver-icon"></i> Directorial Vision</span><span class="key-driver"><i class="fas fa-theater-masks driver-icon"></i> Genre Diversity</span></div></div>
+                        <div class="conclusion-card"><div class="conclusion-title"><div class="conclusion-icon"><i class="fas fa-users"></i></div>Evolving Audience</div><p class="text-sm text-gray-200">Audience tastes continue to evolve, influenced by increased exposure to global content through OTT platforms. This evolution creates opportunities for filmmakers to <span class="highlight-text">innovate and experiment</span> beyond traditional formulaic approaches, embracing diverse genres and narrative styles while maintaining cultural authenticity.</p></div>
+                        <div class="conclusion-card"><div class="conclusion-title"><div class="conclusion-icon"><i class="fas fa-globe"></i></div>Global Potential</div><p class="text-sm text-gray-200">Pan-Indian cinema has demonstrated significant <span class="highlight-text">international potential</span>, as evidenced by the global success of films like RRR. By focusing on strong emotional narratives, embracing cultural authenticity, and delivering compelling cinematic experiences, the Indian film industry is positioned to enhance its global recognition and appeal.</p></div>
+                    </div>
+                    <div class="next-steps">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-compass mr-2"></i> Future Direction</div><p class="text-sm text-gray-200">Filmmakers should embrace diverse genres and innovative storytelling while maintaining cultural authenticity and emotional resonance to connect with the Pan-Indian audience.</p></div>
+                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-chart-line mr-2"></i> Market Expansion</div><p class="text-sm text-gray-200">Strategic marketing and distribution across linguistic regions, alongside targeted international promotion, will be key to maximizing reach and revenue potential.</p></div>
+                            <div><div class="text-blue-300 font-semibold mb-1 flex items-center"><i class="fas fa-lightbulb mr-2"></i> Innovation Focus</div><p class="text-sm text-gray-200">Technical innovation in visual presentation balanced with strong narrative fundamentals will continue to differentiate successful Pan-Indian cinema.</p></div>
+                        </div>
+                    </div>
+                    <div class="thank-you">The Future is Pan-Indian</div>
                  </div>
-                 <div class="grid grid-cols-2 gap-8"> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-paint-brush mr-3 text-blue-400"></i> Visual Styles & Effects </h3> <ul class="space-y-3 text-gray-300 text-sm"> <li class="flex items-start"> <div class="w-2 h-2 rounded-full bg-orange-400 mt-1.5 mr-2 flex-shrink-0"></div> <span>Grand visuals, intricate details, epic scale</span> </li> <li class="flex items-start"> <div class="w-2 h-2 rounded-full bg-orange-400 mt-1.5 mr-2 flex-shrink-0"></div> <span>Sophisticated VFX/CGI for worlds & action</span> </li> <li class="flex items-start"> <div class="w-2 h-2 rounded-full bg-orange-400 mt-1.5 mr-2 flex-shrink-0"></div> <span>Vibrant palettes & dynamic camera work</span> </li> <li class="flex items-start"> <div class="w-2 h-2 rounded-full bg-orange-400 mt-1.5 mr-2 flex-shrink-0"></div> <span>Spectacle creates immersive experience</span> </li> </ul> <div class="bg-gradient-to-r from-blue-900/30 to-indigo-900/30 p-3 rounded-lg mt-4 border-l-4 border-blue-500"> <p class="text-sm italic text-gray-300"> Prioritizing spectacle compels audiences to visit theaters. </p> </div> </div> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-globe mr-3 text-blue-400"></i> Marketing & Distribution Strategies </h3> <div class="space-y-4"> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-language"></i> </div> <div> <h4 class="font-semibold text-blue-300">Multi-Language Releases</h4> <p class="text-sm text-gray-300">Simultaneous release across wide networks</p> </div> </div> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-users"></i> </div> <div> <h4 class="font-semibold text-blue-300">Industry Collaborations</h4> <p class="text-sm text-gray-300">Partnerships enhance visibility</p> </div> </div> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-bullhorn"></i> </div> <div> <h4 class="font-semibold text-blue-300">Innovative Marketing</h4> <p class="text-sm text-gray-300">Social media, events, virtual experiences</p> </div> </div> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-tv"></i> </div> <div> <h4 class="font-semibold text-blue-300">Digital Platform Leverage</h4> <p class="text-sm text-gray-300">Strategic OTT use after theatrical run</p> </div> </div> </div> </div> </div>
-                 <div class="accent-box mt-8 bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"><span class="text-orange-400 font-bold">Key Insight:</span> High-quality dubbing, especially for the <span class="text-blue-400 font-semibold">Hindi market</span>, is critical.</span> </div> </div>
-             </div>
-        </div>
-
-        <!-- Slide 6 -->
-        <div id="slide-6" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Cultural Resonance</span>: Breaking Barriers </h1>
-                 <div class="grid grid-cols-2 gap-8 mb-8"> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-theater-masks mr-3 text-orange-400"></i> Shared Cultural Narratives </h3> <div class="grid grid-cols-2 gap-4"> <div class="culture-card accent-box p-3"> <div class="text-blue-400 font-bold mb-1">Indian Epics</div> <p class="text-sm text-gray-300">Baahubali drew from epics</p> </div> <div class="culture-card accent-box p-3"> <div class="text-orange-400 font-bold mb-1">National Identity</div> <p class="text-sm text-gray-300">RRR's patriotism resonated</p> </div> <div class="culture-card accent-box p-3"> <div class="text-blue-400 font-bold mb-1">Regional to National</div> <p class="text-sm text-gray-300">Kantara via universal values</p> </div> <div class="culture-card accent-box p-3"> <div class="text-orange-400 font-bold mb-1">Nostalgia</div> <p class="text-sm text-gray-300">ACK references</p> </div> </div> <div class="mt-4 p-3 border-l-4 border-blue-400 bg-blue-900/20 rounded-lg"> <p class="text-sm text-gray-300 italic"> Shared culture elements find wider acceptance. </p> </div> </div> <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-landmark mr-3 text-orange-400"></i> Socio-Political Influences </h3> <div class="relative pl-6 mb-4"> <div class="connection-line absolute left-0 top-0 h-full"></div> <div class="mb-6 relative"> <div class="connection-dot"></div> <h4 class="text-blue-400 font-semibold mb-1">National Pride</h4> <p class="text-sm text-gray-300">RRR's heroism & resistance.</p> </div> <div class="mb-6 relative"> <div class="connection-dot"></div> <h4 class="text-blue-400 font-semibold mb-1">Social Empowerment</h4> <p class="text-sm text-gray-300">Pushpa/KGF challenging hierarchies.</p> </div> <div class="relative"> <div class="connection-dot"></div> <h4 class="text-blue-400 font-semibold mb-1">Evolving Values</h4> <p class="text-sm text-gray-300">Reflecting contemporary issues.</p> </div> </div> <div class="p-3 border-l-4 border-orange-400 bg-orange-900/20 rounded-lg"> <p class="text-sm text-gray-300 italic"> Underlying themes of justice, freedom resonate broadly. </p> </div> </div> </div>
-                 <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-language mr-3 text-orange-400"></i> Overcoming Linguistic Barriers </h3> <div class="flex flex-col md:flex-row justify-between mb-8"> <div class="md:w-2/3 mb-4 md:mb-0 md:pr-4"> <div class="flex flex-wrap mb-4"> <div class="language-pill"> <span class="w-3 h-3 rounded-full bg-blue-400 mr-2"></span> <span>Telugu</span> </div> <div class="language-pill"> <span class="w-3 h-3 rounded-full bg-orange-400 mr-2"></span> <span>Hindi</span> </div> <div class="language-pill"> <span class="w-3 h-3 rounded-full bg-purple-400 mr-2"></span> <span>Tamil</span> </div> <div class="language-pill"> <span class="w-3 h-3 rounded-full bg-green-400 mr-2"></span> <span>Malayalam</span> </div> <div class="language-pill"> <span class="w-3 h-3 rounded-full bg-yellow-400 mr-2"></span> <span>Kannada</span> </div> </div> <ul class="space-y-2 text-gray-300 text-sm"> <li class="flex items-start"> <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i> <span>High-quality dubbing essential</span> </li> <li class="flex items-start"> <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i> <span>Audiences accept non-native films</span> </li> <li class="flex items-start"> <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i> <span>Cross-industry actors enhance appeal</span> </li> </ul> </div> <div class="md:w-1/3"> <div class="accent-box text-center"> <h4 class="text-lg font-semibold mb-2 gradient-text">Hindi Dubbed Impact</h4> <p class="text-sm text-gray-400 mb-3">Revenue Contribution</p> <div class="flex items-center justify-center space-x-4"> <div> <div class="gauge-chart"> <div class="gauge-fill" style="height: 80%;"></div> </div> <div class="text-sm mt-1">Pushpa</div> <div class="text-orange-400 font-bold">40%+</div> </div> <div> <div class="gauge-chart"> <div class="gauge-fill" style="height: 60%;"></div> </div> <div class="text-sm mt-1">RRR</div> <div class="text-orange-400 font-bold">30%+</div> </div> <div> <div class="gauge-chart"> <div class="gauge-fill" style="height: 70%;"></div> </div> <div class="text-sm mt-1">KGF 2</div> <div class="text-orange-400 font-bold">35%+</div> </div> </div> </div> </div> </div> <div class="bg-gradient-to-r from-indigo-900/40 to-purple-900/40 p-3 rounded-lg text-center"> <p class="text-lg"> <span class="text-orange-400 font-bold">Key Insight:</span> Hindi dubbed versions sometimes <span class="text-blue-400 font-semibold">outperform</span> the original language version. </p> </div> </div>
-             </div>
-        </div>
-
-        <!-- Corrected Slide 7 -->
-        <div id="slide-7" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Audience Across India</span>: Reception & Demographics </h1>
-                 <div class="accent-box mb-8"> <h3 class="text-xl font-bold mb-2 flex items-center"> <i class="fas fa-chart-bar mr-3 text-orange-400"></i> Regional Reception Strength (Illustrative) </h3> <p class="text-sm text-gray-400 mb-4">Illustrates relative nationwide reach & success in key markets based on examples.</p> <div class="reception-graph-container"> <div class="reception-bar-wrapper"> <div class="reception-bar-value">Very Strong</div> <div class="reception-bar" style="height: 95%; background: linear-gradient(to top, #ff7e5f, #feb47b);"></div> <div class="reception-bar-label">Baahubali 2<br>(All Regions)</div> </div> <div class="reception-bar-wrapper"> <div class="reception-bar-value">Strong (Variable)</div> <div class="reception-bar" style="height: 70%; background: linear-gradient(to top, #46c7ff, #4299e1);"></div> <div class="reception-bar-label">Pushpa<br>(Strong Hindi Belt)</div> </div> <div class="reception-bar-wrapper"> <div class="reception-bar-value">Very Strong</div> <div class="reception-bar" style="height: 90%; background: linear-gradient(to top, #ff7e5f, #feb47b);"></div> <div class="reception-bar-label">RRR<br>(Pan-India + Global)</div> </div> <div class="reception-bar-wrapper"> <div class="reception-bar-value">Moderate</div> <div class="reception-bar" style="height: 55%; background: linear-gradient(to top, #46c7ff, #4299e1);"></div> <div class="reception-bar-label">Typical Regional Hit<br>(Limited Pan-India)</div> </div> </div> </div>
-                 <div class="grid grid-cols-2 gap-8"> <div class="accent-box h-full"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-language mr-3 text-blue-400"></i> Hindi Dubbed Revenue Impact </h3> <div class="flex items-center justify-center mb-4"> <div class="pie-chart" style="--p1: 30%; --p2: 70%; --p3: 90%;"> <div class="pie-center">Hindi Version Share</div> </div> </div> <div class="flex justify-center space-x-4 text-xs mt-2"> <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-orange-400 mr-1"></span>Pushpa (40%+)</div> <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-yellow-400 mr-1"></span>RRR (30%+)</div> <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-400 mr-1"></span>KGF 2 (35%+)</div> <div class="flex items-center"><span class="w-3 h-3 rounded-full bg-blue-600 mr-1"></span>Others</div> </div> <ul class="space-y-3 mt-6 text-gray-300 text-sm"> <li class="flex items-start"> <i class="fas fa-chart-line text-orange-400 mt-1 mr-2"></i> <span>Hindi versions are substantial portion of earnings</span> </li> <li class="flex items-start"> <i class="fas fa-chart-line text-orange-400 mt-1 mr-2"></i> <span>Sometimes outperform original language</span> </li> <li class="flex items-start"> <i class="fas fa-chart-line text-orange-400 mt-1 mr-2"></i> <span>Hindi market is crucial for success</span> </li> </ul> </div> <div class="accent-box h-full"> <h3 class="text-xl font-bold mb-4 flex items-center"> <i class="fas fa-users mr-3 text-blue-400"></i> Audience Demographics </h3> <div class="space-y-5"> <div> <div class="flex justify-between mb-1 items-center"> <span class="text-blue-400 font-semibold text-sm">Age Appeal</span> <span class="text-orange-400 font-semibold text-xs">Wide Range</span> </div> <div class="audience-bar"> <div class="audience-fill" style="width: 90%; background: linear-gradient(to right, #46c7ff, #60a5fa);"></div> </div> <p class="text-xs text-gray-400 mt-1">Entertains children to older adults</p> </div> <div> <div class="flex justify-between mb-1 items-center"> <span class="text-blue-400 font-semibold text-sm">Action & "Masala"</span> <span class="text-orange-400 font-semibold text-xs">High Attraction</span> </div> <div class="audience-bar"> <div class="audience-fill" style="width: 85%; background: linear-gradient(to right, #46c7ff, #60a5fa);"></div> </div> <p class="text-xs text-gray-400 mt-1">Attracts broad demographic</p> </div> <div> <div class="flex justify-between mb-1 items-center"> <span class="text-blue-400 font-semibold text-sm">Masculinity Portrayal</span> <span class="text-orange-400 font-semibold text-xs">Targeted Appeal</span> </div> <div class="audience-bar"> <div class="audience-fill" style="width: 70%; background: linear-gradient(to right, #46c7ff, #60a5fa);"></div> </div> <p class="text-xs text-gray-400 mt-1">Appeals to specific segments</p> </div> <div> <div class="flex justify-between mb-1 items-center"> <span class="text-blue-400 font-semibold text-sm">Family Audience</span> <span class="text-orange-400 font-semibold text-xs">High Engagement</span> </div> <div class="audience-bar"> <div class="audience-fill" style="width: 80%; background: linear-gradient(to right, #46c7ff, #60a5fa);"></div> </div> <p class="text-xs text-gray-400 mt-1">Blend appeals across generations</p> </div> </div> </div> </div>
-                 <div class="accent-box mt-8 bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"><span class="text-orange-400 font-bold">Key Insight:</span> Success across demographics demonstrates <span class="text-blue-400 font-semibold">nationwide viewership</span>, breaking down regional biases.</span> </div> </div>
-             </div>
-        </div>
-
-        <!-- Slide 8 -->
-        <div id="slide-8" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Emerging Patterns</span>: Recurring Trends in Pan-Indian Hits </h1>
-                 <div class="accent-box mb-8 trend-card"> <div class="flex items-start"> <div class="trend-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-meteor"></i> </div> <div class="flex-1"> <h3 class="text-xl font-bold mb-2 gradient-text">The "Baahubali Effect"</h3> <p class="text-gray-300 mb-4 text-sm"> Baahubali's success paved the way, instilling confidence for larger-scale, nationwide projects. </p> <div class="flex justify-between text-sm text-gray-400 mb-1"> <span>Confidence Pre-Baahubali</span> <span>Confidence Post-Baahubali</span> </div> <div class="bar-base trend-line mb-4"> <div class="bar-fill trend-fill bg-gradient-to-r from-blue-500 to-orange-500" style="width: 85%;"></div> </div> <div class="bg-blue-900/20 p-3 rounded-lg border-l-4 border-blue-400"> <p class="text-sm italic text-gray-300"> "Baahubalisation" signifies the profound influence... </p> </div> </div> </div> </div>
-                 <div class="grid grid-cols-2 gap-6 mb-6"> <div class="accent-box trend-card h-full"> <div class="flex items-start"> <div class="trend-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-users"></i> </div> <div> <h3 class="text-xl font-bold mb-2 gradient-text">Rise of "Mass" Entertainers</h3> <p class="text-gray-300 mb-3 text-sm">Blending action, drama, music, dance for broad appeal.</p> <ul class="space-y-2 text-gray-300 text-sm"> <li class="flex items-start"> <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i> <span>Charismatic heroes</span> </li> <li class="flex items-start"> <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i> <span>Memorable mannerisms</span> </li> <li class="flex items-start"> <i class="fas fa-check-circle text-blue-400 mt-1 mr-2"></i> <span>Appeals to escapism</span> </li> </ul> </div> </div> </div> <div class="accent-box trend-card h-full"> <div class="flex items-start"> <div class="trend-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-photo-video"></i> </div> <div> <h3 class="text-xl font-bold mb-2 gradient-text">Visual Grandeur & Action</h3> <p class="text-gray-300 mb-3 text-sm">Focus on spectacle and high-octane action.</p> <div class="grid grid-cols-2 gap-3 mb-3"> <div class="accent-box p-2 text-center"> <div class="text-2xl text-blue-400 mb-1"><i class="fas fa-mountain"></i></div> <div class="text-xs text-gray-300">Epic Scale</div> </div> <div class="accent-box p-2 text-center"> <div class="text-2xl text-orange-400 mb-1"><i class="fas fa-bolt"></i></div> <div class="text-xs text-gray-300">Dynamic Action</div> </div> <div class="accent-box p-2 text-center"> <div class="text-2xl text-blue-400 mb-1"><i class="fas fa-magic"></i></div> <div class="text-xs text-gray-300">VFX Excellence</div> </div> <div class="accent-box p-2 text-center"> <div class="text-2xl text-orange-400 mb-1"><i class="fas fa-palette"></i></div> <div class="text-xs text-gray-300">Visual Aesthetics</div> </div> </div> <p class="text-xs text-gray-400">Spectacle provides a universal language.</p> </div> </div> </div> </div>
-                 <div class="accent-box trend-card"> <div class="flex items-start"> <div class="trend-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-language"></i> </div> <div class="flex-1"> <h3 class="text-xl font-bold mb-3 gradient-text">Authentic Dubbing & Multi-Lingual Releases</h3> <div class="flex flex-col md:flex-row justify-between items-center mb-5"> <div class="md:w-2/3 mb-4 md:mb-0 md:pr-6"> <p class="text-gray-300 mb-3 text-sm">Quality multi-language releases becoming standard.</p> <div class="flex justify-between text-sm text-gray-400 mb-1"> <span>Traditional Dubbing</span> <span>Pan-Indian Quality</span> </div> <div class="bar-base trend-line"> <div class="bar-fill trend-fill bg-gradient-to-r from-blue-500 to-orange-500" style="width: 90%;"></div> </div> </div> <div class="flex flex-wrap justify-center md:justify-end md:w-1/3"> <div class="m-1 px-3 py-1 bg-blue-900/30 rounded-full text-xs font-semibold text-blue-300 border border-blue-700/50">Telugu</div> <div class="m-1 px-3 py-1 bg-orange-900/30 rounded-full text-xs font-semibold text-orange-300 border border-orange-700/50">Hindi</div> <div class="m-1 px-3 py-1 bg-blue-900/30 rounded-full text-xs font-semibold text-blue-300 border border-blue-700/50">Tamil</div> <div class="m-1 px-3 py-1 bg-orange-900/30 rounded-full text-xs font-semibold text-orange-300 border border-orange-700/50">Malayalam</div> <div class="m-1 px-3 py-1 bg-blue-900/30 rounded-full text-xs font-semibold text-blue-300 border border-blue-700/50">Kannada</div> </div> </div> <div class="bg-gradient-to-r from-indigo-900/40 to-purple-900/40 p-3 rounded-lg"> <p class="text-center text-gray-300 text-sm"> <span class="text-orange-400 font-bold">Insight:</span> Ensures wider accessibility without compromising impact. </p> </div> </div> </div> </div>
-                 <div class="flex flex-wrap justify-center items-center mt-6"> <div class="relative m-2"> <div class="hexagon bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-500/30"> <div class="hexagon-content"> <i class="fas fa-theater-masks text-orange-400 text-xl mb-1"></i> <div class="text-xs font-semibold text-center">Universal<br>Emotions</div> </div> </div> </div> <div class="relative m-2"> <div class="hexagon bg-gradient-to-br from-blue-900/30 to-blue-700/30 border border-blue-500/30"> <div class="hexagon-content"> <i class="fas fa-fire text-blue-400 text-xl mb-1"></i> <div class="text-xs font-semibold text-center">Hero<br>Worship</div> </div> </div> </div> <div class="relative m-2"> <div class="hexagon bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-500/30"> <div class="hexagon-content"> <i class="fas fa-mountain text-orange-400 text-xl mb-1"></i> <div class="text-xs font-semibold text-center">Visual<br>Spectacle</div> </div> </div> </div> <div class="relative m-2"> <div class="hexagon bg-gradient-to-br from-blue-900/30 to-blue-700/30 border border-blue-500/30"> <div class="hexagon-content"> <i class="fas fa-drum text-blue-400 text-xl mb-1"></i> <div class="text-xs font-semibold text-center">Cultural<br>Resonance</div> </div> </div> </div> <div class="relative m-2"> <div class="hexagon bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-500/30"> <div class="hexagon-content"> <i class="fas fa-globe-asia text-orange-400 text-xl mb-1"></i> <div class="text-xs font-semibold text-center">Multi-lingual<br>Appeal</div> </div> </div> </div> </div>
-             </div>
-        </div>
-
-        <!-- Corrected Slide 9 -->
-        <div id="slide-9" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div><div class="pulse-circle" style="width: 100px; height: 100px; right: 200px; top: 250px; opacity: 0.15;"></div><div class="pulse-circle" style="width: 150px; height: 150px; left: 300px; bottom: 100px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Looking Ahead</span>: Future of Pan-Indian Cinema </h1>
-                 <div class="grid grid-cols-2 gap-8 mb-8"> <div class="accent-box prediction-card"> <div class="flex items-start"> <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-xl mr-4 flex-shrink-0"> <i class="fas fa-film"></i> </div> <div> <h3 class="text-xl font-bold mb-2 text-blue-300">Genre Diversification</h3> <p class="text-gray-300 mb-4 text-sm">Exploring untapped potential beyond action/epics:</p> <div class="grid grid-cols-3 gap-2 mb-2"> <div class="accent-box p-2 text-center"> <div class="text-sm font-semibold gradient-text">Thrillers</div> </div> <div class="accent-box p-2 text-center"> <div class="text-sm font-semibold gradient-text">Comedies</div> </div> <div class="accent-box p-2 text-center"> <div class="text-sm font-semibold gradient-text">Social Dramas</div> </div> </div> <p class="text-xs text-gray-400 italic"> Market may overlook broader tastes. </p> </div> </div> </div> <div class="accent-box prediction-card"> <div class="flex items-start"> <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-xl mr-4 flex-shrink-0"> <i class="fas fa-users"></i> </div> <div> <h3 class="text-xl font-bold mb-2 text-orange-300">Evolving Audience Tastes</h3> <p class="text-gray-300 mb-3 text-sm">Audiences becoming more discerning via global content.</p> <div class="bar-base chart-bar"> <div class="bar-fill chart-fill bg-gradient-to-r from-blue-500 to-blue-300" style="width: 65%;"> <div class="pl-3 flex items-center h-full"> <span class="text-xs font-bold text-white">Spectacle (Current)</span> </div> </div> <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs font-bold text-gray-300">65%</div> </div> <div class="bar-base chart-bar"> <div class="bar-fill chart-fill bg-gradient-to-r from-orange-500 to-orange-300" style="width: 85%;"> <div class="pl-3 flex items-center h-full"> <span class="text-xs font-bold text-white">Narrative (Future)</span> </div> </div> <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-xs font-bold text-gray-300">85%</div> </div> <p class="text-xs text-gray-400 italic mt-2"> Future hits may need balance: spectacle + narrative. </p> </div> </div> </div> </div>
-                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> <div class="accent-box prediction-card col-span-1"> <h3 class="text-xl font-bold mb-3 text-blue-300">Changing Cultural Values</h3> <div class="space-y-3"> <div class="flex items-center"> <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-900/50 to-blue-700/50 flex items-center justify-center text-sm mr-3 flex-shrink-0 border border-blue-500/50"> <i class="fas fa-users-cog text-blue-400"></i> </div> <div class="text-sm text-gray-300"> <span class="font-semibold text-blue-300">Inclusivity</span> in stories & characters </div> </div> <div class="flex items-center"> <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-900/50 to-orange-700/50 flex items-center justify-center text-sm mr-3 flex-shrink-0 border border-orange-500/50"> <i class="fas fa-lightbulb text-orange-400"></i> </div> <div class="text-sm text-gray-300"> <span class="font-semibold text-orange-300">Contemporary issues</span> addressed </div> </div> <div class="flex items-center"> <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-900/50 to-blue-700/50 flex items-center justify-center text-sm mr-3 flex-shrink-0 border border-blue-500/50"> <i class="fas fa-sitemap text-blue-400"></i> </div> <div class="text-sm text-gray-300"> <span class="font-semibold text-blue-300">Interconnectedness</span> of cultures </div> </div> </div> <div class="mt-4 text-xs text-gray-400 italic"> Sensitive exploration of relevant themes has potential. </div> </div> <div class="accent-box prediction-card col-span-1 md:col-span-2"> <h3 class="text-xl font-bold mb-4 text-orange-300">Strategic Forecasts</h3> <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> <div class="accent-box bg-gradient-to-br from-blue-900/30 to-blue-700/30 border border-blue-700/30"> <h4 class="text-blue-300 font-semibold mb-2 text-sm">Evolution</h4> <ul class="space-y-1 text-xs text-gray-300"> <li class="flex items-start"> <i class="fas fa-arrow-right text-blue-400 mt-1 mr-2 text-xs"></i> <span>High-budget action/epics persist</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-blue-400 mt-1 mr-2 text-xs"></i> <span>Cross-genre blending increases</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-blue-400 mt-1 mr-2 text-xs"></i> <span>Greater emphasis on characters</span> </li> </ul> </div> <div class="accent-box bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-700/30"> <h4 class="text-orange-300 font-semibold mb-2 text-sm">Innovation</h4> <ul class="space-y-1 text-xs text-gray-300"> <li class="flex items-start"> <i class="fas fa-arrow-right text-orange-400 mt-1 mr-2 text-xs"></i> <span>Advanced digital marketing</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-orange-400 mt-1 mr-2 text-xs"></i> <span>Stronger global distribution</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-orange-400 mt-1 mr-2 text-xs"></i> <span>Interconnected universes</span> </li> </ul> </div> <div class="accent-box bg-gradient-to-br from-blue-900/30 to-blue-700/30 border border-blue-700/30"> <h4 class="text-blue-300 font-semibold mb-2 text-sm">Directions</h4> <ul class="space-y-1 text-xs text-gray-300"> <li class="flex items-start"> <i class="fas fa-arrow-right text-blue-400 mt-1 mr-2 text-xs"></i> <span>Sci-fi/futuristic settings</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-blue-400 mt-1 mr-2 text-xs"></i> <span>Modern mythological takes</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-blue-400 mt-1 mr-2 text-xs"></i> <span>Female-led blockbusters</span> </li> </ul> </div> <div class="accent-box bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-700/30"> <h4 class="text-orange-300 font-semibold mb-2 text-sm">Audience</h4> <ul class="space-y-1 text-xs text-gray-300"> <li class="flex items-start"> <i class="fas fa-arrow-right text-orange-400 mt-1 mr-2 text-xs"></i> <span>Growing intl. viewership</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-orange-400 mt-1 mr-2 text-xs"></i> <span>Demand for higher quality</span> </li> <li class="flex items-start"> <i class="fas fa-arrow-right text-orange-400 mt-1 mr-2 text-xs"></i> <span>OTT platforms enable reach</span> </li> </ul> </div> </div> </div> </div>
-                 <div class="accent-box mt-8 bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"><span class="text-orange-400 font-bold">Insight:</span> Future success needs blend of established elements with <span class="text-blue-400 font-semibold">innovation</span> & <span class="text-blue-400 font-semibold">adaptation</span>.</span> </div> </div>
-             </div>
-        </div>
-
-        <!-- Slide 10 -->
-        <div id="slide-10" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-            <div class="relative z-10">
-                <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Case Studies</span>: Anatomy of Pan-Indian Success </h1>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6"> <div class="accent-box case-study-card"> <div class="film-poster film-poster-baahubali"> <div class="absolute top-3 left-3 z-10"> <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">EPIC FANTASY</span> </div> </div> <div class="p-3"> <div class="flex justify-between items-center mb-2"> <h3 class="text-xl font-bold gradient-text">Baahubali 2</h3> <div class="text-xs text-gray-400">2017</div> </div> <div class="flex items-center mb-3"> <div class="rating-star mr-1">★★★★★</div> <span class="text-xs text-gray-400">Highest Grossing</span> </div> <h4 class="text-sm font-semibold text-blue-300 mb-2">Success Factors:</h4> <div class="success-factor"> <span class="text-xs">Resolved cliffhanger</span> </div> <div class="success-factor"> <span class="text-xs">Grand VFX & action</span> </div> <div class="success-factor"> <span class="text-xs">Strong emotional arcs</span> </div> <div class="mt-3 grid grid-cols-2 gap-2"> <div class="metric-box text-center"> <div class="text-xs text-gray-400">Budget</div> <div class="text-sm font-bold text-orange-400">₹250 Cr</div> </div> <div class="metric-box text-center"> <div class="text-xs text-gray-400">Box Office</div> <div class="text-sm font-bold text-orange-400">₹1700+ Cr</div> </div> </div> </div> </div> <div class="accent-box case-study-card"> <div class="film-poster film-poster-rrr"> <div class="absolute top-3 left-3 z-10"> <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">HISTORICAL FICTION</span> </div> </div> <div class="p-3"> <div class="flex justify-between items-center mb-2"> <h3 class="text-xl font-bold gradient-text">RRR</h3> <div class="text-xs text-gray-400">2022</div> </div> <div class="flex items-center mb-3"> <div class="rating-star mr-1">★★★★★</div> <span class="text-xs text-gray-400">Global Phenomenon</span> </div> <h4 class="text-sm font-semibold text-blue-300 mb-2">Success Factors:</h4> <div class="success-factor"> <span class="text-xs">Rajamouli + Stars</span> </div> <div class="success-factor"> <span class="text-xs">Breathtaking action/friendship</span> </div> <div class="success-factor"> <span class="text-xs">Patriotism + Netflix</span> </div> <div class="mt-3 grid grid-cols-2 gap-2"> <div class="metric-box text-center"> <div class="text-xs text-gray-400">Budget</div> <div class="text-sm font-bold text-blue-400">₹550 Cr</div> </div> <div class="metric-box text-center"> <div class="text-xs text-gray-400">Box Office</div> <div class="text-sm font-bold text-blue-400">₹1200 Cr</div> </div> </div> </div> </div> <div class="accent-box case-study-card"> <div class="film-poster film-poster-pushpa"> <div class="absolute top-3 left-3 z-10"> <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">ACTION DRAMA</span> </div> </div> <div class="p-3"> <div class="flex justify-between items-center mb-2"> <h3 class="text-xl font-bold gradient-text">Pushpa: The Rise</h3> <div class="text-xs text-gray-400">2021</div> </div> <div class="flex items-center mb-3"> <div class="rating-star mr-1">★★★★</div> <span class="text-xs text-gray-400">Hindi Belt Surprise</span> </div> <h4 class="text-sm font-semibold text-blue-300 mb-2">Success Factors:</h4> <div class="success-factor"> <span class="text-xs">Charismatic anti-hero</span> </div> <div class="success-factor"> <span class="text-xs">Compelling underdog story</span> </div> <div class="success-factor"> <span class="text-xs">Raw action + Hindi market</span> </div> <div class="mt-3 grid grid-cols-2 gap-2"> <div class="metric-box text-center"> <div class="text-xs text-gray-400">Budget</div> <div class="text-sm font-bold text-orange-400">₹200 Cr</div> </div> <div class="metric-box text-center"> <div class="text-xs text-gray-400">Box Office</div> <div class="text-sm font-bold text-orange-400">₹350 Cr</div> </div> </div> </div> </div> </div>
-                <div class="accent-box"> <h3 class="text-xl font-bold mb-4 flex items-center justify-center"> <i class="fas fa-chart-line mr-3 text-blue-400"></i> Comparative Analysis: Shared Blueprint </h3> <div class="grid grid-cols-2 md:grid-cols-4 gap-6"> <div class="accent-box text-center p-4"> <i class="fas fa-mountain text-orange-400 text-2xl mb-2"></i> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Visual Spectacle</h4> <p class="text-xs text-gray-300">Heavy investment</p> </div> <div class="accent-box text-center p-4"> <i class="fas fa-users text-orange-400 text-2xl mb-2"></i> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Character Appeal</h4> <p class="text-xs text-gray-300">Memorable leads</p> </div> <div class="accent-box text-center p-4"> <i class="fas fa-language text-orange-400 text-2xl mb-2"></i> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Multi-Language</h4> <p class="text-xs text-gray-300">Strategic dubbing</p> </div> <div class="accent-box text-center p-4"> <i class="fas fa-heart text-orange-400 text-2xl mb-2"></i> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Universal Emotions</h4> <p class="text-xs text-gray-300">Transcended boundaries</p> </div> </div> </div>
-                <div class="accent-box mt-6 bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"><span class="text-orange-400 font-bold">Insight:</span> Films share <span class="text-blue-400 font-semibold">common blueprint</span>: spectacle, characters, marketing, resonant themes.</span> </div> </div>
+                 <div class="page-info">
+                    <div class="note"><i class="fas fa-film"></i> The Pan-Indian Silver Screen: Predicting Success</div>
+                    <div class="page-number"><span>Page 10/10</span></div>
+                 </div>
             </div>
-        </div>
 
-        <!-- Slide 11 -->
-        <div id="slide-11" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div><div class="pulse-circle" style="width: 100px; height: 100px; right: 200px; top: 250px; opacity: 0.15;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Strategic Insights</span>: Blueprint for Future Blockbusters </h1>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"> <div class="accent-box strategy-card"> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-book-open"></i> </div> <div> <h3 class="text-xl font-bold mb-3 text-orange-300">Universal Stories</h3> <p class="text-gray-300 mb-3 text-sm">Resonate across cultures.</p> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Shared Touchpoints</h4> <p class="text-xs text-gray-300">Epics, mythology</p> </div> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Core Emotions</h4> <p class="text-xs text-gray-300">Loyalty, love, etc.</p> </div> <div class="text-xs text-gray-400 mt-2 italic"> Connect emotionally... </div> </div> </div> </div> <div class="accent-box strategy-card"> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-film"></i> </div> <div> <h3 class="text-xl font-bold mb-3 text-blue-300">Visual Spectacle</h3> <p class="text-gray-300 mb-3 text-sm">Invest in production value.</p> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-orange-300 font-semibold mb-1 text-sm">VFX Excellence</h4> <p class="text-xs text-gray-300">International standard</p> </div> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-orange-300 font-semibold mb-1 text-sm">"Event Film" Appeal</h4> <p class="text-xs text-gray-300">Design for big screen</p> </div> <div class="text-xs text-gray-400 mt-2 italic"> Incentive for theatrical view </div> </div> </div> </div> <div class="accent-box strategy-card"> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-bullhorn"></i> </div> <div> <h3 class="text-xl font-bold mb-3 text-orange-300">Marketing Strategy</h3> <p class="text-gray-300 mb-3 text-sm">Target diverse regions effectively.</p> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Industry Partnerships</h4> <p class="text-xs text-gray-300">Enhance regional visibility</p> </div> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Region-Specific</h4> <p class="text-xs text-gray-300">Tailor promotions</p> </div> <div class="text-xs text-gray-400 mt-2 italic"> Multi-platform campaigns </div> </div> </div> </div> <div class="accent-box strategy-card"> <div class="flex items-start"> <div class="strategy-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-language"></i> </div> <div> <h3 class="text-xl font-bold mb-3 text-blue-300">Dubbing Excellence</h3> <p class="text-gray-300 mb-3 text-sm">Ensure quality dubbing.</p> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-orange-300 font-semibold mb-1 text-sm">Quality Voice Talent</h4> <p class="text-xs text-gray-300">Experienced artists</p> </div> <div class="roadmap-point"> <div class="roadmap-dot"></div> <h4 class="text-orange-300 font-semibold mb-1 text-sm">Script Adaptation</h4> <p class="text-xs text-gray-300">Maintain nuance</p> </div> <div class="text-xs text-gray-400 mt-2 italic"> Hindi market critical (30-40%+) </div> </div> </div> </div> </div>
-                 <div class="accent-box mb-6"> <h3 class="text-xl font-bold mb-4 text-center gradient-text">Advanced Strategies</h3> <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <div class="accent-box p-4 text-center"> <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-xl mx-auto mb-3"> <i class="fas fa-chart-pie"></i> </div> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Genre Diversification</h4> <p class="text-xs text-gray-300">Explore beyond action</p> </div> <div class="accent-box p-4 text-center"> <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-xl mx-auto mb-3"> <i class="fas fa-user-alt"></i> </div> <h4 class="text-orange-300 font-semibold mb-1 text-sm">Character Narratives</h4> <p class="text-xs text-gray-300">Balance visuals & depth</p> </div> <div class="accent-box p-4 text-center"> <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-xl mx-auto mb-3"> <i class="fas fa-globe"></i> </div> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Global Strategy</h4> <p class="text-xs text-gray-300">Capture intl. audiences</p> </div> </div> </div>
-                 <div class="accent-box bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"> <span class="text-orange-400 font-bold">Blueprint:</span> Integrate <span class="text-blue-400 font-semibold">stories, spectacle, marketing, language</span> + <span class="text-blue-400 font-semibold">adaptability</span>. </span> </div> </div>
-             </div>
-        </div>
+            <!-- Side Navigation Buttons -->
+            <button id="prevBtn" class="side-nav-button" title="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+            <button id="nextBtn" class="side-nav-button" title="Next Slide"><i class="fas fa-chevron-right"></i></button>
 
-        <!-- Corrected Slide 12 -->
-        <div id="slide-12" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Global Impact</span>: Pan-Indian Cinema on the World Stage </h1>
-                 <div class="accent-box mb-8 relative"> <div class="flex items-start mb-4"> <div class="global-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-globe-americas"></i> </div> <div> <h3 class="text-xl font-bold mb-2 text-blue-300">International Reception & Recognition</h3> <p class="text-gray-300 text-sm">Increasing global audiences & acclaim (post-RRR).</p> </div> </div> <div class="world-map mt-4"> <div style="position: absolute; top: 32%; left: 20%;"> <div class="map-point bg-orange-400"></div> <div class="map-pulse bg-orange-400" style="width: 30px; height: 30px;"></div> </div> <div style="position: absolute; top: 25%; left: 45%;"> <div class="map-point bg-blue-400"></div> <div class="map-pulse bg-blue-400" style="width: 25px; height: 25px;"></div> </div> <div style="position: absolute; top: 32%; left: 80%;"> <div class="map-point bg-orange-400"></div> <div class="map-pulse bg-orange-400" style="width: 30px; height: 30px;"></div> </div> <div style="position: absolute; top: 65%; left: 82%;"> <div class="map-point bg-blue-400"></div> <div class="map-pulse bg-blue-400" style="width: 22px; height: 22px;"></div> </div> <div style="position: absolute; top: 40%; left: 58%;"> <div class="map-point bg-orange-400"></div> <div class="map-pulse bg-orange-400" style="width: 22px; height: 22px;"></div> </div> <div style="position: absolute; top: 45%; left: 73%;"> <div class="map-point bg-blue-400"></div> <div class="map-pulse bg-blue-400" style="width: 25px; height: 25px;"></div> </div> </div> <div class="flex justify-between flex-wrap mt-2 px-4"> <div class="text-center p-1"> <div class="text-sm font-semibold text-orange-400">USA</div> <div class="text-xs text-gray-400">Major Market</div> </div> <div class="text-center p-1"> <div class="text-sm font-semibold text-blue-400">UK</div> <div class="text-xs text-gray-400">Diaspora</div> </div> <div class="text-center p-1"> <div class="text-sm font-semibold text-orange-400">Japan</div> <div class="text-xs text-gray-400">RRR Boom</div> </div> <div class="text-center p-1"> <div class="text-sm font-semibold text-blue-400">Middle East</div> <div class="text-xs text-gray-400">Established</div> </div> <div class="text-center p-1"> <div class="text-sm font-semibold text-orange-400">SE Asia</div> <div class="text-xs text-gray-400">Growing</div> </div> </div> </div>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6"> <div class="accent-box h-full"> <h3 class="text-xl font-bold mb-4 text-orange-300">International Acclaim</h3> <div class="space-y-4"> <div class="flex items-center"> <div class="award-icon bg-gradient-to-br from-yellow-500 to-yellow-300"> <i class="fas fa-trophy"></i> </div> <div> <h4 class="text-blue-300 font-semibold text-sm">Golden Globe</h4> <p class="text-xs text-gray-300">"Naatu Naatu" (RRR)</p> </div> </div> <div class="flex items-center"> <div class="award-icon bg-gradient-to-br from-yellow-500 to-yellow-300"> <i class="fas fa-award"></i> </div> <div> <h4 class="text-blue-300 font-semibold text-sm">Academy Award</h4> <p class="text-xs text-gray-300">"Naatu Naatu" (RRR)</p> </div> </div> <div class="flex items-center"> <div class="award-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-film"></i> </div> <div> <h4 class="text-blue-300 font-semibold text-sm">Critics' Recognition</h4> <p class="text-xs text-gray-300">RRR on "Best of" lists</p> </div> </div> <div class="flex items-center"> <div class="award-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-star"></i> </div> <div> <h4 class="text-blue-300 font-semibold text-sm">Streaming Success</h4> <p class="text-xs text-gray-300">Global Netflix views</p> </div> </div> </div> <div class="mt-4 p-3 bg-blue-900/20 rounded-lg border-l-4 border-blue-400"> <p class="text-sm italic text-gray-300"> RRR opened doors globally... </p> </div> </div> <div class="accent-box h-full"> <h3 class="text-xl font-bold mb-4 text-orange-300">Global Market Growth (%)</h3> <div class="mb-6 space-y-3"> <div> <div class="flex justify-between text-xs mb-1"> <span class="text-gray-300">Pre-2015 Intl.</span> <span class="text-blue-400 font-semibold">10-15</span> </div> <div class="bar-base chart-bar"> <div class="bar-fill chart-fill bg-gradient-to-r from-blue-500 to-blue-300" style="width: 15%;"></div> </div> </div> <div> <div class="flex justify-between text-xs mb-1"> <span class="text-gray-300">Post-Baahubali</span> <span class="text-blue-400 font-semibold">20-25</span> </div> <div class="bar-base chart-bar"> <div class="bar-fill chart-fill bg-gradient-to-r from-blue-500 to-blue-300" style="width: 25%;"></div> </div> </div> <div> <div class="flex justify-between text-xs mb-1"> <span class="text-gray-300">Post-RRR</span> <span class="text-blue-400 font-semibold">30-40</span> </div> <div class="bar-base chart-bar"> <div class="bar-fill chart-fill bg-gradient-to-r from-orange-500 to-orange-300" style="width: 40%;"></div> </div> </div> <div> <div class="flex justify-between text-xs mb-1"> <span class="text-gray-300">Potential</span> <span class="text-blue-400 font-semibold">40-50</span> </div> <div class="bar-base chart-bar"> <div class="bar-fill chart-fill bg-gradient-to-r from-orange-500 to-orange-300" style="width: 50%;"></div> </div> </div> </div> <h4 class="text-blue-300 font-semibold mb-2 text-sm">Growth Drivers</h4> <div class="grid grid-cols-2 gap-3"> <div class="accent-box p-3 text-center bg-gradient-to-br from-blue-900/30 to-blue-700/30 border border-blue-700/30"> <i class="fas fa-laptop text-blue-400 mb-1 text-lg"></i> <div class="text-xs text-gray-300">Streaming</div> </div> <div class="accent-box p-3 text-center bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-700/30"> <i class="fas fa-user-friends text-orange-400 mb-1 text-lg"></i> <div class="text-xs text-gray-300">Diaspora</div> </div> <div class="accent-box p-3 text-center bg-gradient-to-br from-blue-900/30 to-blue-700/30 border border-blue-700/30"> <i class="fas fa-medal text-blue-400 mb-1 text-lg"></i> <div class="text-xs text-gray-300">Awards</div> </div> <div class="accent-box p-3 text-center bg-gradient-to-br from-orange-900/30 to-orange-700/30 border border-orange-700/30"> <i class="fas fa-users text-orange-400 mb-1 text-lg"></i> <div class="text-xs text-gray-300">Crossover</div> </div> </div> </div> </div>
-                 <div class="accent-box bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <h3 class="text-lg font-bold mb-2 gradient-text text-center">Future Global Expansion</h3> <div class="grid grid-cols-1 md:grid-cols-3 gap-4"> <div class="text-center p-2"> <i class="fas fa-handshake text-orange-400 text-xl mb-1"></i> <h4 class="text-blue-300 text-sm font-semibold">Co-Productions</h4> <p class="text-xs text-gray-300">Wider distribution</p> </div> <div class="text-center p-2"> <i class="fas fa-globe-asia text-orange-400 text-xl mb-1"></i> <h4 class="text-blue-300 text-sm font-semibold">Universal Stories</h4> <p class="text-xs text-gray-300">Global sensibilities</p> </div> <div class="text-center p-2"> <i class="fas fa-tv text-orange-400 text-xl mb-1"></i> <h4 class="text-blue-300 text-sm font-semibold">OTT Integration</h4> <p class="text-xs text-gray-300">Strategic partnerships</p> </div> </div> </div>
-             </div>
-        </div>
-
-        <!-- Corrected Slide 13 -->
-        <div id="slide-13" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-            <div class="relative z-10">
-                <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Industry Transformation</span>: Shifting Power Dynamic </h1>
-                <div class="accent-box mb-8 p-8"> <h3 class="text-xl font-bold mb-6 text-blue-300 text-center">Evolution of Power Balance (Revenue Share)</h3> <div class="relative mb-10"> <div class="timeline-line"></div> <div class="timeline-progress" style="width: 80%;"></div> <div class="flex justify-between"> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">Pre-2015</div> <div class="text-xs text-gray-300">Bollywood Dom.</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2015-17</div> <div class="text-xs text-gray-300">Baahubali</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2018-21</div> <div class="text-xs text-gray-300">Consolidation</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot"></div> <div class="mt-4"> <div class="text-orange-400 font-bold">2022-23</div> <div class="text-xs text-gray-300">South Dom.</div> </div> </div> <div class="flex flex-col items-center text-center w-1/5"> <div class="timeline-dot" style="background: rgba(255, 255, 255, 0.2);"></div> <div class="mt-4"> <div class="text-gray-400 font-bold">2024+</div> <div class="text-xs text-gray-400">Pan-Indian Era</div> </div> </div> </div> </div> <div class="space-y-6"> <div> <div class="flex justify-between mb-1"> <span class="text-gray-300 font-semibold text-sm">Bollywood (2015)</span> <span class="text-blue-400 font-semibold">~70%</span> </div> <div class="bar-base power-bar"> <div class="bar-fill power-fill bg-blue-400" style="width: 70%;"></div> </div> </div> <div> <div class="flex justify-between mb-1"> <span class="text-gray-300 font-semibold text-sm">South Indian (2015)</span> <span class="text-orange-400 font-semibold">~25%</span> </div> <div class="bar-base power-bar"> <div class="bar-fill power-fill bg-orange-400" style="width: 25%;"></div> </div> </div> <div> <div class="flex justify-between mb-1"> <span class="text-gray-300 font-semibold text-sm">Bollywood (2023)</span> <span class="text-blue-400 font-semibold">~45%</span> </div> <div class="bar-base power-bar"> <div class="bar-fill power-fill bg-blue-400" style="width: 45%;"></div> </div> </div> <div> <div class="flex justify-between mb-1"> <span class="text-gray-300 font-semibold text-sm">South Indian (2023)</span> <span class="text-orange-400 font-semibold">~55%</span> </div> <div class="bar-base power-bar"> <div class="bar-fill power-fill bg-orange-400" style="width: 55%;"></div> </div> </div> </div> </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <div class="accent-box industry-card"> <div class="flex items-start"> <div class="industry-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-film"></i> </div> <div> <h3 class="text-lg font-bold mb-2 text-blue-300">Bollywood Response</h3> <ul class="space-y-2 text-sm text-gray-300"> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-orange-400 text-xs"></i> <span>Bigger budgets</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-orange-400 text-xs"></i> <span>Collaborations</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-orange-400 text-xs"></i> <span>Pan-India releases</span> </li> </ul> </div> </div> </div> <div class="accent-box industry-card"> <div class="flex items-start"> <div class="industry-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-cogs"></i> </div> <div> <h3 class="text-lg font-bold mb-2 text-orange-300">Production Shifts</h3> <ul class="space-y-2 text-sm text-gray-300"> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-blue-400 text-xs"></i> <span>Multi-language plans</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-blue-400 text-xs"></i> <span>Higher VFX spend</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-blue-400 text-xs"></i> <span>Cross-regional talent</span> </li> </ul> </div> </div> </div> <div class="accent-box industry-card"> <div class="flex items-start"> <div class="industry-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-chart-line"></i> </div> <div> <h3 class="text-lg font-bold mb-2 text-blue-300">Business Models</h3> <ul class="space-y-2 text-sm text-gray-300"> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-orange-400 text-xs"></i> <span>Pre-sales by language</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-orange-400 text-xs"></i> <span>OTT revenue stream</span> </li> <li class="flex items-start"> <i class="fas fa-angle-right mt-1 mr-1 text-orange-400 text-xs"></i> <span>Franchise planning</span> </li> </ul> </div> </div> </div> </div>
-                <div class="accent-box mt-6 bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"><span class="text-orange-400 font-bold">Insight:</span> Pan-Indian cinema <span class="text-blue-400 font-semibold">rebalanced power</span>, creating a more <span class="text-blue-400 font-semibold">democratized landscape</span>.</span> </div> </div>
-            </div>
-        </div>
-
-        <!-- Corrected Slide 14 -->
-        <div id="slide-14" class="slide">
-            <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-4xl font-bold mb-8"> <span class="gradient-text">Challenges & Opportunities</span>: Navigating the Future </h1>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"> <div class="accent-box challenge-card"> <div class="flex items-start mb-4"> <div class="challenge-icon bg-gradient-to-br from-orange-400 to-orange-600"> <i class="fas fa-exclamation-triangle"></i> </div> <div> <h3 class="text-xl font-bold mb-2 text-orange-300">Key Challenges</h3> <p class="text-gray-300 text-sm">Obstacles for continued success.</p> </div> </div> <div class="space-y-4"> <div class="accent-box bg-gradient-to-br from-orange-900/20 to-orange-700/20 border border-orange-700/30"> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Cultural Balance</h4> <p class="text-xs text-gray-300 mb-2">Authenticity vs. accessibility</p> <div class="flex flex-wrap"> <span class="challenge-badge bg-blue-900/50 text-blue-300 border border-blue-700/50">Nuances</span> <span class="challenge-badge bg-orange-900/50 text-orange-300 border border-orange-700/50">Translation</span> <span class="challenge-badge bg-blue-900/50 text-blue-300 border border-blue-700/50">Context</span> </div> </div> <div class="accent-box bg-gradient-to-br from-orange-900/20 to-orange-700/20 border border-orange-700/30"> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Rising Production Costs</h4> <p class="text-xs text-gray-300 mb-2">Higher financial risks</p> <div class="bar-base solution-bar mt-3 relative"> <div class="bar-fill solution-fill bg-gradient-to-r from-blue-500 to-blue-300" style="width: 70%;"></div> <div class="absolute -top-5 right-0 text-xs text-gray-400 whitespace-nowrap">Budget ↑: ~70%</div> </div> </div> <div class="accent-box bg-gradient-to-br from-orange-900/20 to-orange-700/20 border border-orange-700/30"> <h4 class="font-semibold text-blue-300 mb-1 text-sm">Formula Sustainability</h4> <p class="text-xs text-gray-300 mb-2">Risk of audience fatigue</p> <div class="flex flex-wrap"> <span class="challenge-badge bg-blue-900/50 text-blue-300 border border-blue-700/50">Innovation</span> <span class="challenge-badge bg-orange-900/50 text-orange-300 border border-orange-700/50">Taste</span> <span class="challenge-badge bg-blue-900/50 text-blue-300 border border-blue-700/50">Competition</span> </div> </div> </div> </div> <div class="accent-box challenge-card"> <div class="flex items-start mb-4"> <div class="challenge-icon bg-gradient-to-br from-blue-400 to-blue-600"> <i class="fas fa-lightbulb"></i> </div> <div> <h3 class="text-xl font-bold mb-2 text-blue-300">Major Opportunities</h3> <p class="text-gray-300 text-sm">Growth potential.</p> </div> </div> <div class="space-y-4"> <div class="accent-box bg-gradient-to-br from-blue-900/20 to-blue-700/20 border border-blue-700/30"> <h4 class="font-semibold text-orange-300 mb-1 text-sm">Global Expansion</h4> <p class="text-xs text-gray-300 mb-3">Capture wider intl. audiences</p> <div class="grid grid-cols-4 gap-2 mt-1"> <div class="data-point text-center"> <div class="text-blue-400 font-bold">USA</div> <div class="text-xs text-gray-400">+120%</div> </div> <div class="data-point text-center"> <div class="text-orange-400 font-bold">Japan</div> <div class="text-xs text-gray-400">+200%</div> </div> <div class="data-point text-center"> <div class="text-blue-400 font-bold">Europe</div> <div class="text-xs text-gray-400">+85%</div> </div> <div class="data-point text-center"> <div class="text-orange-400 font-bold">ME</div> <div class="text-xs text-gray-400">+60%</div> </div> </div> </div> <div class="accent-box bg-gradient-to-br from-blue-900/20 to-blue-700/20 border border-blue-700/30"> <h4 class="font-semibold text-orange-300 mb-1 text-sm">Genre Innovation</h4> <p class="text-xs text-gray-300 mb-2">Untapped potential</p> <div class="flex flex-wrap"> <span class="challenge-badge bg-orange-900/50 text-orange-300 border border-orange-700/50">Sci-Fi</span> <span class="challenge-badge bg-blue-900/50 text-blue-300 border border-blue-700/50">History</span> <span class="challenge-badge bg-orange-900/50 text-orange-300 border border-orange-700/50">Thrillers</span> <span class="challenge-badge bg-blue-900/50 text-blue-300 border border-blue-700/50">Social</span> <span class="challenge-badge bg-orange-900/50 text-orange-300 border border-orange-700/50">Female-Led</span> </div> </div> <div class="accent-box bg-gradient-to-br from-blue-900/20 to-blue-700/20 border border-blue-700/30"> <h4 class="font-semibold text-orange-300 mb-1 text-sm">Tech & Distribution</h4> <p class="text-xs text-gray-300 mb-2">New engagement methods</p> <div class="grid grid-cols-3 gap-2"> <div class="accent-box p-2 text-center"> <i class="fas fa-vr-cardboard text-blue-400 mb-1"></i> <div class="text-xs">VR/AR</div> </div> <div class="accent-box p-2 text-center"> <i class="fas fa-mobile-alt text-orange-400 mb-1"></i> <div class="text-xs">Mobile</div> </div> <div class="accent-box p-2 text-center"> <i class="fas fa-globe text-blue-400 mb-1"></i> <div class="text-xs">Direct OTT</div> </div> </div> </div> </div> </div> </div>
-                 <div class="accent-box mb-6"> <h3 class="text-xl font-bold mb-4 text-center gradient-text">Strategic Balance</h3> <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <div class="accent-box p-4"> <h4 class="text-center text-blue-300 font-semibold mb-2 text-sm">Sustainable Growth</h4> <div class="text-center mb-3"> <i class="fas fa-seedling text-orange-400 text-2xl"></i> </div> <p class="text-xs text-gray-300 text-center"> Balance spectacle & cost </p> </div> <div class="accent-box p-4"> <h4 class="text-center text-blue-300 font-semibold mb-2 text-sm">Creative Renewal</h4> <div class="text-center mb-3"> <i class="fas fa-sync-alt text-orange-400 text-2xl"></i> </div> <p class="text-xs text-gray-300 text-center"> Evolve storytelling </p> </div> <div class="accent-box p-4"> <h4 class="text-center text-blue-300 font-semibold mb-2 text-sm">Cultural Inclusivity</h4> <div class="text-center mb-3"> <i class="fas fa-hands-helping text-orange-400 text-2xl"></i> </div> <p class="text-xs text-gray-300 text-center"> Incorporate diverse views </p> </div> </div> </div>
-                 <div class="accent-box bg-gradient-to-r from-indigo-900/40 to-purple-900/40"> <div class="text-center"> <span class="text-lg"> <span class="text-orange-400 font-bold">Insight:</span> Success depends on <span class="text-blue-400 font-semibold">adapting to challenges</span> while <span class="text-blue-400 font-semibold">capitalizing on opportunities</span>. </span> </div> </div>
-             </div>
-        </div>
-
-        <!-- Slide 15 -->
-        <div id="slide-15" class="slide">
-             <div class="bubble" style="width: 300px; height: 300px; left: -100px; top: -100px; opacity: 0.2;"></div><div class="bubble" style="width: 200px; height: 200px; right: -50px; bottom: -50px; opacity: 0.15;"></div><div class="bubble" style="width: 150px; height: 150px; right: 300px; top: 50px; opacity: 0.1;"></div><div class="pulse-circle" style="width: 100px; height: 100px; right: 200px; top: 200px; opacity: 0.15;"></div><div class="pulse-circle" style="width: 150px; height: 150px; left: 300px; bottom: 100px; opacity: 0.1;"></div>
-             <div class="relative z-10">
-                 <h1 class="text-5xl font-bold mb-6 text-center"> <span class="gradient-text">Conclusion</span>: Future of Pan-Indian Cinema </h1>
-                 <div class="graph-card w-full mb-8"> <div class="graph-line"></div> <div class="graph-line-2"></div> <div class="flex justify-between px-4 py-2"> <div class="text-gray-400 text-sm">Regional</div> <div class="text-gray-400 text-sm">Growth</div> <div class="text-gray-400 text-sm">Innovation</div> <div class="text-gray-400 text-sm">Global</div> <div class="text-gray-400 text-sm">Future</div> </div> </div>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"> <div class="accent-box conclusion-card h-full"> <h3 class="text-xl font-bold mb-4 text-center"> <i class="fas fa-key text-orange-400 mr-2"></i> <span class="gradient-text">Key Success Factors</span> </h3> <div class="flex flex-wrap justify-center"> <div class="success-pill primary"> <i class="fas fa-heart mr-2 text-orange-400"></i> <span>Universal Stories</span> </div> <div class="success-pill secondary"> <i class="fas fa-film mr-2 text-blue-400"></i> <span>Visual Spectacle</span> </div> <div class="success-pill primary"> <i class="fas fa-bullhorn mr-2 text-orange-400"></i> <span>Marketing</span> </div> <div class="success-pill secondary"> <i class="fas fa-language mr-2 text-blue-400"></i> <span>Dubbing</span> </div> <div class="success-pill primary"> <i class="fas fa-user-tie mr-2 text-orange-400"></i> <span>Vision/Stars</span> </div> <div class="success-pill secondary"> <i class="fas fa-theater-masks mr-2 text-blue-400"></i> <span>Cultural Resonance</span> </div> </div> </div> <div class="accent-box conclusion-card h-full"> <h3 class="text-xl font-bold mb-4 text-center"> <i class="fas fa-telescope text-blue-400 mr-2"></i> <span class="gradient-text">Future Outlook</span> </h3> <ul class="space-y-3 text-sm"> <li class="flex items-start"> <i class="fas fa-chevron-right text-orange-400 mt-1 mr-2"></i> <span class="text-gray-300">Genre diversification (thrillers, sci-fi, etc.)</span> </li> <li class="flex items-start"> <i class="fas fa-chevron-right text-orange-400 mt-1 mr-2"></i> <span class="text-gray-300">Focus on narrative quality & character development</span> </li> <li class="flex items-start"> <i class="fas fa-chevron-right text-orange-400 mt-1 mr-2"></i> <span class="text-gray-300">Continued global market expansion</span> </li> <li class="flex items-start"> <i class="fas fa-chevron-right text-orange-400 mt-1 mr-2"></i> <span class="text-gray-300">Balance spectacle & cost sustainability</span> </li> </ul> </div> </div>
-                 <div class="accent-box conclusion-card mb-6"> <h3 class="text-xl font-bold mb-4 text-center gradient-text">Transformative Industry Impact</h3> <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <div class="accent-box p-4 text-center"> <i class="fas fa-balance-scale text-orange-400 text-2xl mb-2"></i> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Power Rebalance</h4> <p class="text-xs text-gray-300">Equitable landscape</p> </div> <div class="accent-box p-4 text-center"> <i class="fas fa-handshake text-orange-400 text-2xl mb-2"></i> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Cross-Collaboration</h4> <p class="text-xs text-gray-300">Richer cinema</p> </div> <div class="accent-box p-4 text-center"> <i class="fas fa-globe-asia text-orange-400 text-2xl mb-2"></i> <h4 class="text-blue-300 font-semibold mb-1 text-sm">Global Recognition</h4> <p class="text-xs text-gray-300">Elevated profile</p> </div> </div> </div>
-                 <div class="accent-box bg-gradient-to-r from-indigo-900/50 to-purple-900/50 p-6"> <div class="text-center"> <p class="text-xl"> Pan-Indian cinema embodies <span class="text-blue-400 font-semibold">India's cultural unity in diversity</span>, transforming Indian cinema into a unified force on the global stage. </p> </div> </div>
-                 <div class="text-center mt-8"> <p class="text-gray-300 italic text-sm"> "The future lies in integrating universal storytelling, spectacle, marketing, language quality — plus adaptability." </p> </div>
-             </div>
-        </div>
-
-
-        <!-- Navigation Controls -->
-        <button id="prev-btn" class="nav-button"> <i class="fas fa-chevron-left"></i> </button>
-        <button id="next-btn" class="nav-button"> <i class="fas fa-chevron-right"></i> </button>
-
-        <!-- Page Indicator -->
-        <div id="page-indicator">
-            <span id="page-indicator-label">Page</span>
-            <span id="page-number">1</span>
-            <span id="total-pages">/ 15</span> <!-- Total Pages -->
-        </div>
-
-    </div> <!-- End #presentation-wrapper -->
+        </div> <!-- End Slide Container -->
+    </div> <!-- End Presentation Wrapper -->
 
     <script>
+        const presentationWrapper = document.querySelector('.presentation-wrapper');
+        const slideContainer = document.querySelector('.slide-container');
         const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const pageNumElement = document.getElementById('page-number');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const exploreBtn = document.getElementById('exploreBtn'); // Button on first slide
+
         let currentSlide = 0;
         const totalSlides = slides.length;
+        const baseWidth = 1280; // Base width of your design
+        const baseHeight = 720; // Base height of your design
 
-        function showSlide(index) {
-            slides.forEach((slide) => { slide.classList.remove('active'); slide.scrollTop = 0; });
-            currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-            slides[currentSlide].classList.add('active');
-            pageNumElement.textContent = currentSlide + 1;
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+                 // Scroll active slide's content area to top when it becomes active
+                if (index === currentSlide) {
+                    const content = slide.querySelector('.content');
+                    if(content) content.scrollTop = 0;
+                }
+            });
             prevBtn.disabled = currentSlide === 0;
             nextBtn.disabled = currentSlide === totalSlides - 1;
         }
 
-        prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
-        nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+        function showNextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
 
+        function showPrevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        // Function to scale the presentation and center it
+        function scalePresentation() {
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const scaleX = windowWidth / baseWidth;
+            const scaleY = windowHeight / baseHeight;
+            const scale = Math.min(scaleX, scaleY);
+
+            if (slideContainer) {
+                 slideContainer.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            }
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', showNextSlide);
+        prevBtn.addEventListener('click', showPrevSlide);
+        if (exploreBtn) {
+             exploreBtn.addEventListener('click', showNextSlide);
+        }
         document.addEventListener('keydown', (event) => {
-            if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') { return; }
-            if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') { if (!nextBtn.disabled) nextBtn.click(); event.preventDefault(); }
-            else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { if (!prevBtn.disabled) prevBtn.click(); event.preventDefault(); }
-            else if (event.key === 'Home') { showSlide(0); event.preventDefault(); }
-            else if (event.key === 'End') { showSlide(totalSlides - 1); event.preventDefault(); }
+            if (document.activeElement === document.body || presentationWrapper.contains(document.activeElement)) {
+                 if (['ArrowRight', 'PageDown', ' ', 'ArrowDown'].includes(event.key)) {
+                     event.preventDefault();
+                     showNextSlide();
+                 } else if (['ArrowLeft', 'PageUp', 'ArrowUp'].includes(event.key)) {
+                    event.preventDefault();
+                    showPrevSlide();
+                 } else if (event.key === 'Home') {
+                    event.preventDefault();
+                    currentSlide = 0; updateSlide();
+                 } else if (event.key === 'End') {
+                    event.preventDefault();
+                    currentSlide = totalSlides - 1; updateSlide();
+                 }
+            }
         });
 
-        showSlide(currentSlide); // Initial setup
-    </script>
+        window.addEventListener('resize', scalePresentation);
 
+        // Initial setup
+        updateSlide();
+        scalePresentation();
+
+    </script>
 </body>
 </html>
-```
